@@ -35,7 +35,7 @@ func main() {
 	examplePlugin := example.NewExample()
 
 	rootPath := "/data/www/go-admin"
-	rootPath = "."
+	//rootPath = "."
 
 	if err := eng.AddConfigFromJson(rootPath+"/config.json").AddPlugins(adminPlugin, examplePlugin).Use(r); err != nil {
 		panic(err)

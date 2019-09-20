@@ -1,3 +1,3 @@
 # go-admin-demo
 
-http://demo.go-admin.cn
+http://demo.go-admin.cn/admin
