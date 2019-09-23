@@ -83,7 +83,7 @@ var List = map[string]string{"login/theme1": `{{define "login_theme1"}}
     <div class="row" style="padding-top: 60px; clear: both;">
         <div class="col-md-12 text-center">
             <p>
-                <small>&copy; All Rights Reserved. GoAdmin</small>
+                <small>&copy; All Rights Reserved. <a href="http://www.go-admin.cn">GoAdmin</a></small>
             </p>
         </div>
     </div>
@@ -104,7 +104,7 @@ var List = map[string]string{"login/theme1": `{{define "login_theme1"}}
 <script src="{{.UrlPrefix}}/assets/login/js/jquery.waypoints.min.js"></script>
 <!-- Main JS -->
 <script src="{{.UrlPrefix}}/assets/login/js/main.js"></script>
-<script src="{{.UrlPrefix}}/assets/particles/particles.js"></script>
+<script src="{{.UrlPrefix}}/assets/login/js/particles.js"></script>
 
 <style type="text/css">
     #particles-js {
