@@ -27,6 +27,6 @@ func (*Login) GetAssetList() []string {
 }
 
 func (*Login) GetAsset(name string) ([]byte, error) {
-	name = "assets" + name
+	name = "template/login" + name
 	return Asset(name)
 }

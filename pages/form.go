@@ -10,7 +10,7 @@ import (
 
 func GetForm1Content() types.Panel {
 
-	components := template2.Get(config.Get().THEME)
+	components := template2.Get(config.Get().Theme)
 
 	aform := components.Form().
 		SetContent([]types.Form{
