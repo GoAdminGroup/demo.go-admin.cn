@@ -13,13 +13,13 @@ func GetLoginComponent() *Login {
 }
 
 func (*Login) GetTemplate() (*template.Template, string) {
-	tmpler, err := template.New("login_theme1").Parse(List["login/theme1"])
+	tmpl, err := template.New("login_theme1").Parse(List["login/theme1"])
 
 	if err != nil {
 		logger.Error("Login GetTemplate Error: ", err)
 	}
 
-	return tmpler, "login_theme1"
+	return tmpl, "login_theme1"
 }
 
 func (*Login) GetAssetList() []string {

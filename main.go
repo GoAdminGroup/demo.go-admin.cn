@@ -28,7 +28,7 @@ func main() {
 	//
 	adminPlugin.AddGenerator("user", datamodel.GetUserTable)
 
-	template.AddComp("login", login.GetLoginComponent())
+	template.AddLoginComp(login.GetLoginComponent())
 
 	// you can custom a plugin like:
 
