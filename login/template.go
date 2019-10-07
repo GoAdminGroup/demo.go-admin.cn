@@ -94,8 +94,7 @@ var List = map[string]string{"login/theme1": `{{define "login_theme1"}}
 </div>
 
 <!-- jQuery -->
-<script src="{{.UrlPrefix}}/assets/jQuery/jQuery-2.1.4.min.js"></script>
-<!-- <script src="{{.UrlPrefix}}/assets/login/js/jquery.min.js"></script> -->
+<script src="{{.UrlPrefix}}/assets/login/js/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="{{.UrlPrefix}}/assets/login/js/bootstrap.min.js"></script>
 <!-- Placeholder -->
