@@ -18,7 +18,7 @@ func GetContent() types.Panel {
 
 	infobox := components.InfoBox().
 		SetText("支付订单数").
-		SetColor("#6a7c86").
+		SetColor("#3583af").
 		SetNumber("100").
 		SetIcon(`<svg t="1568904058859" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2216" width="48" height="48"><path d="M864 64l-704 0C142.336 64 128 78.336 128 96l0 832C128 945.664 142.336 960 160 960l704 0c17.664 0 32-14.336 32-32l0-832C896 78.336 881.664 64 864 64zM832 896 192 896 192 128l640 0L832 896z" fill="#e6e6e6" p-id="2217"></path><path d="M353.92 320c17.6 0 32-14.336 32-32S371.584 256 353.92 256L353.28 256C335.616 256 321.6 270.336 321.6 288S336.256 320 353.92 320z" fill="#e6e6e6" p-id="2218"></path><path d="M353.92 512c17.6 0 32-14.336 32-32S371.584 448 353.92 448L353.28 448C335.616 448 321.6 462.336 321.6 480S336.256 512 353.92 512z" fill="#e6e6e6" p-id="2219"></path><path d="M353.92 704c17.6 0 32-14.336 32-32S371.584 640 353.92 640L353.28 640c-17.6 0-31.616 14.336-31.616 32S336.256 704 353.92 704z" fill="#e6e6e6" p-id="2220"></path><path d="M480 320l192 0C689.664 320 704 305.664 704 288S689.664 256 672 256l-192 0C462.336 256 448 270.336 448 288S462.336 320 480 320z" fill="#e6e6e6" p-id="2221"></path><path d="M480 512l192 0C689.664 512 704 497.664 704 480S689.664 448 672 448l-192 0C462.336 448 448 462.336 448 480S462.336 512 480 512z" fill="#e6e6e6" p-id="2222"></path><path d="M480 704l192 0c17.664 0 32-14.336 32-32S689.664 640 672 640l-192 0C462.336 640 448 654.336 448 672S462.336 704 480 704z" fill="#e6e6e6" p-id="2223"></path></svg>`).
 		GetContent()
@@ -32,14 +32,14 @@ func GetContent() types.Panel {
 
 	infobox3 := components.InfoBox().
 		SetText("浏览量").
-		SetColor("#6a7c86").
+		SetColor("#d04c79").
 		SetNumber("760").
 		SetIcon(`<svg t="1570469111431" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3801" width="48" height="48"><path d="M298.666667 128v768h426.666666V128H298.666667zM256 85.333333h512v853.333334H256V85.333333zM170.666667 128H85.333333V85.333333h128v853.333334H85.333333v-42.666667h85.333334V128z m768 768v42.666667h-128V85.333333h128v42.666667h-85.333334v768h85.333334z" p-id="3802" fill="#ffffff"></path></svg>`).
 		GetContent()
 
 	infobox4 := components.InfoBox().
 		SetText("累积客户数").
-		SetColor("#6a7c86").
+		SetColor("#59a95c").
 		SetNumber("2,349").
 		SetIcon(`<svg t="1570469079555" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2965" width="48" height="48"><path d="M702.9 293.4c26.6 48.9 41.8 105 41.8 164.6 0 190.7-155 345.3-346.2 345.3S52.3 648.7 52.3 458s155-345.3 346.2-345.3c127.4 0 238.7 68.7 298.8 170.9-0.5-1.8-0.7-3.6-0.7-5.5 0-12.1 9.8-21.8 21.8-21.8 4.6 0 9.1 0.1 13.6 0.3C663.8 144.1 539.9 69 398.5 69 183.2 69 8.6 243.1 8.6 458c0 188 133.7 344.8 311.3 381.1 25.2-5.8 51.6-8.9 78.6-8.9 27 0 53.4 3.1 78.6 8.9C654.8 802.8 788.4 646 788.4 458c0-55.1-11.5-107.5-32.2-155-12.3-2-24.9-3.1-37.7-3.1-6.1 0-11.6-2.5-15.6-6.5z" p-id="2966" fill="#ffffff"></path><path d="M319.9 839.1c-68.4 15.8-128.2 51.9-167.7 102.3-7.4 9.5-5.8 23.2 3.7 30.7 9.5 7.4 23.2 5.8 30.7-3.7 45.5-58.1 124.6-94.4 211.8-94.4 88.3 0 168.4 37.3 213.5 96.6 7.3 9.6 21 11.5 30.6 4.2 9.6-7.3 11.5-21 4.2-30.6-39.4-51.8-100-88.9-169.7-105-25.2-5.8-51.6-8.9-78.6-8.9-26.9-0.1-53.3 3-78.5 8.8z" p-id="2967" fill="#ffffff"></path><path d="M732.1 256.6c-4.5-0.2-9.1-0.3-13.6-0.3-12.1 0-21.8 9.8-21.8 21.8 0 1.9 0.2 3.7 0.7 5.5 1 3.8 2.9 7.1 5.6 9.8 4 4 9.5 6.5 15.6 6.5 12.8 0 25.4 1.1 37.7 3.1 132 21.6 229.6 153.8 215.3 290.1-15.7 149.4-146.3 258-291.4 242.7-12-1.3-22.8 7.4-24 19.4-0.1 0.5-0.1 1.1-0.1 1.6-0.1 0.5-0.2 1-0.2 1.6-1.3 12 7.4 22.8 19.4 24 66.7 7 124.1 42.3 153.3 91.9 6.1 10.4 19.5 13.9 29.9 7.7 10.4-6.1 13.9-19.5 7.7-29.9-19.5-33.1-48.6-60.8-83.8-80.7 122.3-31.5 218.3-138.3 232.6-273.8 17.8-169.3-112-332.7-282.9-341z" p-id="2968" fill="#ffffff"></path></svg>`).
 		GetContent()
@@ -93,8 +93,45 @@ func GetContent() types.Panel {
 		SetFooter(`<div class="clearfix"><a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">处理订单</a><a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">查看所有新订单</a> </div>`).
 		GetContent()
 
-	tableCol := colComp.SetSize(map[string]string{"md": "12", "sm": "12", "xs": "12"}).SetContent(boxInfo).GetContent()
-	row5 := components.Row().SetContent(tableCol).GetContent()
+	tableCol := colComp.SetSize(map[string]string{"md": "8"}).SetContent(row1 + boxInfo).GetContent()
+
+	/**************************
+	 * Product List
+	/**************************/
+
+	productList := components.ProductList().SetData([]map[string]string{
+		{
+			"img":         "http://adminlte.io/themes/AdminLTE/dist/img/default-50x50.gif",
+			"title":       "GoAdmin",
+			"has_tabel":   "true",
+			"labeltype":   "warning",
+			"label":       "开源免费",
+			"description": `一款基于golang的极速后台开发框架`,
+		}, {
+			"img":         "http://adminlte.io/themes/AdminLTE/dist/img/default-50x50.gif",
+			"title":       "GoAdmin",
+			"has_tabel":   "true",
+			"labeltype":   "warning",
+			"label":       "开源免费",
+			"description": `一款基于golang的极速后台开发框架`,
+		}, {
+			"img":         "http://adminlte.io/themes/AdminLTE/dist/img/default-50x50.gif",
+			"title":       "GoAdmin",
+			"has_tabel":   "true",
+			"labeltype":   "warning",
+			"label":       "开源免费",
+			"description": `一款基于golang的极速后台开发框架`,
+		},
+	}).GetContent()
+
+	boxWarning := components.Box().SetTheme("warning").WithHeadBorder(true).SetHeader("最新新闻与政策").
+		SetBody(productList).
+		SetFooter(`<a href="javascript:void(0)" class="uppercase">View All Products</a>`).
+		GetContent()
+
+	newsCol := colComp.SetSize(map[string]string{"md": "4"}).SetContent(boxWarning).GetContent()
+
+	row5 := components.Row().SetContent(tableCol + newsCol).GetContent()
 
 	/**************************
 	 * Box
@@ -291,47 +328,6 @@ func GetContent() types.Panel {
 		},
 	}).GetContent()
 
-	/**************************
-	 * Product List
-	/**************************/
-
-	productList := components.ProductList().SetData([]map[string]string{
-		{
-			"img":         "http://adminlte.io/themes/AdminLTE/dist/img/default-50x50.gif",
-			"title":       "Samsung TV",
-			"has_tabel":   "true",
-			"labeltype":   "warning",
-			"label":       "$1800",
-			"description": `Samsung 32" 1080p 60Hz LED Smart HDTV.`,
-		}, {
-			"img":         "http://adminlte.io/themes/AdminLTE/dist/img/default-50x50.gif",
-			"title":       "Samsung TV",
-			"has_tabel":   "true",
-			"labeltype":   "warning",
-			"label":       "$1800",
-			"description": `Samsung 32" 1080p 60Hz LED Smart HDTV.`,
-		}, {
-			"img":         "http://adminlte.io/themes/AdminLTE/dist/img/default-50x50.gif",
-			"title":       "Samsung TV",
-			"has_tabel":   "true",
-			"labeltype":   "warning",
-			"label":       "$1800",
-			"description": `Samsung 32" 1080p 60Hz LED Smart HDTV.`,
-		}, {
-			"img":         "http://adminlte.io/themes/AdminLTE/dist/img/default-50x50.gif",
-			"title":       "Samsung TV",
-			"has_tabel":   "true",
-			"labeltype":   "warning",
-			"label":       "$1800",
-			"description": `Samsung 32" 1080p 60Hz LED Smart HDTV.`,
-		},
-	}).GetContent()
-
-	boxWarning := components.Box().SetTheme("warning").WithHeadBorder(true).SetHeader("Recently Added Products").
-		SetBody(productList).
-		SetFooter(`<a href="javascript:void(0)" class="uppercase">View All Products</a>`).
-		GetContent()
-
 	buttonTest := `<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>`
 	popupForm := `<form>
           <div class="form-group">
@@ -350,12 +346,12 @@ func GetContent() types.Panel {
 		GetContent()
 
 	col5 := colComp.SetSize(map[string]string{"md": "8"}).SetContent(tabs + template.HTML(buttonTest)).GetContent()
-	col6 := colComp.SetSize(map[string]string{"md": "4"}).SetContent(boxDanger + boxWarning + popup).GetContent()
+	col6 := colComp.SetSize(map[string]string{"md": "4"}).SetContent(boxDanger + popup).GetContent()
 
 	row4 := components.Row().SetContent(col5 + col6).GetContent()
 
 	return types.Panel{
-		Content:     row1 + row5 + row2 + row3 + row4,
+		Content:     row5 + row2 + row3 + row4,
 		Title:       "概况",
 		Description: "今日概况",
 	}
