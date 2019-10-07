@@ -18,7 +18,7 @@ func GetContent() types.Panel {
 
 	infobox := components.InfoBox().
 		SetText("支付订单数").
-		SetColor("#acccde").
+		SetColor("#6a7c86").
 		SetNumber("100").
 		SetIcon(`<svg t="1568904058859" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2216" width="48" height="48"><path d="M864 64l-704 0C142.336 64 128 78.336 128 96l0 832C128 945.664 142.336 960 160 960l704 0c17.664 0 32-14.336 32-32l0-832C896 78.336 881.664 64 864 64zM832 896 192 896 192 128l640 0L832 896z" fill="#e6e6e6" p-id="2217"></path><path d="M353.92 320c17.6 0 32-14.336 32-32S371.584 256 353.92 256L353.28 256C335.616 256 321.6 270.336 321.6 288S336.256 320 353.92 320z" fill="#e6e6e6" p-id="2218"></path><path d="M353.92 512c17.6 0 32-14.336 32-32S371.584 448 353.92 448L353.28 448C335.616 448 321.6 462.336 321.6 480S336.256 512 353.92 512z" fill="#e6e6e6" p-id="2219"></path><path d="M353.92 704c17.6 0 32-14.336 32-32S371.584 640 353.92 640L353.28 640c-17.6 0-31.616 14.336-31.616 32S336.256 704 353.92 704z" fill="#e6e6e6" p-id="2220"></path><path d="M480 320l192 0C689.664 320 704 305.664 704 288S689.664 256 672 256l-192 0C462.336 256 448 270.336 448 288S462.336 320 480 320z" fill="#e6e6e6" p-id="2221"></path><path d="M480 512l192 0C689.664 512 704 497.664 704 480S689.664 448 672 448l-192 0C462.336 448 448 462.336 448 480S462.336 512 480 512z" fill="#e6e6e6" p-id="2222"></path><path d="M480 704l192 0c17.664 0 32-14.336 32-32S689.664 640 672 640l-192 0C462.336 640 448 654.336 448 672S462.336 704 480 704z" fill="#e6e6e6" p-id="2223"></path></svg>`).
 		GetContent()
@@ -52,57 +52,64 @@ func GetContent() types.Panel {
 	row1 := components.Row().SetContent(infoboxCol1 + infoboxCol2 + infoboxCol3 + infoboxCol4).GetContent()
 
 	/**************************
-	 * Info Box
+	 * Box
 	/**************************/
 
-	infobox5 := components.InfoBox().
-		SetText("本月目标(元)").
-		SetColor("blue").
-		SetNumber("--").
-		SetIcon("ion-ios-gear-outline").
+	table := components.Table().SetType("table").SetInfoList([]map[string]template.HTML{
+		{
+			"订单号": "OR9842",
+			"商品":  "英雄联盟皮肤",
+			"状态":  "配送中",
+			"价格":  "20",
+		}, {
+			"订单号": "OR9842",
+			"商品":  "荒野大镖客游戏光碟",
+			"状态":  "卖家付款中",
+			"价格":  "345",
+		}, {
+			"订单号": "OR9842",
+			"商品":  "ps4游戏机",
+			"状态":  "已完成",
+			"价格":  "2400",
+		},
+	}).SetThead([]map[string]string{
+		{
+			"head":     "订单号",
+			"sortable": "0",
+		}, {
+			"head":     "商品",
+			"sortable": "0",
+		}, {
+			"head":     "状态",
+			"sortable": "0",
+		}, {
+			"head":     "价格",
+			"sortable": "0",
+		},
+	}).GetContent()
+
+	boxInfo := components.Box().SetTheme("info").WithHeadBorder(true).SetHeader("最新的订单").
+		SetBody(table).
+		SetFooter(`<div class="clearfix"><a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">处理订单</a><a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">查看所有新订单</a> </div>`).
 		GetContent()
 
-	infobox6 := components.InfoBox().
-		SetText("完成进度(%)").
-		SetColor("red").
-		SetNumber("--").
-		SetIcon("fa-google-plus").
-		GetContent()
-
-	infobox7 := components.InfoBox().
-		SetText("可用店铺余额(元)").
-		SetColor("green").
-		SetNumber("0.00").
-		SetIcon("ion-ios-cart-outline").
-		GetContent()
-
-	infobox8 := components.InfoBox().
-		SetText("待结算(元)").
-		SetColor("yellow").
-		SetNumber("0.00").
-		SetIcon("ion-ios-people-outline").
-		GetContent()
-
-	infoboxCol5 := colComp.SetSize(size).SetContent(infobox5).GetContent()
-	infoboxCol6 := colComp.SetSize(size).SetContent(infobox6).GetContent()
-	infoboxCol7 := colComp.SetSize(size).SetContent(infobox7).GetContent()
-	infoboxCol8 := colComp.SetSize(size).SetContent(infobox8).GetContent()
-	row5 := components.Row().SetContent(infoboxCol5 + infoboxCol6 + infoboxCol7 + infoboxCol8).GetContent()
+	tableCol := colComp.SetSize(map[string]string{"md": "12", "sm": "12", "xs": "12"}).SetContent(boxInfo).GetContent()
+	row5 := components.Row().SetContent(tableCol).GetContent()
 
 	/**************************
 	 * Box
 	/**************************/
 
-	chartdata := `{"datasets":[{"data":[65,59,80,81,56,55,40],"fillColor":"rgb(210, 214, 222)","label":"Electronics","pointColor":"rgb(210, 214, 222)","pointHighlightFill":"#fff","pointHighlightStroke":"rgb(220,220,220)","pointStrokeColor":"#c1c7d1","strokeColor":"rgb(210, 214, 222)"},{"data":[28,48,40,19,86,27,90],"fillColor":"rgba(60,141,188,0.9)","label":"Digital Goods","pointColor":"#3b8bba","pointHighlightFill":"#fff","pointHighlightStroke":"rgba(60,141,188,1)","pointStrokeColor":"rgba(60,141,188,1)","strokeColor":"rgba(60,141,188,0.8)"}],"labels":["January","February","March","April","May","June","July"]}`
+	chartdata := `{"datasets":[{"data":[65,59,80,81,56,55,40],"fillColor":"rgb(210, 214, 222)","label":"Electronics","pointColor":"rgb(210, 214, 222)","pointHighlightFill":"#fff","pointHighlightStroke":"rgb(220,220,220)","pointStrokeColor":"#c1c7d1","strokeColor":"rgb(210, 214, 222)"},{"data":[28,48,40,19,86,27,90],"fillColor":"rgba(60,141,188,0.9)","label":"Digital Goods","pointColor":"#3b8bba","pointHighlightFill":"#fff","pointHighlightStroke":"rgba(60,141,188,1)","pointStrokeColor":"rgba(60,141,188,1)","strokeColor":"rgba(60,141,188,0.8)"}],"labels":["一月","二月","三月","四月","五月","六月","七月"]}`
 
 	lineChart := components.AreaChart().SetID("salechart").
 		SetData(chartdata).
 		SetHeight(180).
-		SetTitle("Sales: 1 Jan, 2014 - 30 Jul, 2014").GetContent()
+		SetTitle("销售: 2019年1月1号 - 2019年6月30号").GetContent()
 
-	title := `<p class="text-center"><strong>Goal Completion</strong></p>`
+	title := `<p class="text-center"><strong>完成目标</strong></p>`
 	progressGroup := components.ProgressGroup().
-		SetTitle("Add Products to Cart").
+		SetTitle("产品销售额").
 		SetColor("aqua").
 		SetDenominator(200).
 		SetMolecular(160).
@@ -110,7 +117,7 @@ func GetContent() types.Panel {
 		GetContent()
 
 	progressGroup1 := components.ProgressGroup().
-		SetTitle("Complete Purchase").
+		SetTitle("招聘技术员工数").
 		SetColor("red").
 		SetDenominator(400).
 		SetMolecular(310).
@@ -118,7 +125,7 @@ func GetContent() types.Panel {
 		GetContent()
 
 	progressGroup2 := components.ProgressGroup().
-		SetTitle("Visit Premium Page").
+		SetTitle("页面浏览量").
 		SetColor("green").
 		SetDenominator(800).
 		SetMolecular(490).
@@ -126,7 +133,7 @@ func GetContent() types.Panel {
 		GetContent()
 
 	progressGroup3 := components.ProgressGroup().
-		SetTitle("Send Inquiries").
+		SetTitle("新增会员数").
 		SetColor("yellow").
 		SetDenominator(500).
 		SetMolecular(250).
@@ -142,35 +149,35 @@ func GetContent() types.Panel {
 	boxInternalRow := components.Row().SetContent(boxInternalCol1 + boxInternalCol2).GetContent()
 
 	description1 := components.Description().SetPercent("17").
-		SetNumber("¥100,000").
-		SetTitle("TOTAL REVENUE").
+		SetNumber("¥140,100").
+		SetTitle("总收入").
 		SetArrow("up").
 		SetColor("green").
 		SetBorder("right").
 		GetContent()
 
 	description2 := components.Description().
-		SetPercent("17").
-		SetNumber("¥100,000").
-		SetTitle("TOTAL REVENUE").
-		SetArrow("up").
-		SetColor("green").
+		SetPercent("2").
+		SetNumber("440,560").
+		SetTitle("总会员数").
+		SetArrow("down").
+		SetColor("red").
 		SetBorder("right").
 		GetContent()
 
 	description3 := components.Description().
-		SetPercent("17").
-		SetNumber("¥100,000").
-		SetTitle("TOTAL REVENUE").
+		SetPercent("12").
+		SetNumber("¥140,050").
+		SetTitle("总销售额").
 		SetArrow("up").
 		SetColor("green").
 		SetBorder("right").
 		GetContent()
 
 	description4 := components.Description().
-		SetPercent("17").
-		SetNumber("¥100,000").
-		SetTitle("TOTAL REVENUE").
+		SetPercent("1").
+		SetNumber("30943").
+		SetTitle("员工总数").
 		SetArrow("up").
 		SetColor("green").
 		GetContent()
@@ -183,7 +190,7 @@ func GetContent() types.Panel {
 
 	boxInternalRow2 := components.Row().SetContent(boxInternalCol3 + boxInternalCol4 + boxInternalCol5 + boxInternalCol6).GetContent()
 
-	box := components.Box().WithHeadBorder(true).SetHeader("Monthly Recap Report").
+	box := components.Box().WithHeadBorder(true).SetHeader("月增长报告").
 		SetBody(boxInternalRow).
 		SetFooter(boxInternalRow2).
 		GetContent()
@@ -195,51 +202,21 @@ func GetContent() types.Panel {
 	 * Small Box
 	/**************************/
 
-	smallbox := components.SmallBox().SetUrl("/").SetTitle("new users").SetValue("1000").GetContent()
+	smallbox := components.SmallBox().SetColor("blue").SetIcon("ion-ios-gear-outline").SetUrl("/").SetTitle("本月目标(元)").SetValue("345￥").GetContent()
+	smallbox1 := components.SmallBox().SetColor("yellow").SetIcon("ion-ios-cart-outline").SetUrl("/").SetTitle("完成进度(%)").SetValue("80%").GetContent()
+	smallbox2 := components.SmallBox().SetColor("red").SetIcon("fa-user").SetUrl("/").SetTitle("可用店铺余额(元)").SetValue("645￥").GetContent()
+	smallbox3 := components.SmallBox().SetColor("green").SetIcon("ion-ios-cart-outline").SetUrl("/").SetTitle("待结算(元)").SetValue("889￥").GetContent()
 
 	col1 := colComp.SetSize(size).SetContent(smallbox).GetContent()
-	col2 := colComp.SetSize(size).SetContent(smallbox).GetContent()
-	col3 := colComp.SetSize(size).SetContent(smallbox).GetContent()
-	col4 := colComp.SetSize(size).SetContent(smallbox).GetContent()
+	col2 := colComp.SetSize(size).SetContent(smallbox1).GetContent()
+	col3 := colComp.SetSize(size).SetContent(smallbox2).GetContent()
+	col4 := colComp.SetSize(size).SetContent(smallbox3).GetContent()
 
 	row3 := components.Row().SetContent(col1 + col2 + col3 + col4).GetContent()
 
 	/**************************
 	 * Pie Chart
 	/**************************/
-
-	table := components.Table().SetType("table").SetInfoList([]map[string]template.HTML{
-		{
-			"Order ID":   "OR9842",
-			"Item":       "Call of Duty IV",
-			"Status":     "shipped",
-			"Popularity": "90%",
-		}, {
-			"Order ID":   "OR9842",
-			"Item":       "Call of Duty IV",
-			"Status":     "shipped",
-			"Popularity": "90%",
-		}, {
-			"Order ID":   "OR9842",
-			"Item":       "Call of Duty IV",
-			"Status":     "shipped",
-			"Popularity": "90%",
-		},
-	}).SetThead([]map[string]string{
-		{
-			"head":     "Order ID",
-			"sortable": "0",
-		}, {
-			"head":     "Item",
-			"sortable": "0",
-		}, {
-			"head":     "Status",
-			"sortable": "0",
-		}, {
-			"head":     "Popularity",
-			"sortable": "0",
-		},
-	}).GetContent()
 
 	pieData := `[{"value":700,"color":"#f56954","highlight":"#f56954","label":"Chrome"},{"value":500,"color":"#00a65a","highlight":"#00a65a","label":"IE"},{"value":400,"color":"#f39c12","highlight":"#f39c12","label":"FireFox"},{"value":600,"color":"#00c0ef","highlight":"#00c0ef","label":"Safari"},{"value":300,"color":"#3c8dbc","highlight":"#3c8dbc","label":"Opera"},{"value":100,"color":"#d2d6de","highlight":"#d2d6de","label":"Navigator"}]`
 	pie := components.PieChart().SetHeight(170).SetData(pieData).SetID("pieChart").GetContent()
@@ -264,11 +241,6 @@ func GetContent() types.Panel {
 			"color": "gray",
 		},
 	}).GetContent()
-
-	boxInfo := components.Box().SetTheme("info").WithHeadBorder(true).SetHeader("Latest Orders").
-		SetBody(table).
-		SetFooter(`<div class="clearfix"><a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a><a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a> </div>`).
-		GetContent()
 
 	boxDanger := components.Box().SetTheme("danger").WithHeadBorder(true).SetHeader("Browser Usage").
 		SetBody(components.Row().
@@ -377,7 +349,7 @@ func GetContent() types.Panel {
 		SetBody(template.HTML(popupForm)).
 		GetContent()
 
-	col5 := colComp.SetSize(map[string]string{"md": "8"}).SetContent(boxInfo + tabs + template.HTML(buttonTest)).GetContent()
+	col5 := colComp.SetSize(map[string]string{"md": "8"}).SetContent(tabs + template.HTML(buttonTest)).GetContent()
 	col6 := colComp.SetSize(map[string]string{"md": "4"}).SetContent(boxDanger + boxWarning + popup).GetContent()
 
 	row4 := components.Row().SetContent(col5 + col6).GetContent()
