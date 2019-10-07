@@ -32,14 +32,14 @@ func GetContent() types.Panel {
 
 	infobox3 := components.InfoBox().
 		SetText("浏览量").
-		SetColor("#d04c79").
+		SetColor("#d8cd68").
 		SetNumber("760").
 		SetIcon(`<svg t="1570469111431" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3801" width="48" height="48"><path d="M298.666667 128v768h426.666666V128H298.666667zM256 85.333333h512v853.333334H256V85.333333zM170.666667 128H85.333333V85.333333h128v853.333334H85.333333v-42.666667h85.333334V128z m768 768v42.666667h-128V85.333333h128v42.666667h-85.333334v768h85.333334z" p-id="3802" fill="#ffffff"></path></svg>`).
 		GetContent()
 
 	infobox4 := components.InfoBox().
 		SetText("累积客户数").
-		SetColor("#59a95c").
+		SetColor("#6cad6e").
 		SetNumber("2,349").
 		SetIcon(`<svg t="1570469079555" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2965" width="48" height="48"><path d="M702.9 293.4c26.6 48.9 41.8 105 41.8 164.6 0 190.7-155 345.3-346.2 345.3S52.3 648.7 52.3 458s155-345.3 346.2-345.3c127.4 0 238.7 68.7 298.8 170.9-0.5-1.8-0.7-3.6-0.7-5.5 0-12.1 9.8-21.8 21.8-21.8 4.6 0 9.1 0.1 13.6 0.3C663.8 144.1 539.9 69 398.5 69 183.2 69 8.6 243.1 8.6 458c0 188 133.7 344.8 311.3 381.1 25.2-5.8 51.6-8.9 78.6-8.9 27 0 53.4 3.1 78.6 8.9C654.8 802.8 788.4 646 788.4 458c0-55.1-11.5-107.5-32.2-155-12.3-2-24.9-3.1-37.7-3.1-6.1 0-11.6-2.5-15.6-6.5z" p-id="2966" fill="#ffffff"></path><path d="M319.9 839.1c-68.4 15.8-128.2 51.9-167.7 102.3-7.4 9.5-5.8 23.2 3.7 30.7 9.5 7.4 23.2 5.8 30.7-3.7 45.5-58.1 124.6-94.4 211.8-94.4 88.3 0 168.4 37.3 213.5 96.6 7.3 9.6 21 11.5 30.6 4.2 9.6-7.3 11.5-21 4.2-30.6-39.4-51.8-100-88.9-169.7-105-25.2-5.8-51.6-8.9-78.6-8.9-26.9-0.1-53.3 3-78.5 8.8z" p-id="2967" fill="#ffffff"></path><path d="M732.1 256.6c-4.5-0.2-9.1-0.3-13.6-0.3-12.1 0-21.8 9.8-21.8 21.8 0 1.9 0.2 3.7 0.7 5.5 1 3.8 2.9 7.1 5.6 9.8 4 4 9.5 6.5 15.6 6.5 12.8 0 25.4 1.1 37.7 3.1 132 21.6 229.6 153.8 215.3 290.1-15.7 149.4-146.3 258-291.4 242.7-12-1.3-22.8 7.4-24 19.4-0.1 0.5-0.1 1.1-0.1 1.6-0.1 0.5-0.2 1-0.2 1.6-1.3 12 7.4 22.8 19.4 24 66.7 7 124.1 42.3 153.3 91.9 6.1 10.4 19.5 13.9 29.9 7.7 10.4-6.1 13.9-19.5 7.7-29.9-19.5-33.1-48.6-60.8-83.8-80.7 122.3-31.5 218.3-138.3 232.6-273.8 17.8-169.3-112-332.7-282.9-341z" p-id="2968" fill="#ffffff"></path></svg>`).
 		GetContent()
@@ -86,9 +86,11 @@ func GetContent() types.Panel {
 			"head":     "价格",
 			"sortable": "0",
 		},
-	}).GetContent()
+	}).SetMinWidth(400).GetContent()
 
-	boxInfo := components.Box().SetTheme("info").WithHeadBorder(true).SetHeader("最新的订单").
+	boxInfo := components.Box().
+		WithHeadBorder(true).
+		SetHeader("最新的订单").
 		SetBody(table).
 		SetFooter(`<div class="clearfix"><a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">处理订单</a><a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">查看所有新订单</a> </div>`).
 		GetContent()
@@ -126,7 +128,7 @@ func GetContent() types.Panel {
 
 	boxWarning := components.Box().SetTheme("warning").WithHeadBorder(true).SetHeader("最新新闻与政策").
 		SetBody(productList).
-		SetFooter(`<a href="javascript:void(0)" class="uppercase">View All Products</a>`).
+		SetFooter(`<a href="javascript:void(0)" class="uppercase">查看所有新闻</a>`).
 		GetContent()
 
 	newsCol := colComp.SetSize(map[string]string{"md": "4"}).SetContent(boxWarning).GetContent()
@@ -137,7 +139,7 @@ func GetContent() types.Panel {
 	 * Box
 	/**************************/
 
-	chartdata := `{"datasets":[{"data":[65,59,80,81,56,55,40],"fillColor":"rgb(210, 214, 222)","label":"Electronics","pointColor":"rgb(210, 214, 222)","pointHighlightFill":"#fff","pointHighlightStroke":"rgb(220,220,220)","pointStrokeColor":"#c1c7d1","strokeColor":"rgb(210, 214, 222)"},{"data":[28,48,40,19,86,27,90],"fillColor":"rgba(60,141,188,0.9)","label":"Digital Goods","pointColor":"#3b8bba","pointHighlightFill":"#fff","pointHighlightStroke":"rgba(60,141,188,1)","pointStrokeColor":"rgba(60,141,188,1)","strokeColor":"rgba(60,141,188,0.8)"}],"labels":["一月","二月","三月","四月","五月","六月","七月"]}`
+	chartdata := `{"datasets":[{"data":[65,59,80,81,56,55,40],"fillColor":"rgb(210, 214, 222)","label":"Electronics","pointColor":"rgb(210, 214, 222)","pointHighlightFill":"#fff","pointHighlightStroke":"rgb(220,220,220)","pointStrokeColor":"#c1c7d1","strokeColor":"rgb(152, 156, 165)"},{"data":[28,48,40,19,86,27,90],"fillColor":"rgba(160, 185, 234, 0.9)","label":"Digital Goods","pointColor":"#3b8bba","pointHighlightFill":"#fff","pointHighlightStroke":"rgba(60,141,188,1)","pointStrokeColor":"rgba(60,141,188,1)","strokeColor":"rgba(60,141,188,0.8)"}],"labels":["一月","二月","三月","四月","五月","六月","七月"]}`
 
 	lineChart := components.AreaChart().SetID("salechart").
 		SetData(chartdata).
@@ -147,7 +149,7 @@ func GetContent() types.Panel {
 	title := `<p class="text-center"><strong>完成目标</strong></p>`
 	progressGroup := components.ProgressGroup().
 		SetTitle("产品销售额").
-		SetColor("aqua").
+		SetColor("#76b2d4").
 		SetDenominator(200).
 		SetMolecular(160).
 		SetPercent(80).
@@ -155,7 +157,7 @@ func GetContent() types.Panel {
 
 	progressGroup1 := components.ProgressGroup().
 		SetTitle("招聘技术员工数").
-		SetColor("red").
+		SetColor("#f17c6e").
 		SetDenominator(400).
 		SetMolecular(310).
 		SetPercent(80).
@@ -163,7 +165,7 @@ func GetContent() types.Panel {
 
 	progressGroup2 := components.ProgressGroup().
 		SetTitle("页面浏览量").
-		SetColor("green").
+		SetColor("#ace0ae").
 		SetDenominator(800).
 		SetMolecular(490).
 		SetPercent(80).
@@ -171,7 +173,7 @@ func GetContent() types.Panel {
 
 	progressGroup3 := components.ProgressGroup().
 		SetTitle("新增会员数").
-		SetColor("yellow").
+		SetColor("#fdd698").
 		SetDenominator(500).
 		SetMolecular(250).
 		SetPercent(50).
