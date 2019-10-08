@@ -91,6 +91,7 @@ func GetContent() types.Panel {
 	boxInfo := components.Box().
 		WithHeadBorder(true).
 		SetHeader("最新的订单").
+		SetHeadColor("#f7f7f7").
 		SetBody(table).
 		SetFooter(`<div class="clearfix"><a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">处理订单</a><a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">查看所有新订单</a> </div>`).
 		GetContent()
