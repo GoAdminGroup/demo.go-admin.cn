@@ -31,15 +31,15 @@ var List = map[string]string{"login/theme1": `{{define "login_theme1"}}
 
     <link href='https://fonts.proxy.ustclug.org/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" href="{{.UrlPrefix}}/assets/login/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{.UrlPrefix}}/assets/login/css/animate.css">
-    <link rel="stylesheet" href="{{.UrlPrefix}}/assets/login/css/style.css">
+    <link rel="stylesheet" href="http://quick.go-admin.cn/demo/login/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://quick.go-admin.cn/demo/login/css/animate.css">
+    <link rel="stylesheet" href="http://quick.go-admin.cn/demo/login/css/style.css">
 
     <!-- Modernizr JS -->
-    <script src="{{.UrlPrefix}}/assets/login/js/modernizr-2.6.2.min.js"></script>
+    <script src="http://quick.go-admin.cn/demo/login/js/modernizr-2.6.2.min.js"></script>
     <!-- FOR IE9 below -->
     <!--[if lt IE 9]>
-    <script src="{{.UrlPrefix}}/assets/login/js/respond.min.js"></script>
+    <script src="http://quick.go-admin.cn/demo/login/js/respond.min.js"></script>
     <![endif]-->
 
 </head>
@@ -94,16 +94,16 @@ var List = map[string]string{"login/theme1": `{{define "login_theme1"}}
 </div>
 
 <!-- jQuery -->
-<script src="{{.UrlPrefix}}/assets/login/js/jquery.min.js"></script>
+<script src="http://quick.go-admin.cn/demo/login/js/jquery.min.js"></script>
 <!-- Bootstrap -->
-<script src="{{.UrlPrefix}}/assets/login/js/bootstrap.min.js"></script>
+<script src="http://quick.go-admin.cn/demo/login/js/bootstrap.min.js"></script>
 <!-- Placeholder -->
-<script src="{{.UrlPrefix}}/assets/login/js/jquery.placeholder.min.js"></script>
+<script src="http://quick.go-admin.cn/demo/login/js/jquery.placeholder.min.js"></script>
 <!-- Waypoints -->
-<script src="{{.UrlPrefix}}/assets/login/js/jquery.waypoints.min.js"></script>
+<script src="http://quick.go-admin.cn/demo/login/js/jquery.waypoints.min.js"></script>
 <!-- Main JS -->
-<script src="{{.UrlPrefix}}/assets/login/js/main.js"></script>
-<script src="{{.UrlPrefix}}/assets/login/js/particles.js"></script>
+<script src="http://quick.go-admin.cn/demo/login/js/main.js"></script>
+<script src="http://quick.go-admin.cn/demo/login/js/particles.js"></script>
 
 <style type="text/css">
     #particles-js {
