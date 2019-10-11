@@ -41,19 +41,19 @@ func main() {
 	// you can custom your pages like:
 
 	r.GET("/admin", func(ctx *gin.Context) {
-		engine.Content(ctx, func() types.Panel {
+		engine.Content(ctx, func(ctx interface{}) (types.Panel, error) {
 			return ecommerce.GetContent()
 		})
 	})
 
 	r.GET("/admin/form1", func(ctx *gin.Context) {
-		engine.Content(ctx, func() types.Panel {
+		engine.Content(ctx, func(ctx interface{}) (types.Panel, error) {
 			return pages.GetForm1Content()
 		})
 	})
 
 	r.GET("/admin/e-commerce", func(ctx *gin.Context) {
-		engine.Content(ctx, func() types.Panel {
+		engine.Content(ctx, func(ctx interface{}) (types.Panel, error) {
 			return ecommerce.GetContent()
 		})
 	})

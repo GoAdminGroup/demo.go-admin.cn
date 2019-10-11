@@ -9,7 +9,7 @@ import (
 	"github.com/chenhg5/go-admin/template/types/form"
 )
 
-func GetForm1Content() types.Panel {
+func GetForm1Content() (types.Panel, error) {
 
 	components := template2.Get(config.Get().Theme)
 
@@ -216,5 +216,5 @@ func GetForm1Content() types.Panel {
 		Content:     aform,
 		Title:       "表单",
 		Description: "表单例子",
-	}
+	}, nil
 }
