@@ -1,3 +1,3 @@
-# go-admin-demo
+# demo.go-admin.cn
 
-http://demo.go-admin.cn/admin
+Source code of http://demo.go-admin.cn/admin website.
