@@ -7,10 +7,12 @@ import (
 	_ "github.com/chenhg5/go-admin/adapter/gin"
 	"github.com/chenhg5/go-admin/engine"
 	"github.com/chenhg5/go-admin/examples/datamodel"
+	"github.com/chenhg5/go-admin/modules/config"
 	"github.com/chenhg5/go-admin/plugins/admin"
 	"github.com/chenhg5/go-admin/template"
 	"github.com/chenhg5/go-admin/template/types"
 	"github.com/gin-gonic/gin"
+	template2 "html/template"
 )
 
 func main() {
@@ -32,7 +34,12 @@ func main() {
 	rootPath := "/data/www/go-admin"
 	//rootPath = "."
 
-	if err := eng.AddConfigFromJson(rootPath + "/config.json").AddPlugins(adminPlugin).Use(r); err != nil {
+	cfg := config.ReadFromJson(rootPath + "/config.json")
+	cfg.CustomFootHtml = template2.HTML(`<div style="display:none;">
+    <script type="text/javascript" src="https://v1.cnzz.com/z_stat.php?id=1277862090&web_id=1277862090"></script>
+</div>`)
+
+	if err := eng.AddConfig(cfg).AddPlugins(adminPlugin).Use(r); err != nil {
 		panic(err)
 	}
 

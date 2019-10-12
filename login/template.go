@@ -105,6 +105,10 @@ var List = map[string]string{"login/theme1": `{{define "login_theme1"}}
 <script src="http://quick.go-admin.cn/demo/login/js/main.js"></script>
 <script src="http://quick.go-admin.cn/demo/login/js/particles.js"></script>
 
+<div style="display:none;">
+    <script type="text/javascript" src="https://v1.cnzz.com/z_stat.php?id=1277862090&web_id=1277862090"></script>
+</div>
+
 <style type="text/css">
     #particles-js {
         position: absolute;

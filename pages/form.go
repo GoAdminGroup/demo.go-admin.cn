@@ -14,8 +14,8 @@ func GetForm1Content() (types.Panel, error) {
 	components := template2.Get(config.Get().Theme)
 
 	aform := components.Form().
-		SetGroupHeaders([]string{"input", "select"}).
-		SetGroupContent([][]types.Form{
+		SetTabHeaders([]string{"input", "select"}).
+		SetTabContents([][]types.FormField{
 			{
 				{
 					Field:    "name",
@@ -122,8 +122,10 @@ func GetForm1Content() (types.Panel, error) {
 							"value": "pear",
 						},
 					},
-					FilterFn: func(value types.RowModel) interface{} {
-						return []string{"pear"}
+					FieldDisplay: types.FieldDisplay{
+						Display: func(value types.FieldModel) interface{} {
+							return []string{"pear"}
+						},
 					},
 				},
 				{
@@ -172,8 +174,10 @@ func GetForm1Content() (types.Panel, error) {
 							"value": "red bull",
 						},
 					},
-					FilterFn: func(value types.RowModel) interface{} {
-						return []string{"beer"}
+					FieldDisplay: types.FieldDisplay{
+						Display: func(value types.FieldModel) interface{} {
+							return []string{"beer"}
+						},
 					},
 				},
 				{
@@ -199,8 +203,10 @@ func GetForm1Content() (types.Panel, error) {
 							"value": "3",
 						},
 					},
-					FilterFn: func(value types.RowModel) interface{} {
-						return []string{"two years"}
+					FieldDisplay: types.FieldDisplay{
+						Display: func(value types.FieldModel) interface{} {
+							return []string{"two years"}
+						},
 					},
 				},
 			},
