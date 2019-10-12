@@ -24,7 +24,7 @@ func GetForm1Content() (types.Panel, error) {
 					Default:  "jane",
 					Editable: true,
 					FormType: form.Text,
-					Value:    "",
+					Value:    "jane",
 					Options:  []map[string]string{},
 				},
 				{
@@ -34,7 +34,7 @@ func GetForm1Content() (types.Panel, error) {
 					Default:  "11",
 					Editable: true,
 					FormType: form.Number,
-					Value:    "",
+					Value:    "11",
 					Options:  []map[string]string{},
 				},
 				{
@@ -44,7 +44,7 @@ func GetForm1Content() (types.Panel, error) {
 					Default:  "http://google.com",
 					Editable: true,
 					FormType: form.Url,
-					Value:    "",
+					Value:    "http://google.com",
 					Options:  []map[string]string{},
 				},
 				{
@@ -64,7 +64,7 @@ func GetForm1Content() (types.Panel, error) {
 					Default:  "2010-09-05",
 					Editable: true,
 					FormType: form.Datetime,
-					Value:    "",
+					Value:    "2010-09-05",
 					Options:  []map[string]string{},
 				},
 				{
