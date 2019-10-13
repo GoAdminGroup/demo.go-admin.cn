@@ -1,6 +1,7 @@
 package login
 
 import (
+	"github.com/GoAdminGroup/go-admin/modules/language"
 	"github.com/GoAdminGroup/go-admin/modules/logger"
 	"html/template"
 )
@@ -13,7 +14,21 @@ func GetLoginComponent() *Login {
 }
 
 func (*Login) GetTemplate() (*template.Template, string) {
-	tmpl, err := template.New("login_theme1").Parse(List["login/theme1"])
+	tmpl, err := template.New("login_theme1").
+		Funcs(template.FuncMap{
+			"lang":     language.Get,
+			"langHtml": language.GetFromHtml,
+			"link": func(cdnUrl, prefixUrl, assetsUrl string) string {
+				if cdnUrl == "" {
+					return prefixUrl + assetsUrl
+				}
+				return cdnUrl + assetsUrl
+			},
+			"isLinkUrl": func(s string) bool {
+				return (len(s) > 7 && s[:7] == "http://") || (len(s) > 8 && s[:8] == "https://")
+			},
+		}).
+		Parse(List["login/theme1"])
 
 	if err != nil {
 		logger.Error("Login GetTemplate Error: ", err)
@@ -23,10 +38,9 @@ func (*Login) GetTemplate() (*template.Template, string) {
 }
 
 func (*Login) GetAssetList() []string {
-	return asserts
+	return AssetsList
 }
 
 func (*Login) GetAsset(name string) ([]byte, error) {
-	name = "template/login" + name
-	return Asset(name)
+	return Asset(name[1:])
 }

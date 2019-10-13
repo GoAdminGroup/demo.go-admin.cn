@@ -2,9 +2,11 @@
 config.json
 config
 uploads
-deploy.yml
-hosts
 go-admin
 Makefile
-deploy.retry
+deploy
 go.sum
+build
+build
+login/assets/login/dist
+.DS_Store

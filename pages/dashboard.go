@@ -1,4 +1,4 @@
-package ecommerce
+package pages
 
 import (
 	"github.com/GoAdminGroup/go-admin/modules/config"
@@ -7,7 +7,7 @@ import (
 	"html/template"
 )
 
-func GetContent() (types.Panel, error) {
+func GetDashBoardContent() (types.Panel, error) {
 
 	components := template2.Get(config.Get().Theme)
 	colComp := components.Col()
