@@ -97,6 +97,16 @@ func GetForm1Content() (types.Panel, error) {
 					Value:    "",
 					Options:  []map[string]string{},
 				},
+				{
+					Field:    "content",
+					TypeName: db.Text,
+					Head:     "Content",
+					Default:  "",
+					Editable: true,
+					FormType: form.RichText,
+					Value:    "",
+					Options:  []map[string]string{},
+				},
 			},
 			{
 				{
