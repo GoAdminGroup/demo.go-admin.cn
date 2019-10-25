@@ -14,6 +14,7 @@ import (
 	_ "github.com/GoAdminGroup/themes/sword"
 	"github.com/gin-gonic/gin"
 	template2 "html/template"
+	"net/http"
 )
 
 func main() {
@@ -58,6 +59,10 @@ func main() {
 		engine.Content(ctx, func(ctx interface{}) (types.Panel, error) {
 			return pages.GetForm1Content()
 		})
+	})
+
+	r.GET("/", func(ctx *gin.Context) {
+		ctx.Redirect(http.StatusMovedPermanently, "/admin")
 	})
 
 	_ = r.Run(":9033")
