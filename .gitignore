@@ -5,7 +5,6 @@ uploads
 go-admin
 Makefile
 deploy
-go.sum
 build
 build
 login/assets/login/dist
