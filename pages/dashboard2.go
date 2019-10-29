@@ -3,8 +3,12 @@ package pages
 import (
 	"github.com/GoAdminGroup/go-admin/modules/config"
 	template2 "github.com/GoAdminGroup/go-admin/template"
+	"github.com/GoAdminGroup/go-admin/template/chartjs"
 	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/GoAdminGroup/themes/sword/components/card"
+	"github.com/GoAdminGroup/themes/sword/components/chart_legend"
+	"github.com/GoAdminGroup/themes/sword/components/description"
+	"github.com/GoAdminGroup/themes/sword/components/progress_group"
 	"html/template"
 )
 
@@ -42,39 +46,25 @@ func GetDashBoard2Content() (types.Panel, error) {
 	 * Box
 	/**************************/
 
-	chartdata := `{
-  "datasets": [
-    {
-      "data": [65,59,80,81,56,55,40],
-      "fillColor": "#ececec",
-      "label": "Electronics",
-      "pointColor": "#ececec",
-      "pointHighlightFill": "#ececec",
-      "pointHighlightStroke": "#ececec",
-      "pointStrokeColor": "#ececec",
-      "strokeColor": "#ececec"
-    },
-    {
-      "data": [28,48,40,19,86,27,90],
-      "fillColor": "rgba(102, 176, 255, 0.9)",
-      "label": "Digital Goods",
-      "pointColor": "rgb(102, 176, 255)",
-      "pointHighlightFill": "rgb(102, 176, 255)",
-      "pointHighlightStroke": "rgb(102, 176, 255)",
-      "pointStrokeColor": "rgb(102, 176, 255)",
-      "strokeColor": "rgb(102, 176, 255)"
-    }
-  ],
-  "labels": ["January","February","March","April","May","June","July"]
-}`
-
-	lineChart := components.AreaChart().SetID("salechart").
-		SetData(chartdata).
+	lineChart := chartjs.Line().
+		SetID("salechart").
 		SetHeight(180).
-		SetTitle("Sales: 1 Jan, 2019 - 30 Jul, 2019").GetContent()
+		SetTitle("Sales: 1 Jan, 2019 - 30 Jul, 2019").
+		SetLabels([]string{"January", "February", "March", "April", "May", "June", "July"}).
+		AddDataSet("Electronics").
+		DSData([]float64{65, 59, 80, 81, 56, 55, 40}).
+		DSFill(false).
+		DSBorderColor("#ececec").
+		DSLineTension(0.1).
+		AddDataSet("Digital Goods").
+		DSData([]float64{28, 48, 40, 19, 86, 27, 90}).
+		DSFill(false).
+		DSBorderColor("rgba(102, 176, 255, 0.9)").
+		DSLineTension(0.1).
+		GetContent()
 
 	title := `<p class="text-center"><strong>Goal Completion</strong></p>`
-	progressGroup := components.ProgressGroup().
+	progressGroup := progress_group.New().
 		SetTitle("Add Products to Cart").
 		SetColor("#76b2d4").
 		SetDenominator(200).
@@ -82,7 +72,7 @@ func GetDashBoard2Content() (types.Panel, error) {
 		SetPercent(80).
 		GetContent()
 
-	progressGroup1 := components.ProgressGroup().
+	progressGroup1 := progress_group.New().
 		SetTitle("Complete Purchase").
 		SetColor("#f17c6e").
 		SetDenominator(400).
@@ -90,7 +80,7 @@ func GetDashBoard2Content() (types.Panel, error) {
 		SetPercent(80).
 		GetContent()
 
-	progressGroup2 := components.ProgressGroup().
+	progressGroup2 := progress_group.New().
 		SetTitle("Visit Premium Page").
 		SetColor("#ace0ae").
 		SetDenominator(800).
@@ -98,7 +88,7 @@ func GetDashBoard2Content() (types.Panel, error) {
 		SetPercent(80).
 		GetContent()
 
-	progressGroup3 := components.ProgressGroup().
+	progressGroup3 := progress_group.New().
 		SetTitle("Send Inquiries").
 		SetColor("#fdd698").
 		SetDenominator(500).
@@ -114,7 +104,8 @@ func GetDashBoard2Content() (types.Panel, error) {
 
 	boxInternalRow := components.Row().SetContent(boxInternalCol1 + boxInternalCol2).GetContent()
 
-	description1 := components.Description().SetPercent("17").
+	description1 := description.New().
+		SetPercent("17").
 		SetNumber("¥140,100").
 		SetTitle("TOTAL REVENUE").
 		SetArrow("up").
@@ -122,7 +113,7 @@ func GetDashBoard2Content() (types.Panel, error) {
 		SetBorder("right").
 		GetContent()
 
-	description2 := components.Description().
+	description2 := description.New().
 		SetPercent("2").
 		SetNumber("440,560").
 		SetTitle("TOTAL REVENUE").
@@ -131,7 +122,7 @@ func GetDashBoard2Content() (types.Panel, error) {
 		SetBorder("right").
 		GetContent()
 
-	description3 := components.Description().
+	description3 := description.New().
 		SetPercent("12").
 		SetNumber("¥140,050").
 		SetTitle("TOTAL REVENUE").
@@ -140,7 +131,7 @@ func GetDashBoard2Content() (types.Panel, error) {
 		SetBorder("right").
 		GetContent()
 
-	description4 := components.Description().
+	description4 := description.New().
 		SetPercent("1").
 		SetNumber("30943").
 		SetTitle("TOTAL REVENUE").
@@ -168,46 +159,18 @@ func GetDashBoard2Content() (types.Panel, error) {
 	 * Pie Chart
 	/**************************/
 
-	pieData := `[
-  {
-    "color": "#f56954",
-    "highlight": "#f56954",
-    "label": "Chrome",
-    "value": 700
-  },
-  {
-    "color": "#00a65a",
-    "highlight": "#00a65a",
-    "label": "IE",
-    "value": 500
-  },
-  {
-    "color": "#f39c12",
-    "highlight": "#f39c12",
-    "label": "FireFox",
-    "value": 400
-  },
-  {
-    "color": "#00c0ef",
-    "highlight": "#00c0ef",
-    "label": "Safari",
-    "value": 600
-  },
-  {
-    "color": "#3c8dbc",
-    "highlight": "#3c8dbc",
-    "label": "Opera",
-    "value": 300
-  },
-  {
-    "color": "#d2d6de",
-    "highlight": "#d2d6de",
-    "label": "Navigator",
-    "value": 100
-  }
-]`
-	pie := components.PieChart().SetHeight(170).SetData(pieData).SetID("pieChart").GetContent()
-	legend := components.ChartLegend().SetData([]map[string]string{
+	pie := chartjs.Pie().
+		SetHeight(170).
+		SetLabels([]string{"Navigator", "Opera", "Safari", "FireFox", "IE", "Chrome"}).
+		SetID("pieChart").
+		AddDataSet("Chrome").
+		DSData([]float64{100, 300, 600, 400, 500, 700}).
+		DSBackgroundColor([]chartjs.Color{
+			"rgb(255, 205, 86)", "rgb(54, 162, 235)", "rgb(255, 99, 132)", "rgb(255, 205, 86)", "rgb(54, 162, 235)", "rgb(255, 99, 132)",
+		}).
+		GetContent()
+
+	legend := chart_legend.New().SetData([]map[string]string{
 		{
 			"label": " Chrome",
 			"color": "red",

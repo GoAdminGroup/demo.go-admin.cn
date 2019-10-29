@@ -3,6 +3,7 @@ package main
 import (
 	_ "github.com/GoAdminGroup/go-admin/adapter/gin"
 	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql"
+	"github.com/GoAdminGroup/go-admin/template/chartjs"
 	_ "github.com/GoAdminGroup/themes/adminlte"
 	_ "github.com/GoAdminGroup/themes/sword"
 
@@ -34,6 +35,7 @@ func main() {
 	adminPlugin.AddGenerator("user", datamodel.GetUserTable)
 
 	template.AddLoginComp(login.GetLoginComponent())
+	template.AddComp(chartjs.NewChart())
 
 	rootPath := "/data/www/go-admin"
 	//rootPath = "."
