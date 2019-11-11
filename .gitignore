@@ -3,7 +3,6 @@ config.json
 config
 uploads
 go-admin
-Makefile
 deploy
 build
 build
