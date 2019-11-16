@@ -219,7 +219,7 @@ func GetDashBoard3Content() (types.Panel, error) {
 	radar.Height = "250px"
 
 	ecboxCol16 := colComp.SetSize(map[string]string{"md": "3"}).SetContent(components.Box().WithHeadBorder(true).
-		SetHeader("Line3D-示例图").SetBody(echart.SetContent(radar).GetContent()).GetContent()).GetContent()
+		SetHeader("Radar-示例图").SetBody(echart.SetContent(radar).GetContent()).GetContent()).GetContent()
 
 	row4 := components.Row().SetContent(ecboxCol13 + ecboxCol14 + ecboxCol15 + ecboxCol16).GetContent()
 
