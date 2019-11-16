@@ -1,10 +1,10 @@
 package main
 
 import (
+	"github.com/GoAdminGroup/components/echarts"
 	_ "github.com/GoAdminGroup/go-admin/adapter/gin"
 	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql"
 	"github.com/GoAdminGroup/go-admin/template/chartjs"
-	_ "github.com/GoAdminGroup/themes/adminlte"
 	_ "github.com/GoAdminGroup/themes/sword"
 
 	"github.com/GoAdminGroup/demo/login"
@@ -36,9 +36,10 @@ func main() {
 
 	template.AddLoginComp(login.GetLoginComponent())
 	template.AddComp(chartjs.NewChart())
+	template.AddComp(echarts.NewChart())
 
 	rootPath := "/data/www/go-admin"
-	//rootPath = "."
+	rootPath = "."
 
 	cfg := config.ReadFromJson(rootPath + "/config.json")
 	cfg.CustomFootHtml = template2.HTML(`<div style="display:none;">
@@ -65,6 +66,12 @@ func main() {
 	r.GET("/admin/form1", func(ctx *gin.Context) {
 		engine.Content(ctx, func(ctx interface{}) (types.Panel, error) {
 			return pages.GetForm1Content()
+		})
+	})
+
+	r.GET("/admin/echarts", func(ctx *gin.Context) {
+		engine.Content(ctx, func(ctx interface{}) (types.Panel, error) {
+			return pages.GetDashBoard3Content()
 		})
 	})
 

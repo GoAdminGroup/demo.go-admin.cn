@@ -262,7 +262,6 @@ func GetDashBoard2Content() (types.Panel, error) {
 	col6 := colComp.SetSize(map[string]string{"md": "4"}).SetContent(boxDanger + popup).GetContent()
 
 	row4 := components.Row().SetContent(col5 + col6).GetContent()
-
 	return types.Panel{
 		Content:     row1 + row2 + row4,
 		Title:       "Dashboard",
