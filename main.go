@@ -39,7 +39,7 @@ func main() {
 	template.AddComp(echarts.NewChart())
 
 	rootPath := "/data/www/go-admin"
-	rootPath = "."
+	//rootPath = "."
 
 	cfg := config.ReadFromJson(rootPath + "/config.json")
 	cfg.CustomFootHtml = template2.HTML(`<div style="display:none;">
