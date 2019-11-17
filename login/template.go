@@ -26,9 +26,9 @@ var List = map[string]string{"login/theme1": `{{define "login_theme1"}}
         <script src="{{link .CdnUrl .UrlPrefix "/assets/login/dist/respond.min.js"}}"></script>
         <![endif]-->
 
-		<link rel="icon" type="image/png" sizes="32x32" href="//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="96x96" href="//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-64x64.png">
-    	<link rel="icon" type="image/png" sizes="16x16" href="//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-64x64.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-16x16.png">
 
     </head>
     <body>
@@ -73,26 +73,39 @@ var List = map[string]string{"login/theme1": `{{define "login_theme1"}}
     <div style="display:none;">
         <script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1278156902&web_id=1278156902"></script>
     </div>
-
+    <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
     <script>
+
+        let captcha = new TencentCaptcha("2078016841", function(res){
+            console.log(res);
+            // res（用户主动关闭验证码）= {ret: 2, ticket: null}
+            // res（验证成功） = {ret: 0, ticket: "String", randstr: "String"}
+            if(res.ret === 0){
+                $.ajax({
+                    dataType: 'json',
+                    type: 'POST',
+                    url: '{{.UrlPrefix}}/signin',
+                    async: 'true',
+                    data: {
+                        'username': $("#username").val(),
+                        'password': $("#password").val(),
+						'token': res.ticket
+                    },
+                    success: function (data) {
+                        location.href = data.data.url
+                    },
+                    error: function (data) {
+                        alert('{{lang "login fail"}}');
+                    }
+                });
+            } else {
+                alert("验证失败")
+            }
+        }, {});
+
         $("#sign-up-form").submit(function (e) {
             e.preventDefault();
-            $.ajax({
-                dataType: 'json',
-                type: 'POST',
-                url: '{{.UrlPrefix}}/signin',
-                async: 'true',
-                data: {
-                    'username': $("#username").val(),
-                    'password': $("#password").val()
-                },
-                success: function (data) {
-                    location.href = data.data.url
-                },
-                error: function (data) {
-                    alert('{{lang "login fail"}}');
-                }
-            });
+            captcha.show()
         });
     </script>
 
