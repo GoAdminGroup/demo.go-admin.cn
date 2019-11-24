@@ -20,17 +20,17 @@ func GetForm1Content() (types.Panel, error) {
 				{
 					Field:    "name",
 					TypeName: db.Varchar,
-					Head:     "Name",
-					Default:  "jane",
+					Head:     "名字",
+					Default:  "张三",
 					Editable: true,
 					FormType: form.Text,
-					Value:    "jane",
+					Value:    "张三",
 					Options:  []map[string]string{},
 				},
 				{
 					Field:    "age",
 					TypeName: "int",
-					Head:     "Age",
+					Head:     "年龄",
 					Default:  "11",
 					Editable: true,
 					FormType: form.Number,
@@ -40,7 +40,7 @@ func GetForm1Content() (types.Panel, error) {
 				{
 					Field:    "homepage",
 					TypeName: db.Varchar,
-					Head:     "HomePage",
+					Head:     "主页",
 					Default:  "http://google.com",
 					Editable: true,
 					FormType: form.Url,
@@ -50,7 +50,7 @@ func GetForm1Content() (types.Panel, error) {
 				{
 					Field:    "email",
 					TypeName: db.Varchar,
-					Head:     "Email",
+					Head:     "邮箱",
 					Default:  "xxxx@xxx.com",
 					Editable: true,
 					FormType: form.Email,
@@ -60,7 +60,7 @@ func GetForm1Content() (types.Panel, error) {
 				{
 					Field:    "birthday",
 					TypeName: db.Varchar,
-					Head:     "Birthday",
+					Head:     "生日",
 					Default:  "2010-09-05",
 					Editable: true,
 					FormType: form.Datetime,
@@ -70,7 +70,7 @@ func GetForm1Content() (types.Panel, error) {
 				{
 					Field:    "password",
 					TypeName: db.Varchar,
-					Head:     "Password",
+					Head:     "密码",
 					Default:  "",
 					Editable: true,
 					FormType: form.Password,
@@ -90,7 +90,7 @@ func GetForm1Content() (types.Panel, error) {
 				{
 					Field:    "currency",
 					TypeName: db.Int,
-					Head:     "Currency",
+					Head:     "金额",
 					Default:  "",
 					Editable: true,
 					FormType: form.Currency,
@@ -100,7 +100,7 @@ func GetForm1Content() (types.Panel, error) {
 				{
 					Field:    "content",
 					TypeName: db.Text,
-					Head:     "Content",
+					Head:     "内容",
 					Default:  "",
 					Editable: true,
 					FormType: form.RichText,
@@ -110,38 +110,60 @@ func GetForm1Content() (types.Panel, error) {
 			},
 			{
 				{
+					Field:    "website",
+					TypeName: db.Tinyint,
+					Head:     "站点开关",
+					HelpMsg:  "站点关闭后将不能访问，后台可正常登录",
+					Default:  "",
+					Editable: true,
+					FormType: form.Switch,
+					Value:    "",
+					Options: []map[string]string{
+						{
+							"field":    "website",
+							"value":    "0",
+							"selected": "checked",
+						},
+						{
+							"field":    "website",
+							"value":    "1",
+							"selected": "",
+						},
+					},
+				},
+				{
 					Field:    "fruit",
 					TypeName: db.Varchar,
-					Head:     "Fruit",
+					Head:     "水果",
 					Default:  "",
 					Editable: true,
 					FormType: form.SelectBox,
 					Value:    "",
 					Options: []map[string]string{
 						{
-							"field": "apple",
+							"field": "苹果",
 							"value": "apple",
 						}, {
-							"field": "banana",
+							"field": "香蕉",
 							"value": "banana",
 						}, {
-							"field": "watermelon",
+							"field": "西瓜",
 							"value": "watermelon",
 						}, {
-							"field": "pear",
+							"field": "梨",
 							"value": "pear",
 						},
 					},
 					FieldDisplay: types.FieldDisplay{
 						Display: func(value types.FieldModel) interface{} {
-							return []string{"pear"}
+							return []string{"梨"}
 						},
 					},
 				},
 				{
 					Field:    "gender",
 					TypeName: db.Tinyint,
-					Head:     "Gender",
+					Head:     "性别",
 					Default:  "0",
 					Editable: true,
 					FormType: form.Radio,
@@ -149,13 +171,13 @@ func GetForm1Content() (types.Panel, error) {
 					Options: []map[string]string{
 						{
 							"field":    "gender",
-							"label":    "male",
+							"label":    "男生",
 							"value":    "0",
 							"selected": "true",
 						},
 						{
 							"field":    "gender",
-							"label":    "female",
+							"label":    "女生",
 							"value":    "1",
 							"selected": "false",
 						},
@@ -164,58 +186,58 @@ func GetForm1Content() (types.Panel, error) {
 				{
 					Field:    "drink",
 					TypeName: db.Varchar,
-					Head:     "Drink",
+					Head:     "饮料",
 					Default:  "",
 					Editable: true,
 					FormType: form.Select,
 					Value:    "",
 					Options: []map[string]string{
 						{
-							"field": "beer",
+							"field": "啤酒",
 							"value": "beer",
 						}, {
-							"field": "juice",
+							"field": "果汁",
 							"value": "juice",
 						}, {
-							"field": "water",
+							"field": "白开水",
 							"value": "water",
 						}, {
-							"field": "red bull",
+							"field": "红牛",
 							"value": "red bull",
 						},
 					},
 					FieldDisplay: types.FieldDisplay{
 						Display: func(value types.FieldModel) interface{} {
-							return []string{"beer"}
+							return []string{"啤酒"}
 						},
 					},
 				},
 				{
 					Field:    "experience",
 					TypeName: db.Tinyint,
-					Head:     "Work experience",
+					Head:     "工作经验",
 					Default:  "",
 					Editable: true,
 					FormType: form.SelectSingle,
 					Value:    "",
 					Options: []map[string]string{
 						{
-							"field": "two years",
+							"field": "两年",
 							"value": "0",
 						}, {
-							"field": "three years",
+							"field": "三年",
 							"value": "1",
 						}, {
-							"field": "four years",
+							"field": "四年",
 							"value": "2",
 						}, {
-							"field": "five years",
+							"field": "五年",
 							"value": "3",
 						},
 					},
 					FieldDisplay: types.FieldDisplay{
 						Display: func(value types.FieldModel) interface{} {
-							return []string{"two years"}
+							return []string{"两年"}
 						},
 					},
 				},
