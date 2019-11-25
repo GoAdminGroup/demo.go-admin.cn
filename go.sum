@@ -5,6 +5,8 @@ github.com/GoAdminGroup/components v0.0.1 h1:hgp7TbyIBLA8vL8qv6jPJkF7HwEcbnZhQeV
 github.com/GoAdminGroup/components v0.0.1/go.mod h1:lWLtprDb0slqdYvqDCGwuAvktJ8PsheC9H5h8pOkXCA=
 github.com/GoAdminGroup/go-admin v1.0.9 h1:BSvKprDVjN6kQZ/9DZ2a6lGxBwg1CG/grGIQMe8WYH4=
 github.com/GoAdminGroup/go-admin v1.0.9/go.mod h1:70OXgIZv8TbJq29XxpsjtH1OrezEDL9MW+cJVsMpPFo=
+github.com/GoAdminGroup/go-admin v1.0.10 h1:WSn+f0t+PbaTCjjhM8sub6Pf7yuGxchuOrKk5j3A5zY=
+github.com/GoAdminGroup/go-admin v1.0.10/go.mod h1:70OXgIZv8TbJq29XxpsjtH1OrezEDL9MW+cJVsMpPFo=
 github.com/GoAdminGroup/themes v0.0.9 h1:F1AouzisRS9mNdC2/17r586g9V28qHl7PGyQUY5YN9Q=
 github.com/GoAdminGroup/themes v0.0.9/go.mod h1:ABCOeBeibfg9DxAsGVa1NzYK9/nIbHT/BuFrCRIKo8A=
 github.com/armon/consul-api v0.0.0-20180202201655-eb2c6b5be1b6/go.mod h1:grANhF5doyWs3UAsr3K4I6qtAmlQcZDesFNEHPZAzj8=
