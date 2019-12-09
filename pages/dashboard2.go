@@ -147,7 +147,7 @@ func GetDashBoard2Content() (types.Panel, error) {
 
 	boxInternalRow2 := components.Row().SetContent(boxInternalCol3 + boxInternalCol4 + boxInternalCol5 + boxInternalCol6).GetContent()
 
-	box := components.Box().WithHeadBorder(true).SetHeader("Monthly Recap Report").
+	box := components.Box().WithHeadBorder().SetHeader("Monthly Recap Report").
 		SetBody(boxInternalRow).
 		SetFooter(boxInternalRow2).
 		GetContent()
@@ -192,7 +192,7 @@ func GetDashBoard2Content() (types.Panel, error) {
 		},
 	}).GetContent()
 
-	boxDanger := components.Box().SetTheme("danger").WithHeadBorder(true).SetHeader("Browser Usage").
+	boxDanger := components.Box().SetTheme("danger").WithHeadBorder().SetHeader("Browser Usage").
 		SetBody(components.Row().
 			SetContent(colComp.SetSize(map[string]string{"md": "8"}).
 				SetContent(pie).

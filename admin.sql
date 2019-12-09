@@ -180,7 +180,8 @@ VALUES
 	(8,0,0,2,'表单',NULL,'fa-wpforms','/form1','2019-09-12 07:14:18','2019-09-12 07:14:18'),
 	(9,0,0,2,'用户',NULL,'fa-user','/info/user','2019-09-12 07:15:07','2019-09-12 07:15:07'),
 	(10,0,0,2,'作者',NULL,'fa-users','/info/authors','2019-09-12 07:16:04','2019-09-12 07:16:04'),
-	(11,0,0,2,'文章',NULL,'fa-file-powerpoint-o','/info/posts','2019-09-12 07:16:32','2019-09-12 07:16:32');
+	(11,0,0,2,'文章',NULL,'fa-file-powerpoint-o','/info/posts','2019-09-12 07:16:32','2019-09-12 07:16:32'),
+        (12,0,0,2,'Echarts',NULL,'fa-area-chart','/echarts','2019-09-12 07:16:32','2019-09-12 07:16:32');
 
 /*!40000 ALTER TABLE `goadmin_menu` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -283,8 +284,9 @@ LOCK TABLES `goadmin_permissions` WRITE;
 
 INSERT INTO `goadmin_permissions` (`id`, `name`, `slug`, `http_method`, `http_path`, `created_at`, `updated_at`)
 VALUES
-	(1,'All permission','*','','*','2019-09-10 00:00:00','2019-09-10 00:00:00'),
-	(2,'Dashboard','dashboard','GET,PUT,POST,DELETE','/','2019-09-10 00:00:00','2019-09-10 00:00:00');
+	(1,'所有权限','*','','*','2019-09-10 00:00:00','2019-09-10 00:00:00'),
+	(2,'仪表盘','dashboard','GET','/','2019-09-10 00:00:00','2019-09-10 00:00:00'),
+        (3,'操作员编辑','operator_edit','GET,POST','/info/manager/edit?id=2\r\n/edit/manager?id=2','2019-09-10 00:00:00','2019-09-10 00:00:00');
 
 /*!40000 ALTER TABLE `goadmin_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -343,7 +345,8 @@ INSERT INTO `goadmin_role_permissions` (`role_id`, `permission_id`, `created_at`
 VALUES
 	(1,1,'2019-09-10 00:00:00','2019-09-10 00:00:00'),
 	(1,2,'2019-09-10 00:00:00','2019-09-10 00:00:00'),
-	(2,2,'2019-09-10 00:00:00','2019-09-10 00:00:00');
+	(2,2,'2019-09-10 00:00:00','2019-09-10 00:00:00'),
+        (2,3,'2019-09-10 00:00:00','2019-09-10 00:00:00');
 
 /*!40000 ALTER TABLE `goadmin_role_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -394,8 +397,8 @@ LOCK TABLES `goadmin_roles` WRITE;
 
 INSERT INTO `goadmin_roles` (`id`, `name`, `slug`, `created_at`, `updated_at`)
 VALUES
-	(1,'Administrator','administrator','2019-09-10 00:00:00','2019-09-10 00:00:00'),
-	(2,'Operator','operator','2019-09-10 00:00:00','2019-09-10 00:00:00');
+	(1,'超级管理员','administrator','2019-09-10 00:00:00','2019-09-10 00:00:00'),
+	(2,'操作员','operator','2019-09-10 00:00:00','2019-09-10 00:00:00');
 
 /*!40000 ALTER TABLE `goadmin_roles` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -483,8 +486,8 @@ LOCK TABLES `goadmin_users` WRITE;
 
 INSERT INTO `goadmin_users` (`id`, `username`, `password`, `name`, `avatar`, `remember_token`, `created_at`, `updated_at`)
 VALUES
-	(1,'admin','$2a$10$dKE4SSt/STzCVxkOK7xQmeFNgWHtCA5HFDAwH853G96ysKHEpF9my','admin','','tlNcBVK9AvfYH7WEnwB1RKvocJu8FfRy4um3DJtwdHuJy0dwFsLOgAc0xUfh','2019-09-10 00:00:00','2019-09-10 00:00:00'),
-	(2,'operator','$2a$10$rVqkOzHjN2MdlEprRflb1eGP0oZXuSrbJLOmJagFsCd81YZm0bsh.','Operator','',NULL,'2019-09-10 00:00:00','2019-09-10 00:00:00');
+	(1,'admin','$2a$10$dKE4SSt/STzCVxkOK7xQmeFNgWHtCA5HFDAwH853G96ysKHEpF9my','超级管理员','','tlNcBVK9AvfYH7WEnwB1RKvocJu8FfRy4um3DJtwdHuJy0dwFsLOgAc0xUfh','2019-09-10 00:00:00','2019-09-10 00:00:00'),
+	(2,'operator','$2a$10$rVqkOzHjN2MdlEprRflb1eGP0oZXuSrbJLOmJagFsCd81YZm0bsh.','操作员','',NULL,'2019-09-10 00:00:00','2019-09-10 00:00:00');
 
 /*!40000 ALTER TABLE `goadmin_users` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -623,7 +626,7 @@ CREATE TABLE `users` (
   `gender` tinyint(4) DEFAULT NULL,
   `city` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ip` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -1123,9 +1126,7 @@ VALUES
 	(3629,'cupiditate',8,'East Careyborough','251.55.8.91','(763)447-2','1999-06-20 10:02:37','2017-05-13 16:10:57'),
 	(3630,'libero',1,'South Lydiaberg','180.64.77.168','0835552395','2005-04-21 15:18:59','2009-05-10 12:18:32'),
 	(3631,'iure2',2,'Suzanneville','242.42.173.68','446.892.99','1980-11-05 19:50:02','1971-10-10 17:36:31'),
-	(3632,'john',1,'North Gideonshire','199.1.120.7','1-739-973-','1991-04-07 00:37:29','2009-07-16 22:01:58'),
-	(3634,'123',1,'海珠区22','127.0.0.1','15626','2018-11-23 11:39:21',NULL),
-	(3636,'123',2,'123','127.0.0.1','1562644334','2019-03-21 16:57:38',NULL);
+	(3632,'john',1,'North Gideonshire','199.1.120.7','1-739-973-','1991-04-07 00:37:29','2009-07-16 22:01:58');
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;

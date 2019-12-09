@@ -96,7 +96,7 @@ func GetDashBoardContent() (types.Panel, error) {
 	}).SetMinWidth(400).GetContent()
 
 	boxInfo := components.Box().
-		WithHeadBorder(true).
+		WithHeadBorder().
 		SetHeader("最新的订单").
 		SetHeadColor("#f7f7f7").
 		SetBody(table).
@@ -134,7 +134,7 @@ func GetDashBoardContent() (types.Panel, error) {
 		},
 	}).GetContent()
 
-	boxWarning := components.Box().SetTheme("warning").WithHeadBorder(true).SetHeader("最新新闻与政策").
+	boxWarning := components.Box().SetTheme("warning").WithHeadBorder().SetHeader("最新新闻与政策").
 		SetBody(productList).
 		SetFooter(`<a href="javascript:void(0)" class="uppercase">查看所有新闻</a>`).
 		GetContent()
@@ -248,7 +248,7 @@ func GetDashBoardContent() (types.Panel, error) {
 
 	boxInternalRow2 := components.Row().SetContent(boxInternalCol3 + boxInternalCol4 + boxInternalCol5 + boxInternalCol6).GetContent()
 
-	box := components.Box().WithHeadBorder(true).SetHeader("月增长报告").
+	box := components.Box().WithHeadBorder().SetHeader("月增长报告").
 		SetBody(boxInternalRow).
 		SetFooter(boxInternalRow2).
 		GetContent()
@@ -309,7 +309,7 @@ func GetDashBoardContent() (types.Panel, error) {
 		},
 	}).GetContent()
 
-	boxDanger := components.Box().SetTheme("danger").WithHeadBorder(true).SetHeader("Browser Usage").
+	boxDanger := components.Box().SetTheme("danger").WithHeadBorder().SetHeader("Browser Usage").
 		SetBody(components.Row().
 			SetContent(colComp.SetSize(map[string]string{"md": "8"}).
 				SetContent(pie).

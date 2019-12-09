@@ -1,7 +1,6 @@
 package pages
 
 import (
-	"github.com/GoAdminGroup/go-admin/modules/auth"
 	"github.com/GoAdminGroup/go-admin/modules/config"
 	"github.com/GoAdminGroup/go-admin/modules/db"
 	template2 "github.com/GoAdminGroup/go-admin/template"
@@ -246,7 +245,6 @@ func GetForm1Content() (types.Panel, error) {
 		SetPrefix(config.Get().PrefixFixSlash()).
 		SetUrl("/").
 		SetTitle("Form").
-		SetToken(auth.TokenHelper.AddToken()).
 		SetInfoUrl("/admin").
 		GetContent()
 
