@@ -262,11 +262,14 @@ func GetForm1Content() (types.Panel, error) {
 		SetUrl("/").
 		SetTitle("Form").
 		SetInfoUrl("/admin").
-		SetOperationFooter(col1 + col2).
-		GetContent()
+		SetOperationFooter(col1 + col2)
 
 	return types.Panel{
-		Content:     aform,
+		Content: components.Box().
+			SetHeader(aform.GetBoxHeader()).
+			WithHeadBorder().
+			SetBody(aform.GetContent()).
+			GetContent(),
 		Title:       "表单",
 		Description: "表单例子",
 	}, nil
