@@ -3,6 +3,7 @@ package pages
 import (
 	"github.com/GoAdminGroup/go-admin/modules/config"
 	"github.com/GoAdminGroup/go-admin/modules/db"
+	"github.com/GoAdminGroup/go-admin/modules/language"
 	template2 "github.com/GoAdminGroup/go-admin/template"
 	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/GoAdminGroup/go-admin/template/types/form"
@@ -11,6 +12,21 @@ import (
 func GetForm1Content() (types.Panel, error) {
 
 	components := template2.Get(config.Get().Theme)
+
+	col1 := components.Col().SetSize(map[string]string{"md": "2"}).GetContent()
+	btn1 := components.Button().SetType("submit").
+		SetContent(language.GetFromHtml("Save")).
+		SetThemePrimary().
+		SetOrientationRight().
+		SetLoadingText(`<i class='fa fa-spinner fa-spin '></i> Save`).
+		GetContent()
+	btn2 := components.Button().SetType("reset").
+		SetContent(language.GetFromHtml("Reset")).
+		SetThemeWarning().
+		SetOrientationLeft().
+		GetContent()
+	col2 := components.Col().SetSize(map[string]string{"md": "8"}).
+		SetContent(btn1 + btn2).GetContent()
 
 	aform := components.Form().
 		SetTabHeaders([]string{"input", "select"}).
@@ -246,6 +262,7 @@ func GetForm1Content() (types.Panel, error) {
 		SetUrl("/").
 		SetTitle("Form").
 		SetInfoUrl("/admin").
+		SetOperationFooter(col1 + col2).
 		GetContent()
 
 	return types.Panel{
