@@ -79,6 +79,13 @@ func main() {
 		})
 	})
 
+	r.POST("/admin/popup", func(ctx *gin.Context) {
+		ctx.JSON(http.StatusOK, gin.H{
+			"code": 0,
+			"data": "<h2>hello world</h2>",
+		})
+	})
+
 	r.GET("/", func(ctx *gin.Context) {
 		ctx.Redirect(http.StatusMovedPermanently, "/admin")
 	})
