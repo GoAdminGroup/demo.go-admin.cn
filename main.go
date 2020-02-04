@@ -6,7 +6,7 @@ import (
 	"os"
 	"os/signal"
 
-	_ "github.com/GoAdminGroup/go-admin/adapter/gin"
+	ada "github.com/GoAdminGroup/go-admin/adapter/gin"
 	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql"
 	_ "github.com/GoAdminGroup/themes/sword"
 
@@ -60,23 +60,17 @@ func main() {
 
 	// you can custom your pages like:
 
-	r.GET("/admin", func(ctx *gin.Context) {
-		eng.Content(ctx, func(ctx interface{}) (types.Panel, error) {
-			return pages.GetDashBoard2Content()
-		})
-	})
+	r.GET("/admin", ada.Content(func(ctx *gin.Context) (types.Panel, error) {
+		return pages.GetDashBoard2Content()
+	}))
 
-	r.GET("/admin/form1", func(ctx *gin.Context) {
-		eng.Content(ctx, func(ctx interface{}) (types.Panel, error) {
-			return pages.GetForm1Content()
-		})
-	})
+	r.GET("/admin/form1", ada.Content(func(ctx *gin.Context) (types.Panel, error) {
+		return pages.GetForm1Content()
+	}))
 
-	r.GET("/admin/echarts", func(ctx *gin.Context) {
-		eng.Content(ctx, func(ctx interface{}) (types.Panel, error) {
-			return pages.GetDashBoard3Content()
-		})
-	})
+	r.GET("/admin/echarts", ada.Content(func(ctx *gin.Context) (types.Panel, error) {
+		return pages.GetDashBoard3Content()
+	}))
 
 	r.GET("/", func(ctx *gin.Context) {
 		ctx.Redirect(http.StatusMovedPermanently, "/admin")
