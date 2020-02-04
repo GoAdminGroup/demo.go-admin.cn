@@ -1,27 +1,27 @@
 package main
 
 import (
-	"github.com/GoAdminGroup/components/echarts"
-	_ "github.com/GoAdminGroup/go-admin/adapter/gin"
-	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql"
-	"github.com/GoAdminGroup/go-admin/template/chartjs"
-	_ "github.com/GoAdminGroup/themes/adminlte"
-	_ "github.com/GoAdminGroup/themes/sword"
 	"log"
+	"net/http"
 	"os"
 	"os/signal"
 
+	_ "github.com/GoAdminGroup/go-admin/adapter/gin"
+	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql"
+	_ "github.com/GoAdminGroup/themes/adminlte"
+	_ "github.com/GoAdminGroup/themes/sword"
+
+	"github.com/GoAdminGroup/components/echarts"
 	"github.com/GoAdminGroup/demo/login"
 	"github.com/GoAdminGroup/demo/pages"
+	"github.com/GoAdminGroup/demo/tables"
 	"github.com/GoAdminGroup/go-admin/engine"
-	"github.com/GoAdminGroup/go-admin/examples/datamodel"
 	"github.com/GoAdminGroup/go-admin/modules/config"
 	"github.com/GoAdminGroup/go-admin/plugins/admin"
 	"github.com/GoAdminGroup/go-admin/template"
+	"github.com/GoAdminGroup/go-admin/template/chartjs"
 	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/gin-gonic/gin"
-	template2 "html/template"
-	"net/http"
 )
 
 func main() {
@@ -29,14 +29,14 @@ func main() {
 
 	eng := engine.Default()
 
-	adminPlugin := admin.NewAdmin(datamodel.Generators)
+	adminPlugin := admin.NewAdmin(tables.Generators)
 
 	// add generator, first parameter is the url prefix of table when visit.
 	// example:
 	//
 	// "user" => http://localhost:9033/admin/info/user
 	//
-	adminPlugin.AddGenerator("user", datamodel.GetUserTable)
+	adminPlugin.AddGenerator("user", tables.GetUserTable)
 
 	template.AddLoginComp(login.GetLoginComponent())
 	template.AddComp(chartjs.NewChart())
@@ -46,10 +46,10 @@ func main() {
 	//rootPath = "."
 
 	cfg := config.ReadFromJson(rootPath + "/config.json")
-	cfg.CustomFootHtml = template2.HTML(`<div style="display:none;">
+	cfg.CustomFootHtml = template.HTML(`<div style="display:none;">
     <script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1278156902&web_id=1278156902"></script>
 </div>`)
-	cfg.CustomHeadHtml = template2.HTML(`<link rel="icon" type="image/png" sizes="32x32" href="//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-32x32.png">
+	cfg.CustomHeadHtml = template.HTML(`<link rel="icon" type="image/png" sizes="32x32" href="//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="96x96" href="//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-64x64.png">
         <link rel="icon" type="image/png" sizes="16x16" href="//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-16x16.png">`)
 
