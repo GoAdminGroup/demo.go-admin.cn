@@ -12,12 +12,10 @@ import (
 	"github.com/GoAdminGroup/go-admin/template/types/action"
 	"github.com/GoAdminGroup/go-admin/template/types/form"
 	editType "github.com/GoAdminGroup/go-admin/template/types/table"
-	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
 // GetUserTable return the model of table user.
-func GetUserTable() (userTable table.Table) {
+func GetUserTable(ctx *context.Context) (userTable table.Table) {
 
 	userTable = table.NewDefaultTable(table.Config{
 		Driver:     db.DriverMysql,
@@ -63,13 +61,19 @@ func GetUserTable() (userTable table.Table) {
 	info.AddField("UpdatedAt", "updated_at", db.Timestamp).FieldEditAble(editType.Datetime)
 
 	info.AddActionButton("google", action.Jump("https://google.com"))
-	info.AddButton("google", icon.Google, action.Jump("https://google.com"))
-	info.AddButton("info", icon.Terminal, action.PopUp("/admin/popup", "Popup Example", func(ctx *context.Context) {
-		ctx.JSON(http.StatusOK, gin.H{
-			"code": 0,
-			"data": "<h2>hello world</h2>",
-		})
-	}))
+	info.AddActionButton("审批", action.Ajax("/admin/audit",
+		func(ctx *context.Context) (success bool, data, msg string) {
+			return true, "", "审批成功，奥利给"
+		}))
+	info.AddButton("jump", icon.User, action.JumpInNewTab("/admin/info/authors", "作者"))
+	info.AddButton("popup", icon.Terminal, action.PopUp("/admin/popup", "Popup Example",
+		func(ctx *context.Context) (success bool, data, msg string) {
+			return true, "<h2>hello world</h2>", ""
+		}))
+	info.AddButton("ajax", icon.Android, action.Ajax("/admin/ajax",
+		func(ctx *context.Context) (success bool, data, msg string) {
+			return true, "", "请求成功，奥利给"
+		}))
 
 	info.SetTable("users").SetTitle("Users").SetDescription("Users")
 
@@ -94,7 +98,7 @@ func GetUserTable() (userTable table.Table) {
 	formList.AddField("Phone", "phone", db.Varchar, form.Text)
 	formList.AddField("City", "city", db.Varchar, form.Text)
 	formList.AddField("Custom Field", "role", db.Varchar, form.Text).
-		FieldPostFilterFn(func(value types.PostFieldModel) string {
+		FieldPostFilterFn(func(value types.PostFieldModel) interface{} {
 			fmt.Println("user custom field", value)
 			return ""
 		})
