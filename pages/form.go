@@ -202,7 +202,7 @@ func GetForm1Content() (types.Panel, error) {
 					Field:    "drink",
 					TypeName: db.Varchar,
 					Head:     "饮料",
-					Default:  "",
+					Default:  "beer",
 					Editable: true,
 					FormType: form.Select,
 					Value:    "",
@@ -219,11 +219,6 @@ func GetForm1Content() (types.Panel, error) {
 						}, {
 							"field": "红牛",
 							"value": "red bull",
-						},
-					},
-					FieldDisplay: types.FieldDisplay{
-						Display: func(value types.FieldModel) interface{} {
-							return []string{"啤酒"}
 						},
 					},
 				},
@@ -248,11 +243,6 @@ func GetForm1Content() (types.Panel, error) {
 						}, {
 							"field": "五年",
 							"value": "3",
-						},
-					},
-					FieldDisplay: types.FieldDisplay{
-						Display: func(value types.FieldModel) interface{} {
-							return []string{"两年"}
 						},
 					},
 				},
