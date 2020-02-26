@@ -40,7 +40,7 @@ func GetForm1Content() (types.Panel, error) {
 					Editable: true,
 					FormType: form.Text,
 					Value:    "张三",
-					Options:  []map[string]string{},
+					Options:  types.FieldOptions{},
 				},
 				{
 					Field:    "age",
@@ -50,7 +50,7 @@ func GetForm1Content() (types.Panel, error) {
 					Editable: true,
 					FormType: form.Number,
 					Value:    "11",
-					Options:  []map[string]string{},
+					Options:  types.FieldOptions{},
 				},
 				{
 					Field:    "homepage",
@@ -60,7 +60,7 @@ func GetForm1Content() (types.Panel, error) {
 					Editable: true,
 					FormType: form.Url,
 					Value:    "http://google.com",
-					Options:  []map[string]string{},
+					Options:  types.FieldOptions{},
 				},
 				{
 					Field:    "email",
@@ -70,7 +70,7 @@ func GetForm1Content() (types.Panel, error) {
 					Editable: true,
 					FormType: form.Email,
 					Value:    "",
-					Options:  []map[string]string{},
+					Options:  types.FieldOptions{},
 				},
 				{
 					Field:    "birthday",
@@ -80,7 +80,7 @@ func GetForm1Content() (types.Panel, error) {
 					Editable: true,
 					FormType: form.Datetime,
 					Value:    "2010-09-05",
-					Options:  []map[string]string{},
+					Options:  types.FieldOptions{},
 				},
 				{
 					Field:    "password",
@@ -90,7 +90,7 @@ func GetForm1Content() (types.Panel, error) {
 					Editable: true,
 					FormType: form.Password,
 					Value:    "",
-					Options:  []map[string]string{},
+					Options:  types.FieldOptions{},
 				},
 				{
 					Field:    "ip",
@@ -100,7 +100,7 @@ func GetForm1Content() (types.Panel, error) {
 					Editable: true,
 					FormType: form.Ip,
 					Value:    "",
-					Options:  []map[string]string{},
+					Options:  types.FieldOptions{},
 				},
 				{
 					Field:    "currency",
@@ -110,7 +110,7 @@ func GetForm1Content() (types.Panel, error) {
 					Editable: true,
 					FormType: form.Currency,
 					Value:    "",
-					Options:  []map[string]string{},
+					Options:  types.FieldOptions{},
 				},
 				{
 					Field:    "content",
@@ -120,7 +120,7 @@ func GetForm1Content() (types.Panel, error) {
 					Editable: true,
 					FormType: form.RichText,
 					Value:    "",
-					Options:  []map[string]string{},
+					Options:  types.FieldOptions{},
 				},
 			},
 			{
@@ -133,17 +133,9 @@ func GetForm1Content() (types.Panel, error) {
 					Editable: true,
 					FormType: form.Switch,
 					Value:    "",
-					Options: []map[string]string{
-						{
-							"field":    "website",
-							"value":    "0",
-							"selected": "checked",
-						},
-						{
-							"field":    "website",
-							"value":    "1",
-							"selected": "",
-						},
+					Options: types.FieldOptions{
+						{Text: "website", Value: "0"},
+						{Text: "website", Value: "1"},
 					},
 				},
 				{
@@ -154,20 +146,11 @@ func GetForm1Content() (types.Panel, error) {
 					Editable: true,
 					FormType: form.SelectBox,
 					Value:    "",
-					Options: []map[string]string{
-						{
-							"field": "苹果",
-							"value": "apple",
-						}, {
-							"field": "香蕉",
-							"value": "banana",
-						}, {
-							"field": "西瓜",
-							"value": "watermelon",
-						}, {
-							"field": "梨",
-							"value": "pear",
-						},
+					Options: types.FieldOptions{
+						{Text: "苹果", Value: "apple"},
+						{Text: "香蕉", Value: "banana"},
+						{Text: "西瓜", Value: "watermelon"},
+						{Text: "梨", Value: "pear"},
 					},
 					FieldDisplay: types.FieldDisplay{
 						Display: func(value types.FieldModel) interface{} {
@@ -183,19 +166,9 @@ func GetForm1Content() (types.Panel, error) {
 					Editable: true,
 					FormType: form.Radio,
 					Value:    "",
-					Options: []map[string]string{
-						{
-							"field":    "gender",
-							"label":    "男生",
-							"value":    "0",
-							"selected": "true",
-						},
-						{
-							"field":    "gender",
-							"label":    "女生",
-							"value":    "1",
-							"selected": "false",
-						},
+					Options: types.FieldOptions{
+						{Text: "男生", Value: "0"},
+						{Text: "女生", Value: "1"},
 					},
 				},
 				{
@@ -206,20 +179,11 @@ func GetForm1Content() (types.Panel, error) {
 					Editable: true,
 					FormType: form.Select,
 					Value:    "",
-					Options: []map[string]string{
-						{
-							"field": "啤酒",
-							"value": "beer",
-						}, {
-							"field": "果汁",
-							"value": "juice",
-						}, {
-							"field": "白开水",
-							"value": "water",
-						}, {
-							"field": "红牛",
-							"value": "red bull",
-						},
+					Options: types.FieldOptions{
+						{Text: "啤酒", Value: "beer"},
+						{Text: "果汁", Value: "juice"},
+						{Text: "白开水", Value: "water"},
+						{Text: "红牛", Value: "red bull"},
 					},
 				},
 				{
@@ -230,20 +194,11 @@ func GetForm1Content() (types.Panel, error) {
 					Editable: true,
 					FormType: form.SelectSingle,
 					Value:    "",
-					Options: []map[string]string{
-						{
-							"field": "两年",
-							"value": "0",
-						}, {
-							"field": "三年",
-							"value": "1",
-						}, {
-							"field": "四年",
-							"value": "2",
-						}, {
-							"field": "五年",
-							"value": "3",
-						},
+					Options: types.FieldOptions{
+						{Text: "两年", Value: "0"},
+						{Text: "三年", Value: "1"},
+						{Text: "四年", Value: "2"},
+						{Text: "五年", Value: "3"},
 					},
 				},
 			},

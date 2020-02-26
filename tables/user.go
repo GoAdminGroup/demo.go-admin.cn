@@ -11,6 +11,7 @@ import (
 	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/GoAdminGroup/go-admin/template/types/action"
 	"github.com/GoAdminGroup/go-admin/template/types/form"
+	selection "github.com/GoAdminGroup/go-admin/template/types/form/select"
 	editType "github.com/GoAdminGroup/go-admin/template/types/table"
 )
 
@@ -42,12 +43,12 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 			return "women"
 		}
 		return "unknown"
-	}).FieldEditAble(editType.Select).FieldEditOptions([]map[string]string{
-		{"value": "0", "text": "men"},
-		{"value": "1", "text": "women"},
-	}).FieldFilterable(types.FilterType{FormType: form.SelectSingle}).FieldFilterOptions([]map[string]string{
-		{"value": "0", "field": "men"},
-		{"value": "1", "field": "women"},
+	}).FieldEditAble(editType.Select).FieldEditOptions(types.FieldOptions{
+		{Value: "0", Text: "men"},
+		{Value: "1", Text: "women"},
+	}).FieldFilterable(types.FilterType{FormType: form.SelectSingle}).FieldFilterOptions(types.FieldOptions{
+		{Value: "0", Text: "men"},
+		{Value: "1", Text: "women"},
 	})
 	info.AddField("Phone", "phone", db.Varchar).FieldFilterable()
 	info.AddField("City", "city", db.Varchar).FieldFilterable()
@@ -62,17 +63,17 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 
 	info.AddActionButton("google", action.Jump("https://google.com"))
 	info.AddActionButton("审批", action.Ajax("/admin/audit",
-		func(ctx *context.Context) (success bool, data, msg string) {
-			return true, "", "审批成功，奥利给"
+		func(ctx *context.Context) (success bool, msg string, data interface{}) {
+			return true, "审批成功，奥利给", ""
 		}))
 	info.AddButton("jump", icon.User, action.JumpInNewTab("/admin/info/authors", "作者"))
 	info.AddButton("popup", icon.Terminal, action.PopUp("/admin/popup", "Popup Example",
-		func(ctx *context.Context) (success bool, data, msg string) {
-			return true, "<h2>hello world</h2>", ""
+		func(ctx *context.Context) (success bool, msg string, data interface{}) {
+			return true, "", "<h2>hello world</h2>"
 		}))
 	info.AddButton("ajax", icon.Android, action.Ajax("/admin/ajax",
-		func(ctx *context.Context) (success bool, data, msg string) {
-			return true, "", "请求成功，奥利给"
+		func(ctx *context.Context) (success bool, msg string, data interface{}) {
+			return true, "请求成功，奥利给", ""
 		}))
 
 	info.SetTable("users").SetTitle("Users").SetDescription("Users")
@@ -82,21 +83,64 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 	formList.AddField("Ip", "ip", db.Varchar, form.Text)
 	formList.AddField("Name", "name", db.Varchar, form.Text)
 	formList.AddField("Gender", "gender", db.Tinyint, form.Radio).
-		FieldOptions([]map[string]string{
-			{
-				"field":    "gender",
-				"label":    "men",
-				"value":    "0",
-				"selected": "checked",
-			}, {
-				"field":    "gender",
-				"label":    "women",
-				"value":    "1",
-				"selected": "",
-			},
-		})
+		FieldOptions(types.FieldOptions{
+			{Text: "men", Value: "0"},
+			{Text: "women", Value: "1"},
+		}).FieldDefault("0")
 	formList.AddField("Phone", "phone", db.Varchar, form.Text)
-	formList.AddField("City", "city", db.Varchar, form.Text)
+	formList.AddField("Country", "country", db.Tinyint, form.SelectSingle).
+		FieldOptions(types.FieldOptions{
+			{Text: "China", Value: "0"},
+			{Text: "America", Value: "1"},
+			{Text: "England", Value: "2"},
+			{Text: "Canada", Value: "3"},
+		}).FieldDefault("0").FieldOnChooseAjax("city", "/choose/country",
+		func(ctx *context.Context) (bool, string, interface{}) {
+			country := ctx.FormValue("value")
+			var data = make(selection.Options, 0)
+			switch country {
+			case "0":
+				data = selection.Options{
+					{Text: "Beijing", ID: "beijing"},
+					{Text: "ShangHai", ID: "shangHai"},
+					{Text: "GuangZhou", ID: "guangZhou"},
+					{Text: "ShenZhen", ID: "shenZhen"},
+				}
+			case "1":
+				data = selection.Options{
+					{Text: "Los Angeles", ID: "los angeles"},
+					{Text: "Washington, dc", ID: "washington, dc"},
+					{Text: "New York", ID: "new york"},
+					{Text: "Las Vegas", ID: "las vegas"},
+				}
+			case "2":
+				data = selection.Options{
+					{Text: "London", ID: "london"},
+					{Text: "Cambridge", ID: "cambridge"},
+					{Text: "Manchester", ID: "manchester"},
+					{Text: "Liverpool", ID: "liverpool"},
+				}
+			case "3":
+				data = selection.Options{
+					{Text: "Vancouver", ID: "vancouver"},
+					{Text: "Toronto", ID: "toronto"},
+				}
+			default:
+				data = selection.Options{
+					{Text: "Beijing", ID: "beijing"},
+					{Text: "ShangHai", ID: "shangHai"},
+					{Text: "GuangZhou", ID: "guangZhou"},
+					{Text: "ShenZhen", ID: "shenZhen"},
+				}
+			}
+			return true, "ok", data
+		})
+	formList.AddField("City", "city", db.Varchar, form.SelectSingle).
+		FieldOptionInitFn(func(val types.FieldModel) types.FieldOptions {
+			return types.FieldOptions{
+				{Value: val.Value, Text: val.Value, Selected: true},
+			}
+		})
 	formList.AddField("Custom Field", "role", db.Varchar, form.Text).
 		FieldPostFilterFn(func(value types.PostFieldModel) interface{} {
 			fmt.Println("user custom field", value)
@@ -107,7 +151,7 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 	formList.AddField("CreatedAt", "created_at", db.Timestamp, form.Default).FieldNotAllowAdd()
 
 	userTable.GetForm().SetTabGroups(types.
-		NewTabGroups("id", "ip", "name", "gender", "city").
+		NewTabGroups("id", "ip", "name", "gender", "country", "city").
 		AddGroup("phone", "role", "created_at", "updated_at")).
 		SetTabHeaders("profile1", "profile2")
 
