@@ -134,8 +134,8 @@ func GetForm1Content() (types.Panel, error) {
 					FormType: form.Switch,
 					Value:    "",
 					Options: types.FieldOptions{
-						{Text: "website", Value: "0"},
-						{Text: "website", Value: "1"},
+						{Value: "0"},
+						{Value: "1"},
 					},
 				},
 				{
