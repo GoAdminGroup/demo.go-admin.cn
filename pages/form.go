@@ -4,12 +4,14 @@ import (
 	"github.com/GoAdminGroup/go-admin/modules/config"
 	"github.com/GoAdminGroup/go-admin/modules/db"
 	"github.com/GoAdminGroup/go-admin/modules/language"
+	form2 "github.com/GoAdminGroup/go-admin/plugins/admin/modules/form"
 	template2 "github.com/GoAdminGroup/go-admin/template"
 	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/GoAdminGroup/go-admin/template/types/form"
+	"github.com/gin-gonic/gin"
 )
 
-func GetForm1Content() (types.Panel, error) {
+func GetForm1Content(ctx *gin.Context) (types.Panel, error) {
 
 	components := template2.Get(config.Get().Theme)
 
@@ -206,12 +208,14 @@ func GetForm1Content() (types.Panel, error) {
 		SetPrefix(config.Get().PrefixFixSlash()).
 		SetUrl("/").
 		SetTitle("Form").
-		SetInfoUrl("/admin").
+		SetHiddenFields(map[string]string{
+			form2.PreviousKey: "/admin",
+		}).
 		SetOperationFooter(col1 + col2)
 
 	return types.Panel{
 		Content: components.Box().
-			SetHeader(aform.GetBoxHeader()).
+			SetHeader(aform.GetDefaultBoxHeader()).
 			WithHeadBorder().
 			SetBody(aform.GetContent()).
 			GetContent(),

@@ -19,7 +19,6 @@ import (
 	"github.com/GoAdminGroup/go-admin/plugins/admin"
 	"github.com/GoAdminGroup/go-admin/template"
 	"github.com/GoAdminGroup/go-admin/template/chartjs"
-	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/gin-gonic/gin"
 )
 
@@ -42,7 +41,7 @@ func main() {
 	template.AddComp(echarts.NewChart())
 
 	rootPath := "/data/www/go-admin"
-	//rootPath = "."
+	rootPath = "."
 
 	cfg := config.ReadFromJson(rootPath + "/config.json")
 	cfg.CustomFootHtml = template.HTML(`<div style="display:none;">
@@ -60,17 +59,10 @@ func main() {
 
 	// you can custom your pages like:
 
-	r.GET("/admin", ada.Content(func(ctx *gin.Context) (types.Panel, error) {
-		return pages.GetDashBoard2Content()
-	}))
-
-	r.GET("/admin/form1", ada.Content(func(ctx *gin.Context) (types.Panel, error) {
-		return pages.GetForm1Content()
-	}))
-
-	r.GET("/admin/echarts", ada.Content(func(ctx *gin.Context) (types.Panel, error) {
-		return pages.GetDashBoard3Content()
-	}))
+	r.GET("/admin", ada.Content(pages.GetDashBoard2Content))
+	r.GET("/admin/form1", ada.Content(pages.GetForm1Content))
+	r.GET("/admin/echarts", ada.Content(pages.GetDashBoard3Content))
+	r.GET("/admin/table", ada.Content(pages.GetTableContent))
 
 	r.GET("/", func(ctx *gin.Context) {
 		ctx.Redirect(http.StatusMovedPermanently, "/admin")

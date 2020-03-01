@@ -31,7 +31,7 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 		},
 	})
 
-	info := userTable.GetInfo().SetFilterFormLayout(form.LayoutTwoCol)
+	info := userTable.GetInfo().SetFilterFormLayout(form.LayoutThreeCol)
 	info.AddField("ID", "id", db.Int).FieldSortable()
 	info.AddField("Name", "name", db.Varchar).FieldEditAble(editType.Text).
 		FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike})
@@ -43,15 +43,21 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 			return "women"
 		}
 		return "unknown"
-	}).FieldEditAble(editType.Select).FieldEditOptions(types.FieldOptions{
-		{Value: "0", Text: "men"},
-		{Value: "1", Text: "women"},
+	}).FieldEditAble(editType.Switch).FieldEditOptions(types.FieldOptions{
+		{Value: "0", Text: "男"},
+		{Value: "1", Text: "女"},
 	}).FieldFilterable(types.FilterType{FormType: form.SelectSingle}).FieldFilterOptions(types.FieldOptions{
 		{Value: "0", Text: "men"},
 		{Value: "1", Text: "women"},
 	})
 	info.AddField("Phone", "phone", db.Varchar).FieldFilterable()
-	info.AddField("City", "city", db.Varchar).FieldFilterable()
+	info.AddField("City", "city", db.Varchar).FieldFilterable().
+		FieldEditAble(editType.Select).FieldEditOptions(types.FieldOptions{
+		{Value: "guangzhou", Text: "广州"},
+		{Value: "shanghai", Text: "上海"},
+		{Value: "beijing", Text: "北京"},
+		{Value: "shenzhen", Text: "深圳"},
+	})
 	info.AddField("Avatar", "avatar", db.Varchar).FieldDisplay(func(value types.FieldModel) interface{} {
 		return template.Default().Image().
 			SetSrc(`//quick.go-admin.cn/demo/assets/dist/img/gopher_avatar.png`).
@@ -75,6 +81,11 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 		func(ctx *context.Context) (success bool, msg string, data interface{}) {
 			return true, "请求成功，奥利给", ""
 		}))
+
+	info.AddSelectBox("性别", types.FieldOptions{
+		{Value: "0", Text: "men"},
+		{Value: "1", Text: "women"},
+	}, action.FieldFilter("user", "gender"))
 
 	info.SetTable("users").SetTitle("Users").SetDescription("Users")
 
@@ -137,6 +148,16 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 		})
 	formList.AddField("City", "city", db.Varchar, form.SelectSingle).
 		FieldOptionInitFn(func(val types.FieldModel) types.FieldOptions {
+
+			if val.Value == "" {
+				return types.FieldOptions{
+					{Text: "Beijing", Value: "beijing"},
+					{Text: "ShangHai", Value: "shangHai"},
+					{Text: "GuangZhou", Value: "guangZhou"},
+					{Text: "ShenZhen", Value: "shenZhen"},
+				}
+			}
+
 			return types.FieldOptions{
 				{Value: val.Value, Text: val.Value, Selected: true},
 			}

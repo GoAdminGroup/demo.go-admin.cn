@@ -62,36 +62,36 @@ func GetDashBoardContent() (types.Panel, error) {
 	 * Box
 	/**************************/
 
-	table := components.Table().SetType("table").SetInfoList([]map[string]template.HTML{
+	table := components.Table().SetType("table").SetInfoList([]map[string]types.InfoItem{
 		{
-			"订单号": "OR9842",
-			"商品":  "英雄联盟皮肤",
-			"状态":  "配送中",
-			"价格":  "20",
+			"订单号": {Content: "OR9842"},
+			"商品":  {Content: "英雄联盟皮肤"},
+			"状态":  {Content: "配送中"},
+			"价格":  {Content: "20"},
 		}, {
-			"订单号": "OR9842",
-			"商品":  "荒野大镖客游戏光碟",
-			"状态":  "卖家付款中",
-			"价格":  "345",
+			"订单号": {Content: "OR9842"},
+			"商品":  {Content: "荒野大镖客游戏光碟"},
+			"状态":  {Content: "卖家付款中"},
+			"价格":  {Content: "345"},
 		}, {
-			"订单号": "OR9842",
-			"商品":  "ps4游戏机",
-			"状态":  "已完成",
-			"价格":  "2400",
+			"订单号": {Content: "OR9842"},
+			"商品":  {Content: "ps4游戏机"},
+			"状态":  {Content: "已完成"},
+			"价格":  {Content: "2400"},
 		},
-	}).SetThead([]map[string]string{
+	}).SetThead(types.Thead{
 		{
-			"head":     "订单号",
-			"sortable": "0",
+			Head:     "订单号",
+			Sortable: false,
 		}, {
-			"head":     "商品",
-			"sortable": "0",
+			Head:     "商品",
+			Sortable: false,
 		}, {
-			"head":     "状态",
-			"sortable": "0",
+			Head:     "状态",
+			Sortable: false,
 		}, {
-			"head":     "价格",
-			"sortable": "0",
+			Head:     "价格",
+			Sortable: false,
 		},
 	}).SetMinWidth(400).GetContent()
 

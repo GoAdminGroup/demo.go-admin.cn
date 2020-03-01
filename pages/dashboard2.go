@@ -9,10 +9,11 @@ import (
 	"github.com/GoAdminGroup/themes/sword/components/chart_legend"
 	"github.com/GoAdminGroup/themes/sword/components/description"
 	"github.com/GoAdminGroup/themes/sword/components/progress_group"
+	"github.com/gin-gonic/gin"
 	"html/template"
 )
 
-func GetDashBoard2Content() (types.Panel, error) {
+func GetDashBoard2Content(ctx *gin.Context) (types.Panel, error) {
 
 	components := template2.Get(config.Get().Theme)
 	colComp := components.Col()

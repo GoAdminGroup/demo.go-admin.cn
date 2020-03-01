@@ -5,13 +5,14 @@ import (
 	"github.com/GoAdminGroup/go-admin/modules/config"
 	template2 "github.com/GoAdminGroup/go-admin/template"
 	"github.com/GoAdminGroup/go-admin/template/types"
+	"github.com/gin-gonic/gin"
 	"github.com/go-echarts/go-echarts/charts"
 	"math"
 	"math/rand"
 	"time"
 )
 
-func GetDashBoard3Content() (types.Panel, error) {
+func GetDashBoard3Content(ctx *gin.Context) (types.Panel, error) {
 
 	components := template2.Get(config.Get().Theme)
 	colComp := components.Col()
