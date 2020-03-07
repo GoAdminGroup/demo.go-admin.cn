@@ -36,7 +36,7 @@ func GetDashBoard2Content(ctx *gin.Context) (types.Panel, error) {
 
 	infobox4 := cardcard.GetContent()
 
-	var size = map[string]string{"md": "3", "sm": "6", "xs": "12"}
+	var size = types.SizeMD(3).SM(6).XS(12)
 	infoboxCol1 := colComp.SetSize(size).SetContent(infobox).GetContent()
 	infoboxCol2 := colComp.SetSize(size).SetContent(infobox2).GetContent()
 	infoboxCol3 := colComp.SetSize(size).SetContent(infobox3).GetContent()
@@ -97,10 +97,10 @@ func GetDashBoard2Content(ctx *gin.Context) (types.Panel, error) {
 		SetPercent(50).
 		GetContent()
 
-	boxInternalCol1 := colComp.SetContent(lineChart).SetSize(map[string]string{"md": "8"}).GetContent()
+	boxInternalCol1 := colComp.SetContent(lineChart).SetSize(types.SizeMD(8)).GetContent()
 	boxInternalCol2 := colComp.
 		SetContent(template.HTML(title) + progressGroup + progressGroup1 + progressGroup2 + progressGroup3).
-		SetSize(map[string]string{"md": "4"}).
+		SetSize(types.SizeMD(4)).
 		GetContent()
 
 	boxInternalRow := components.Row().SetContent(boxInternalCol1 + boxInternalCol2).GetContent()
@@ -140,7 +140,7 @@ func GetDashBoard2Content(ctx *gin.Context) (types.Panel, error) {
 		SetColor("green").
 		GetContent()
 
-	size2 := map[string]string{"sm": "3", "xs": "6"}
+	size2 := types.SizeSM(3).XS(6)
 	boxInternalCol3 := colComp.SetContent(description1).SetSize(size2).GetContent()
 	boxInternalCol4 := colComp.SetContent(description2).SetSize(size2).GetContent()
 	boxInternalCol5 := colComp.SetContent(description3).SetSize(size2).GetContent()
@@ -153,7 +153,7 @@ func GetDashBoard2Content(ctx *gin.Context) (types.Panel, error) {
 		SetFooter(boxInternalRow2).
 		GetContent()
 
-	boxcol := colComp.SetContent(box).SetSize(map[string]string{"md": "12"}).GetContent()
+	boxcol := colComp.SetContent(box).SetSize(types.SizeMD(12)).GetContent()
 	row2 := components.Row().SetContent(boxcol).GetContent()
 
 	/**************************
@@ -195,9 +195,9 @@ func GetDashBoard2Content(ctx *gin.Context) (types.Panel, error) {
 
 	boxDanger := components.Box().SetTheme("danger").WithHeadBorder().SetHeader("Browser Usage").
 		SetBody(components.Row().
-			SetContent(colComp.SetSize(map[string]string{"md": "8"}).
+			SetContent(colComp.SetSize(types.SizeMD(8)).
 				SetContent(pie).
-				GetContent() + colComp.SetSize(map[string]string{"md": "4"}).
+				GetContent() + colComp.SetSize(types.SizeMD(4)).
 				SetContent(legend).
 				GetContent()).GetContent()).
 		SetFooter(`<p class="text-center"><a href="javascript:void(0)" class="uppercase">View All Users</a></p>`).
@@ -259,8 +259,8 @@ func GetDashBoard2Content(ctx *gin.Context) (types.Panel, error) {
 		SetBody(template.HTML(popupForm)).
 		GetContent()
 
-	col5 := colComp.SetSize(map[string]string{"md": "8"}).SetContent(tabs + template.HTML(buttonTest)).GetContent()
-	col6 := colComp.SetSize(map[string]string{"md": "4"}).SetContent(boxDanger + popup).GetContent()
+	col5 := colComp.SetSize(types.SizeMD(8)).SetContent(tabs + template.HTML(buttonTest)).GetContent()
+	col6 := colComp.SetSize(types.SizeMD(4)).SetContent(boxDanger + popup).GetContent()
 
 	row4 := components.Row().SetContent(col5 + col6).GetContent()
 	return types.Panel{

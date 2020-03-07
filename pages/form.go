@@ -6,6 +6,7 @@ import (
 	"github.com/GoAdminGroup/go-admin/modules/language"
 	form2 "github.com/GoAdminGroup/go-admin/plugins/admin/modules/form"
 	template2 "github.com/GoAdminGroup/go-admin/template"
+	"github.com/GoAdminGroup/go-admin/template/icon"
 	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/GoAdminGroup/go-admin/template/types/form"
 	"github.com/gin-gonic/gin"
@@ -15,19 +16,19 @@ func GetForm1Content(ctx *gin.Context) (types.Panel, error) {
 
 	components := template2.Get(config.Get().Theme)
 
-	col1 := components.Col().SetSize(map[string]string{"md": "2"}).GetContent()
+	col1 := components.Col().GetContent()
 	btn1 := components.Button().SetType("submit").
 		SetContent(language.GetFromHtml("Save")).
 		SetThemePrimary().
 		SetOrientationRight().
-		SetLoadingText(`<i class='fa fa-spinner fa-spin '></i> Save`).
+		SetLoadingText(icon.Icon("fa-spinner fa-spin", 2) + `Save`).
 		GetContent()
 	btn2 := components.Button().SetType("reset").
 		SetContent(language.GetFromHtml("Reset")).
 		SetThemeWarning().
 		SetOrientationLeft().
 		GetContent()
-	col2 := components.Col().SetSize(map[string]string{"md": "8"}).
+	col2 := components.Col().SetSize(types.SizeMD(8)).
 		SetContent(btn1 + btn2).GetContent()
 
 	aform := components.Form().

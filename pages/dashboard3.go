@@ -51,8 +51,8 @@ func GetDashBoard3Content(ctx *gin.Context) (types.Panel, error) {
 
 	ecbox2 := components.Box().WithHeadBorder().SetHeader("Bar-多 Y 轴").SetBody(echart.SetContent(bar).GetContent()).GetContent()
 
-	ecboxCol1 := colComp.SetSize(map[string]string{"md": "3"}).SetContent(ecbox).GetContent()
-	ecboxCol2 := colComp.SetSize(map[string]string{"md": "3"}).SetContent(ecbox2).GetContent()
+	ecboxCol1 := colComp.SetSize(types.SizeMD(3)).SetContent(ecbox).GetContent()
+	ecboxCol2 := colComp.SetSize(types.SizeMD(3)).SetContent(ecbox2).GetContent()
 
 	bar3d := charts.NewBar3D()
 	bar3d.SetGlobalOptions(
@@ -77,8 +77,8 @@ func GetDashBoard3Content(ctx *gin.Context) (types.Panel, error) {
 
 	ecbox4 := components.Box().WithHeadBorder().SetHeader("BoxPlot-示例图").SetBody(echart.SetContent(bp).GetContent()).GetContent()
 
-	ecboxCol3 := colComp.SetSize(map[string]string{"md": "3"}).SetContent(ecbox3).GetContent()
-	ecboxCol4 := colComp.SetSize(map[string]string{"md": "3"}).SetContent(ecbox4).GetContent()
+	ecboxCol3 := colComp.SetSize(types.SizeMD(3)).SetContent(ecbox3).GetContent()
+	ecboxCol4 := colComp.SetSize(types.SizeMD(3)).SetContent(ecbox4).GetContent()
 
 	row1 := components.Row().SetContent(ecboxCol1 + ecboxCol2 + ecboxCol3 + ecboxCol4).GetContent()
 
@@ -87,7 +87,7 @@ func GetDashBoard3Content(ctx *gin.Context) (types.Panel, error) {
 	es.Width = "250px"
 	es.Height = "250px"
 
-	ecboxCol5 := colComp.SetSize(map[string]string{"md": "3"}).SetContent(components.Box().WithHeadBorder().
+	ecboxCol5 := colComp.SetSize(types.SizeMD(3)).SetContent(components.Box().WithHeadBorder().
 		SetHeader("EffectScatter-示例图").SetBody(echart.SetContent(es).GetContent()).GetContent()).GetContent()
 
 	funnel := charts.NewFunnel()
@@ -95,7 +95,7 @@ func GetDashBoard3Content(ctx *gin.Context) (types.Panel, error) {
 	funnel.Width = "250px"
 	funnel.Height = "250px"
 
-	ecboxCol6 := colComp.SetSize(map[string]string{"md": "3"}).SetContent(components.Box().WithHeadBorder().
+	ecboxCol6 := colComp.SetSize(types.SizeMD(3)).SetContent(components.Box().WithHeadBorder().
 		SetHeader("Funnel-示例图").SetBody(echart.SetContent(funnel).GetContent()).GetContent()).GetContent()
 
 	gauge := charts.NewGauge()
@@ -105,7 +105,7 @@ func GetDashBoard3Content(ctx *gin.Context) (types.Panel, error) {
 	gauge.Width = "250px"
 	gauge.Height = "250px"
 
-	ecboxCol7 := colComp.SetSize(map[string]string{"md": "3"}).SetContent(components.Box().WithHeadBorder().
+	ecboxCol7 := colComp.SetSize(types.SizeMD(3)).SetContent(components.Box().WithHeadBorder().
 		SetHeader("Gauge-示例图").SetBody(echart.SetContent(gauge).GetContent()).GetContent()).GetContent()
 
 	geo := charts.NewGeo("china")
@@ -114,7 +114,7 @@ func GetDashBoard3Content(ctx *gin.Context) (types.Panel, error) {
 	geo.Width = "250px"
 	geo.Height = "250px"
 
-	ecboxCol8 := colComp.SetSize(map[string]string{"md": "3"}).SetContent(components.Box().WithHeadBorder().
+	ecboxCol8 := colComp.SetSize(types.SizeMD(3)).SetContent(components.Box().WithHeadBorder().
 		SetHeader("Geo-示例图").SetBody(echart.SetContent(geo).GetContent()).GetContent()).GetContent()
 
 	row2 := components.Row().SetContent(ecboxCol5 + ecboxCol6 + ecboxCol7 + ecboxCol8).GetContent()
@@ -126,7 +126,7 @@ func GetDashBoard3Content(ctx *gin.Context) (types.Panel, error) {
 	graph.Width = "250px"
 	graph.Height = "250px"
 
-	ecboxCol9 := colComp.SetSize(map[string]string{"md": "3"}).SetContent(components.Box().WithHeadBorder().
+	ecboxCol9 := colComp.SetSize(types.SizeMD(3)).SetContent(components.Box().WithHeadBorder().
 		SetHeader("Graph-示例图").SetBody(echart.SetContent(graph).GetContent()).GetContent()).GetContent()
 
 	hm := charts.NewHeatMap()
@@ -140,7 +140,7 @@ func GetDashBoard3Content(ctx *gin.Context) (types.Panel, error) {
 	hm.Width = "250px"
 	hm.Height = "250px"
 
-	ecboxCol10 := colComp.SetSize(map[string]string{"md": "3"}).SetContent(components.Box().WithHeadBorder().
+	ecboxCol10 := colComp.SetSize(types.SizeMD(3)).SetContent(components.Box().WithHeadBorder().
 		SetHeader("HeatMap-示例图").SetBody(echart.SetContent(hm).GetContent()).GetContent()).GetContent()
 
 	kline := charts.NewKLine()
@@ -161,7 +161,7 @@ func GetDashBoard3Content(ctx *gin.Context) (types.Panel, error) {
 	kline.Width = "250px"
 	kline.Height = "250px"
 
-	ecboxCol11 := colComp.SetSize(map[string]string{"md": "3"}).SetContent(components.Box().WithHeadBorder().
+	ecboxCol11 := colComp.SetSize(types.SizeMD(3)).SetContent(components.Box().WithHeadBorder().
 		SetHeader("Kline-示例图").SetBody(echart.SetContent(kline).GetContent()).GetContent()).GetContent()
 
 	line3d := charts.NewLine3D()
@@ -176,7 +176,7 @@ func GetDashBoard3Content(ctx *gin.Context) (types.Panel, error) {
 	line3d.Width = "250px"
 	line3d.Height = "250px"
 
-	ecboxCol12 := colComp.SetSize(map[string]string{"md": "3"}).SetContent(components.Box().WithHeadBorder().
+	ecboxCol12 := colComp.SetSize(types.SizeMD(3)).SetContent(components.Box().WithHeadBorder().
 		SetHeader("Line3D-示例图").SetBody(echart.SetContent(line3d).GetContent()).GetContent()).GetContent()
 
 	row3 := components.Row().SetContent(ecboxCol9 + ecboxCol10 + ecboxCol11 + ecboxCol12).GetContent()
@@ -188,7 +188,7 @@ func GetDashBoard3Content(ctx *gin.Context) (types.Panel, error) {
 	liquid.Width = "250px"
 	liquid.Height = "250px"
 
-	ecboxCol13 := colComp.SetSize(map[string]string{"md": "3"}).SetContent(components.Box().WithHeadBorder().
+	ecboxCol13 := colComp.SetSize(types.SizeMD(3)).SetContent(components.Box().WithHeadBorder().
 		SetHeader("Liquid-示例图").SetBody(echart.SetContent(liquid).GetContent()).GetContent()).GetContent()
 
 	mc := charts.NewMap("china")
@@ -196,7 +196,7 @@ func GetDashBoard3Content(ctx *gin.Context) (types.Panel, error) {
 	mc.Width = "250px"
 	mc.Height = "250px"
 
-	ecboxCol14 := colComp.SetSize(map[string]string{"md": "3"}).SetContent(components.Box().WithHeadBorder().
+	ecboxCol14 := colComp.SetSize(types.SizeMD(3)).SetContent(components.Box().WithHeadBorder().
 		SetHeader("Map-示例图").SetBody(echart.SetContent(mc).GetContent()).GetContent()).GetContent()
 
 	pie := charts.NewPie()
@@ -204,7 +204,7 @@ func GetDashBoard3Content(ctx *gin.Context) (types.Panel, error) {
 	pie.Width = "250px"
 	pie.Height = "250px"
 
-	ecboxCol15 := colComp.SetSize(map[string]string{"md": "3"}).SetContent(components.Box().WithHeadBorder().
+	ecboxCol15 := colComp.SetSize(types.SizeMD(3)).SetContent(components.Box().WithHeadBorder().
 		SetHeader("Pie-示例图").SetBody(echart.SetContent(pie).GetContent()).GetContent()).GetContent()
 
 	radar := charts.NewRadar()
@@ -219,7 +219,7 @@ func GetDashBoard3Content(ctx *gin.Context) (types.Panel, error) {
 	radar.Width = "250px"
 	radar.Height = "250px"
 
-	ecboxCol16 := colComp.SetSize(map[string]string{"md": "3"}).SetContent(components.Box().WithHeadBorder().
+	ecboxCol16 := colComp.SetSize(types.SizeMD(3)).SetContent(components.Box().WithHeadBorder().
 		SetHeader("Radar-示例图").SetBody(echart.SetContent(radar).GetContent()).GetContent()).GetContent()
 
 	row4 := components.Row().SetContent(ecboxCol13 + ecboxCol14 + ecboxCol15 + ecboxCol16).GetContent()
