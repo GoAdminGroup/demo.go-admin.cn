@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+	"github.com/GoAdminGroup/go-admin/context"
 	"log"
 	"net/http"
 	"os"
@@ -65,9 +67,14 @@ func main() {
 	// you can custom your pages like:
 
 	r.GET("/admin", ada.Content(pages.GetDashBoard2Content))
-	r.GET("/admin/form1", ada.Content(pages.GetForm1Content))
 	r.GET("/admin/echarts", ada.Content(pages.GetDashBoard3Content))
 	r.GET("/admin/table", ada.Content(pages.GetTableContent))
+
+	r.GET("/admin/form1", ada.Content(pages.GetForm1Content))
+	eng.Data("POST", "/admin/form/update", func(ctx *context.Context) {
+		fmt.Println("ctx.PostForm()", ctx.PostForm())
+		ctx.PjaxUrl("/admin")
+	})
 
 	r.GET("/", func(ctx *gin.Context) {
 		ctx.Redirect(http.StatusMovedPermanently, "/admin")
