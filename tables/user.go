@@ -72,6 +72,10 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 		func(ctx *context.Context) (success bool, msg string, data interface{}) {
 			return true, "审批成功，奥利给", ""
 		}))
+	info.AddActionButton("预览", action.PopUp("/admin/preview", "预览",
+		func(ctx *context.Context) (success bool, msg string, data interface{}) {
+			return true, "", "<h2>预览内容</h2>"
+		}))
 	info.AddButton("jump", icon.User, action.JumpInNewTab("/admin/info/authors", "作者"))
 	info.AddButton("popup", icon.Terminal, action.PopUp("/admin/popup", "Popup Example",
 		func(ctx *context.Context) (success bool, msg string, data interface{}) {
