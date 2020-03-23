@@ -50,6 +50,13 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 		{Value: "0", Text: "men"},
 		{Value: "1", Text: "women"},
 	})
+	info.AddColumn("个性", func(value types.FieldModel) interface{} {
+		return "帅气"
+	})
+	info.AddColumnButtons("查看更多", types.GetDefaultButton("更多", icon.Info,
+		action.PopUp("/see/more/example", "更多", func(ctx *context.Context) (success bool, msg string, data interface{}) {
+			return true, "ok", "<h1>详情</h1><p>balabala</p><p>此功能v1.2.7开放</p>"
+		})))
 	info.AddField("Phone", "phone", db.Varchar).FieldFilterable()
 	info.AddField("City", "city", db.Varchar).FieldFilterable().
 		FieldEditAble(editType.Select).FieldEditOptions(types.FieldOptions{
