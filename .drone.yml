@@ -4,3 +4,4 @@ pipeline:
     commands:
       - go build
       - go test
+      - go fmt
