@@ -1,5 +1,0 @@
-pipeline:
-  backend:
-    image: golang
-    commands:
-      - go fmt

@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/GoAdminGroup/go-admin/context"
+	"github.com/GoAdminGroup/go-admin/template/types/action"
 	"log"
 	"net/http"
 	"os"
@@ -18,7 +19,6 @@ import (
 	"github.com/GoAdminGroup/demo/tables"
 	"github.com/GoAdminGroup/go-admin/engine"
 	"github.com/GoAdminGroup/go-admin/modules/config"
-	"github.com/GoAdminGroup/go-admin/plugins/admin"
 	"github.com/GoAdminGroup/go-admin/template"
 	"github.com/GoAdminGroup/go-admin/template/chartjs"
 	"github.com/gin-gonic/gin"
@@ -28,15 +28,6 @@ func main() {
 	r := gin.Default()
 
 	eng := engine.Default()
-
-	adminPlugin := admin.NewAdmin(tables.Generators)
-
-	// add generator, first parameter is the url prefix of table when visit.
-	// example:
-	//
-	// "user" => http://localhost:9033/admin/info/user
-	//
-	adminPlugin.AddGenerator("user", tables.GetUserTable)
 
 	template.AddLoginComp(login.GetLoginComponent())
 	template.AddComp(chartjs.NewChart())
@@ -58,7 +49,15 @@ func main() {
 		Duration: 0.9,
 	}
 
-	if err := eng.AddConfig(cfg).AddPlugins(adminPlugin).Use(r); err != nil {
+	if err := eng.AddConfig(cfg).
+		AddGenerators(tables.Generators).
+		AddGenerator("user", tables.GetUserTable).
+		AddNavButtons("网站信息", "", action.PopUp("/website/info", "网站信息",
+			func(ctx *context.Context) (success bool, msg string, data interface{}) {
+				return true, "ok", `<p>网站由 <a href="https://github.com/chenhg5">cg33<a/> 创造</p>`
+			})).
+		AddNavButtons("用户管理", "", action.Jump("/admin/info/manager")).
+		Use(r); err != nil {
 		panic(err)
 	}
 
