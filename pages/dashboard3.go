@@ -14,7 +14,7 @@ import (
 
 func GetDashBoard3Content(ctx *gin.Context) (types.Panel, error) {
 
-	components := template2.Get(config.Get().Theme)
+	components := template2.Get(config.GetTheme())
 	colComp := components.Col()
 
 	echart := echarts.NewChart()

@@ -1,8 +1,12 @@
 package main
 
 import (
+	"errors"
 	"fmt"
+	"github.com/GoAdminGroup/filemanager"
 	"github.com/GoAdminGroup/go-admin/context"
+	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/form"
+	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/GoAdminGroup/go-admin/template/types/action"
 	"log"
 	"net/http"
@@ -11,6 +15,7 @@ import (
 
 	ada "github.com/GoAdminGroup/go-admin/adapter/gin"
 	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql"
+	_ "github.com/GoAdminGroup/themes/adminlte"
 	_ "github.com/GoAdminGroup/themes/sword"
 
 	"github.com/GoAdminGroup/components/echarts"
@@ -39,6 +44,14 @@ func main() {
 	cfg := config.ReadFromJson(rootPath + "/config.json")
 	cfg.CustomFootHtml = template.HTML(`<div style="display:none;">
     <script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1278156902&web_id=1278156902"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-103003647-2"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'UA-103003647-2');
+	</script>
 </div>`)
 	cfg.CustomHeadHtml = template.HTML(`<link rel="icon" type="image/png" sizes="32x32" href="//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="96x96" href="//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-64x64.png">
@@ -48,10 +61,31 @@ func main() {
 		Type:     "fadeInUp",
 		Duration: 0.9,
 	}
+	cfg.AddUpdateProcessFn(func(values form.Values) (values2 form.Values, e error) {
+		if values.Get("theme") == "adminlte" && values.Get("asset_url") == "//quick.go-admin.cn/demo/sword" {
+			values.Add("asset_url", "//quick.go-admin.cn/demo")
+		}
+		if values.Get("theme") == "sword" && values.Get("asset_url") == "//quick.go-admin.cn/demo" {
+			values.Add("asset_url", "//quick.go-admin.cn/demo/sword")
+		}
+		if values.Get("site_off") == "true" || values.Get("no_limit_login_ip") == "false" {
+			return nil, errors.New("不允许的操作")
+		}
+		return values, nil
+	})
+	//cfg.HideConfigCenterEntrance = true
 
 	if err := eng.AddConfig(cfg).
 		AddGenerators(tables.Generators).
 		AddGenerator("user", tables.GetUserTable).
+		AddPlugins(filemanager.NewFileManagerWithConfig(filemanager.Config{
+			Path:          "/data/www/go-admin/fm_example",
+			AllowDelete:   false,
+			AllowUpload:   true,
+			AllowDownload: true,
+			AllowRename:   true,
+			AllowMove:     true,
+		})).
 		AddNavButtons("网站信息", "", action.PopUp("/website/info", "网站信息",
 			func(ctx *context.Context) (success bool, msg string, data interface{}) {
 				return true, "ok", `<p>网站由 <a href="https://github.com/chenhg5">cg33<a/> 创造</p>`
@@ -65,7 +99,13 @@ func main() {
 
 	// you can custom your pages like:
 
-	r.GET("/admin", ada.Content(pages.GetDashBoard2Content))
+	r.GET("/admin", ada.Content(func(ctx *gin.Context) (panel types.Panel, e error) {
+		if config.GetTheme() == "adminlte" {
+			return pages.GetDashBoardContent(ctx)
+		} else {
+			return pages.GetDashBoard2Content(ctx)
+		}
+	}))
 	r.GET("/admin/echarts", ada.Content(pages.GetDashBoard3Content))
 	r.GET("/admin/table", ada.Content(pages.GetTableContent))
 

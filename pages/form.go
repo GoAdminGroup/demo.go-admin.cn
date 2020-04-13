@@ -14,7 +14,7 @@ import (
 
 func GetForm1Content(ctx *gin.Context) (types.Panel, error) {
 
-	components := template2.Get(config.Get().Theme)
+	components := template2.Get(config.GetTheme())
 
 	col1 := components.Col().GetContent()
 	btn1 := components.Button().SetType("submit").
@@ -92,7 +92,7 @@ func GetForm1Content(ctx *gin.Context) (types.Panel, error) {
 	aform := components.Form().
 		SetTabHeaders(headers).
 		SetTabContents(fields).
-		SetPrefix(config.Get().PrefixFixSlash()).
+		SetPrefix(config.PrefixFixSlash()).
 		SetUrl("/admin/form/update").
 		SetTitle("Form").
 		SetHiddenFields(map[string]string{
