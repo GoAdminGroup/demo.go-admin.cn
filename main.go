@@ -1,13 +1,10 @@
 package main
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/GoAdminGroup/filemanager"
-	"github.com/GoAdminGroup/go-admin/context"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/form"
-	"github.com/GoAdminGroup/go-admin/template/types"
-	"github.com/GoAdminGroup/go-admin/template/types/action"
+	"github.com/GoAdminGroup/components/login/theme1"
 	"log"
 	"net/http"
 	"os"
@@ -22,10 +19,15 @@ import (
 	"github.com/GoAdminGroup/demo/login"
 	"github.com/GoAdminGroup/demo/pages"
 	"github.com/GoAdminGroup/demo/tables"
+	"github.com/GoAdminGroup/filemanager"
+	"github.com/GoAdminGroup/go-admin/context"
 	"github.com/GoAdminGroup/go-admin/engine"
 	"github.com/GoAdminGroup/go-admin/modules/config"
+	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/form"
 	"github.com/GoAdminGroup/go-admin/template"
 	"github.com/GoAdminGroup/go-admin/template/chartjs"
+	"github.com/GoAdminGroup/go-admin/template/types"
+	"github.com/GoAdminGroup/go-admin/template/types/action"
 	"github.com/gin-gonic/gin"
 )
 
@@ -34,7 +36,12 @@ func main() {
 
 	eng := engine.Default()
 
-	template.AddLoginComp(login.GetLoginComponent())
+	var loginComps = map[string]template.Component{
+		"default": login.GetLoginComponent(),
+		"theme1":  theme1.Get(),
+	}
+
+	template.AddLoginComp(loginComps["default"])
 	template.AddComp(chartjs.NewChart())
 	template.AddComp(echarts.NewChart())
 
@@ -72,7 +79,16 @@ func main() {
 			return nil, errors.New("不允许的操作")
 		}
 		if values.Get("login_title") != "GoAdmin" {
-			return nil, errors.New("permission denied")
+			return nil, errors.New("不允许的操作")
+		}
+		if e := values.Get("extra"); e != "" {
+			var extra = make(map[string]interface{})
+			err := json.Unmarshal([]byte(e), &extra)
+			if err != nil && extra["login_theme"] != "" {
+				if comp, ok := loginComps[extra["login_theme"].(string)]; ok {
+					template.AddLoginComp(comp)
+				}
+			}
 		}
 		return values, nil
 	})
