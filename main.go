@@ -37,7 +37,7 @@ func main() {
 	eng := engine.Default()
 
 	var loginComps = map[string]template.Component{
-		"default": login.GetLoginComponent(),
+		"default": login.Get(),
 		"theme1":  theme1.Get(),
 	}
 
