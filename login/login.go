@@ -17,7 +17,7 @@ func (l *Login) GetTemplate() (*template.Template, string) {
 		Parse(List["login/theme1"])
 
 	if err != nil {
-		logger.Error("Login GetTemplate Error: ", err)
+		logger.Error("login component, get template error: ", err)
 	}
 
 	return tmpl, "login_theme1"
