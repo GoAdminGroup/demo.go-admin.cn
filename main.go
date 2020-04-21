@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/GoAdminGroup/components/login/theme1"
 	"log"
 	"net/http"
 	"os"
@@ -38,7 +37,6 @@ func main() {
 
 	var loginComps = map[string]template.Component{
 		"default": login.Get(),
-		"theme1":  theme1.Get(),
 	}
 
 	template.AddLoginComp(loginComps["default"])
