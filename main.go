@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/GoAdminGroup/librarian"
 	"log"
 	"net/http"
 	"os"
@@ -79,6 +80,16 @@ func main() {
 		if values.Get("login_title") != "GoAdmin" {
 			return nil, errors.New("不允许的操作")
 		}
+		if values.Get("custom_head_html") != string(cfg.CustomHeadHtml) {
+			return nil, errors.New("不允许的操作")
+		}
+		if values.Get("custom_foot_html") != string(cfg.CustomFootHtml) {
+			return nil, errors.New("不允许的操作")
+		}
+		if values.Get("footer_info") != "" || values.Get("login_logo") != string(cfg.LoginLogo) ||
+			values.Get("logo") != string(cfg.Logo) || values.Get("mini_logo") != string(cfg.MiniLogo) {
+			return nil, errors.New("不允许的操作")
+		}
 		if e := values.Get("extra"); e != "" {
 			var extra = make(map[string]interface{})
 			err := json.Unmarshal([]byte(e), &extra)
@@ -102,6 +113,10 @@ func main() {
 			AllowDownload: true,
 			AllowRename:   true,
 			AllowMove:     true,
+		}), librarian.NewLibrarianWithConfig(librarian.Config{
+			Path:      "/data/www/go-admin/fm_example/markdown",
+			BuildMenu: false,
+			Prefix:    "librarian",
 		})).
 		AddNavButtons("网站信息", "", action.PopUp("/website/info", "网站信息",
 			func(ctx *context.Context) (success bool, msg string, data interface{}) {
