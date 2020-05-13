@@ -88,34 +88,36 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 		func(ctx *context.Context) (success bool, msg string, data interface{}) {
 			return true, "", "<h2>hello world</h2>"
 		}))
+	info.AddButton("iframe", icon.Tv, action.PopUpWithIframe("/admin/iframe", "Iframe Example",
+		action.IframeData{Src: "/admin/info/authors"}, "900px", "560px"))
 	info.AddButton("ajax", icon.Android, action.Ajax("/admin/ajax",
 		func(ctx *context.Context) (success bool, msg string, data interface{}) {
 			return true, "请求成功，奥利给", ""
 		}))
 
 	info.AddSelectBox("性别", types.FieldOptions{
-		{Value: "0", Text: "men"},
-		{Value: "1", Text: "women"},
+		{Value: "0", Text: "男"},
+		{Value: "1", Text: "女"},
 	}, action.FieldFilter("gender"))
 
 	info.SetTable("users").SetTitle("Users").SetDescription("Users")
 
 	formList := userTable.GetForm()
 	formList.AddField("ID", "id", db.Int, form.Default).FieldNotAllowEdit().FieldNotAllowAdd()
-	formList.AddField("Ip", "ip", db.Varchar, form.Text)
-	formList.AddField("Name", "name", db.Varchar, form.Text)
-	formList.AddField("Gender", "gender", db.Tinyint, form.Radio).
+	formList.AddField("IP", "ip", db.Varchar, form.Text)
+	formList.AddField("姓名", "name", db.Varchar, form.Text)
+	formList.AddField("性别", "gender", db.Tinyint, form.Radio).
 		FieldOptions(types.FieldOptions{
-			{Text: "men", Value: "0"},
-			{Text: "women", Value: "1"},
+			{Text: "男", Value: "0"},
+			{Text: "女", Value: "1"},
 		}).FieldDefault("0")
-	formList.AddField("Phone", "phone", db.Varchar, form.Text)
-	formList.AddField("Country", "country", db.Tinyint, form.SelectSingle).
+	formList.AddField("电话", "phone", db.Varchar, form.Text)
+	formList.AddField("国家", "country", db.Tinyint, form.SelectSingle).
 		FieldOptions(types.FieldOptions{
-			{Text: "China", Value: "0"},
-			{Text: "America", Value: "1"},
-			{Text: "England", Value: "2"},
-			{Text: "Canada", Value: "3"},
+			{Text: "中国", Value: "0"},
+			{Text: "美国", Value: "1"},
+			{Text: "英国", Value: "2"},
+			{Text: "加拿大", Value: "3"},
 		}).FieldDefault("0").FieldOnChooseAjax("city", "/choose/country",
 		func(ctx *context.Context) (bool, string, interface{}) {
 			country := ctx.FormValue("value")
@@ -123,49 +125,85 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 			switch country {
 			case "0":
 				data = selection.Options{
-					{Text: "Beijing", ID: "beijing"},
-					{Text: "ShangHai", ID: "shangHai"},
-					{Text: "GuangZhou", ID: "guangZhou"},
-					{Text: "ShenZhen", ID: "shenZhen"},
+					{Text: "北京", ID: "beijing"},
+					{Text: "上海", ID: "shangHai"},
+					{Text: "广州", ID: "guangZhou"},
+					{Text: "深圳", ID: "shenZhen"},
 				}
 			case "1":
 				data = selection.Options{
-					{Text: "Los Angeles", ID: "los angeles"},
-					{Text: "Washington, dc", ID: "washington, dc"},
-					{Text: "New York", ID: "new york"},
-					{Text: "Las Vegas", ID: "las vegas"},
+					{Text: "洛杉矶", ID: "los angeles"},
+					{Text: "华盛顿", ID: "washington, dc"},
+					{Text: "纽约", ID: "new york"},
+					{Text: "拉斯维加斯", ID: "las vegas"},
 				}
 			case "2":
 				data = selection.Options{
-					{Text: "London", ID: "london"},
-					{Text: "Cambridge", ID: "cambridge"},
-					{Text: "Manchester", ID: "manchester"},
-					{Text: "Liverpool", ID: "liverpool"},
+					{Text: "伦敦", ID: "london"},
+					{Text: "剑桥", ID: "cambridge"},
+					{Text: "曼切斯特", ID: "manchester"},
+					{Text: "利物浦", ID: "liverpool"},
 				}
 			case "3":
 				data = selection.Options{
-					{Text: "Vancouver", ID: "vancouver"},
-					{Text: "Toronto", ID: "toronto"},
+					{Text: "温哥华", ID: "vancouver"},
+					{Text: "多伦多", ID: "toronto"},
 				}
 			default:
 				data = selection.Options{
-					{Text: "Beijing", ID: "beijing"},
-					{Text: "ShangHai", ID: "shangHai"},
-					{Text: "GuangZhou", ID: "guangZhou"},
-					{Text: "ShenZhen", ID: "shenZhen"},
+					{Text: "北京", ID: "beijing"},
+					{Text: "上海", ID: "shangHai"},
+					{Text: "广州", ID: "guangZhou"},
+					{Text: "深圳", ID: "shenZhen"},
 				}
 			}
 			return true, "ok", data
 		})
-	formList.AddField("City", "city", db.Varchar, form.SelectSingle).
+	formList.AddField("城市", "city", db.Varchar, form.SelectSingle).
 		FieldOptionInitFn(func(val types.FieldModel) types.FieldOptions {
 
 			if val.Value == "" {
 				return types.FieldOptions{
-					{Text: "Beijing", Value: "beijing"},
-					{Text: "ShangHai", Value: "shangHai"},
-					{Text: "GuangZhou", Value: "guangZhou"},
-					{Text: "ShenZhen", Value: "shenZhen"},
+					{Text: "北京", Value: "beijing"},
+					{Text: "上海", Value: "shangHai"},
+					{Text: "广州", Value: "guangZhou"},
+					{Text: "深圳", Value: "shenZhen"},
+				}
+			}
+
+			return types.FieldOptions{
+				{Value: val.Value, Text: val.Value, Selected: true},
+			}
+		}).FieldOnChooseAjax("district", "/choose/city",
+		func(ctx *context.Context) (bool, string, interface{}) {
+			country := ctx.FormValue("value")
+			var data = make(selection.Options, 0)
+			switch country {
+			case "beijing":
+				data = selection.Options{
+					{Text: "朝阳", ID: "chaoyang"},
+					{Text: "海淀", ID: "haidian"},
+				}
+			case "shangHai":
+				data = selection.Options{
+					{Text: "杨浦", ID: "yangpu"},
+					{Text: "浦东", ID: "pudong"},
+				}
+			default:
+				data = selection.Options{
+					{Text: "南区", ID: "southern"},
+					{Text: "北区", ID: "north"},
+				}
+			}
+			return true, "ok", data
+		})
+	formList.AddField("地区", "district", db.Varchar, form.SelectSingle).
+		FieldOptionInitFn(func(val types.FieldModel) types.FieldOptions {
+
+			if val.Value == "" {
+				return types.FieldOptions{
+					{Text: "南区", Value: "southern"},
+					{Text: "北区", Value: "north"},
 				}
 			}
 
@@ -183,7 +221,7 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 	formList.AddField("CreatedAt", "created_at", db.Timestamp, form.Default).FieldNotAllowAdd()
 
 	userTable.GetForm().SetTabGroups(types.
-		NewTabGroups("id", "ip", "name", "gender", "country", "city").
+		NewTabGroups("id", "ip", "name", "gender", "country", "city", "district").
 		AddGroup("phone", "role", "created_at", "updated_at")).
 		SetTabHeaders("profile1", "profile2")
 
