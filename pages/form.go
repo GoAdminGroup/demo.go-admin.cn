@@ -83,8 +83,8 @@ func GetForm1Content(ctx *gin.Context) (types.Panel, error) {
 		}).FieldDefault("beer")
 	panel.AddField("雇员", "employee", db.Varchar, form.Array)
 	panel.AddTable("设置", "setting", func(panel *types.FormPanel) {
-		panel.AddField("Key", "key", db.Varchar, form.Default)
-		panel.AddField("Value", "value", db.Varchar, form.Default)
+		panel.AddField("Key", "key", db.Varchar, form.Text).FieldHideLabel()
+		panel.AddField("Value", "value", db.Varchar, form.Text).FieldHideLabel()
 	})
 	panel.SetTabGroups(types.TabGroups{
 		{"name", "age", "homepage", "email", "birthday", "password", "ip", "certificate", "currency", "content"},
