@@ -108,7 +108,7 @@ func GetForm1Content(ctx *gin.Context) (types.Panel, error) {
 
 	return types.Panel{
 		Content: components.Box().
-			SetHeader(aform.GetDefaultBoxHeader()).
+			SetHeader(aform.GetDefaultBoxHeader(true)).
 			WithHeadBorder().
 			SetBody(aform.GetContent()).
 			GetContent(),
