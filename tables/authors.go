@@ -4,6 +4,9 @@ import (
 	"github.com/GoAdminGroup/go-admin/context"
 	"github.com/GoAdminGroup/go-admin/modules/db"
 	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/table"
+	"github.com/GoAdminGroup/go-admin/template/icon"
+	"github.com/GoAdminGroup/go-admin/template/types"
+	"github.com/GoAdminGroup/go-admin/template/types/action"
 	"github.com/GoAdminGroup/go-admin/template/types/form"
 )
 
@@ -17,23 +20,30 @@ func GetAuthorsTable(ctx *context.Context) (authorsTable table.Table) {
 
 	info := authorsTable.GetInfo()
 	info.AddField("ID", "id", db.Int).FieldSortable()
-	info.AddField("First Name", "first_name", db.Varchar)
-	info.AddField("Last Name", "last_name", db.Varchar)
-	info.AddField("Email", "email", db.Varchar)
-	info.AddField("Birthdate", "birthdate", db.Date)
-	info.AddField("Added", "added", db.Timestamp)
+	info.AddField("First Name", "first_name", db.Varchar).FieldHide()
+	info.AddField("Last Name", "last_name", db.Varchar).FieldHide()
+	info.AddField("姓名", "name", db.Varchar).FieldDisplay(func(value types.FieldModel) interface{} {
+		first, _ := value.Row["first_name"].(string)
+		last, _ := value.Row["last_name"].(string)
+		return first + " " + last
+	})
+	info.AddField("邮箱", "email", db.Varchar)
+	info.AddField("生日", "birthdate", db.Date)
+	info.AddField("加入时间", "added", db.Timestamp)
 
-	info.SetTable("authors").SetTitle("Authors").SetDescription("Authors")
+	info.AddButton("文章列表", icon.Tv, action.PopUpWithIframe("/authors/list", "文章",
+		action.IframeData{Src: "/admin/info/posts"}, "900px", "560px"))
+	info.SetTable("authors").SetTitle("作者").SetDescription("作者")
 
 	formList := authorsTable.GetForm()
 	formList.AddField("ID", "id", db.Int, form.Default).FieldNotAllowEdit().FieldNotAllowAdd()
-	formList.AddField("First Name", "first_name", db.Varchar, form.Text)
-	formList.AddField("Last Name", "last_name", db.Varchar, form.Text)
-	formList.AddField("Email", "email", db.Varchar, form.Text)
-	formList.AddField("Birthdate", "birthdate", db.Date, form.Text)
-	formList.AddField("Added", "added", db.Timestamp, form.Text)
+	formList.AddField("名", "first_name", db.Varchar, form.Text)
+	formList.AddField("姓", "last_name", db.Varchar, form.Text)
+	formList.AddField("邮箱", "email", db.Varchar, form.Text)
+	formList.AddField("生日", "birthdate", db.Date, form.Text)
+	formList.AddField("加入时间", "added", db.Timestamp, form.Text)
 
-	formList.SetTable("authors").SetTitle("Authors").SetDescription("Authors")
+	formList.SetTable("authors").SetTitle("作者").SetDescription("作者")
 
 	return
 }
