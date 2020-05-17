@@ -217,7 +217,7 @@ func main() {
 				{Text: "宝安区", Value: "3"},
 			}).FieldRowWidth(3).FieldHeadWidth(2).FieldInputWidth(9)
 	}).FieldFoot(seeCodeHTML(`panel.AddRow(func(pa *types.FormPanel) {
-		panel.AddField("地区", "province", db.Tinyint, form.SelectSingle).
+		panel.AddField("省份", "province", db.Tinyint, form.SelectSingle).
 			FieldOptions(types.FieldOptions{
 				{Text: "北京", Value: "0"},
 				{Text: "上海", Value: "1"},
@@ -254,8 +254,7 @@ func main() {
 			"certificate", "currency", "rate", "reward", "content", "code"},
 		{"website", "snacks", "fruit", "gender", "cat", "drink", "province", "city", "district", "experience"},
 		{"employee", "setting"},
-	}).
-		FieldFoot(seeCodeHTML(`formList.AddField("名字", "name", db.Varchar, form.Text)`))
+	})
 	panel.SetTabHeaders("输入", "选择", "多项")
 
 	fields, headers := panel.GroupField()
