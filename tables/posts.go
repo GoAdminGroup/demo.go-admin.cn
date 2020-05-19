@@ -52,7 +52,9 @@ func GetPostsTable(ctx *context.Context) (postsTable table.Table) {
 	formList.AddField("标题", "title", db.Varchar, form.Text)
 	formList.AddField("简介", "description", db.Varchar, form.Text)
 	formList.AddField("内容", "content", db.Varchar, form.RichText).FieldEnableFileUpload()
-	formList.AddField("日期", "date", db.Varchar, form.Datetime)
+	formList.AddField("日期", "date", db.Varchar, form.Date)
+
+	formList.EnableAjax("成功", "失败")
 
 	formList.SetTable("posts").SetTitle("文章").SetDescription("文章")
 

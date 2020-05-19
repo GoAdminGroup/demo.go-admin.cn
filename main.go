@@ -148,6 +148,15 @@ func main() {
 		fmt.Println("ctx.PostForm()", ctx.PostForm())
 		ctx.PjaxUrl("/admin")
 	})
+	eng.Data("POST", "/admin/popup/form", func(ctx *adminContext.Context) {
+		ctx.JSON(http.StatusOK, map[string]interface{}{
+			"code": 200,
+			"msg":  "ok",
+			"data": map[string]string{
+				"url": "/admin/info/profile",
+			},
+		})
+	})
 
 	r.GET("/", func(ctx *gin.Context) {
 		ctx.Redirect(http.StatusMovedPermanently, "/admin")
