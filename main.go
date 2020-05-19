@@ -1,17 +1,16 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/GoAdminGroup/filemanager"
-	"github.com/GoAdminGroup/librarian"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
+	"time"
 
-	ada "github.com/GoAdminGroup/go-admin/adapter/gin"
 	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql"
 	_ "github.com/GoAdminGroup/themes/adminlte"
 	_ "github.com/GoAdminGroup/themes/sword"
@@ -20,7 +19,9 @@ import (
 	"github.com/GoAdminGroup/demo/login"
 	"github.com/GoAdminGroup/demo/pages"
 	"github.com/GoAdminGroup/demo/tables"
-	"github.com/GoAdminGroup/go-admin/context"
+	"github.com/GoAdminGroup/filemanager"
+	ada "github.com/GoAdminGroup/go-admin/adapter/gin"
+	adminContext "github.com/GoAdminGroup/go-admin/context"
 	"github.com/GoAdminGroup/go-admin/engine"
 	"github.com/GoAdminGroup/go-admin/modules/config"
 	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/form"
@@ -28,6 +29,7 @@ import (
 	"github.com/GoAdminGroup/go-admin/template/chartjs"
 	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/GoAdminGroup/go-admin/template/types/action"
+	"github.com/GoAdminGroup/librarian"
 	"github.com/gin-gonic/gin"
 )
 
@@ -119,7 +121,7 @@ func main() {
 			Prefix:    "librarian",
 		})).
 		AddNavButtons("网站信息", "", action.PopUp("/website/info", "网站信息",
-			func(ctx *context.Context) (success bool, msg string, data interface{}) {
+			func(ctx *adminContext.Context) (success bool, msg string, data interface{}) {
 				return true, "ok", `<p>网站由 <a href="https://github.com/chenhg5">cg33<a/> 创造</p>`
 			})).
 		AddNavButtons("用户管理", "", action.Jump("/admin/info/manager")).
@@ -142,7 +144,7 @@ func main() {
 	r.GET("/admin/table", ada.Content(pages.GetTableContent))
 
 	r.GET("/admin/form1", ada.Content(pages.GetForm1Content))
-	eng.Data("POST", "/admin/form/update", func(ctx *context.Context) {
+	eng.Data("POST", "/admin/form/update", func(ctx *adminContext.Context) {
 		fmt.Println("ctx.PostForm()", ctx.PostForm())
 		ctx.PjaxUrl("/admin")
 	})
@@ -151,13 +153,29 @@ func main() {
 		ctx.Redirect(http.StatusMovedPermanently, "/admin")
 	})
 
+	srv := &http.Server{
+		Addr:    ":9033",
+		Handler: r,
+	}
+
 	go func() {
-		_ = r.Run(":9033")
+		if err := srv.ListenAndServe(); err != nil {
+			log.Printf("listen: %s\n", err)
+		}
 	}()
 
 	quit := make(chan os.Signal)
 	signal.Notify(quit, os.Interrupt)
 	<-quit
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+	if err := srv.Shutdown(ctx); err != nil {
+		log.Fatal("Server Shutdown:", err)
+	}
+	log.Println("Server exiting")
+
 	log.Print("closing database connection")
 	eng.MysqlConnection().Close()
+
 }
