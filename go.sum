@@ -103,6 +103,8 @@ github.com/GoAdminGroup/themes v0.0.34-0.20200520000240-5f2a68fcb21a h1:L3mZw9zM
 github.com/GoAdminGroup/themes v0.0.34-0.20200520000240-5f2a68fcb21a/go.mod h1:ABCOeBeibfg9DxAsGVa1NzYK9/nIbHT/BuFrCRIKo8A=
 github.com/GoAdminGroup/themes v0.0.34 h1:yTLKDLObNoTN4GpqyIafs9B/L1pGVj3K2ROXpP5Pf5U=
 github.com/GoAdminGroup/themes v0.0.34/go.mod h1:ABCOeBeibfg9DxAsGVa1NzYK9/nIbHT/BuFrCRIKo8A=
+github.com/GoAdminGroup/themes v0.0.35 h1:CurheBkdi60l8U62OfbCnvaAzyLQPYjqDMjRSwaY/S8=
+github.com/GoAdminGroup/themes v0.0.35/go.mod h1:ABCOeBeibfg9DxAsGVa1NzYK9/nIbHT/BuFrCRIKo8A=
 github.com/NebulousLabs/fastrand v0.0.0-20181203155948-6fb6489aac4e h1:n+DcnTNkQnHlwpsrHoQtkrJIO7CBx029fw6oR4vIob4=
 github.com/NebulousLabs/fastrand v0.0.0-20181203155948-6fb6489aac4e/go.mod h1:Bdzq+51GR4/0DIhaICZEOm+OHvXGwwB2trKZ8B4Y6eQ=
 github.com/ajg/form v1.5.1 h1:t9c7v8JUKu/XxOGBU0yjNpaMloxGEJhUkqFRq0ibGeU=
