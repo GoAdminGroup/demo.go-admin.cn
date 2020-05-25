@@ -5,6 +5,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/GoAdminGroup/filemanager"
+	"github.com/GoAdminGroup/librarian"
 	"log"
 	"net/http"
 	"os"
@@ -19,7 +21,6 @@ import (
 	"github.com/GoAdminGroup/demo/login"
 	"github.com/GoAdminGroup/demo/pages"
 	"github.com/GoAdminGroup/demo/tables"
-	"github.com/GoAdminGroup/filemanager"
 	ada "github.com/GoAdminGroup/go-admin/adapter/gin"
 	adminContext "github.com/GoAdminGroup/go-admin/context"
 	"github.com/GoAdminGroup/go-admin/engine"
@@ -29,7 +30,6 @@ import (
 	"github.com/GoAdminGroup/go-admin/template/chartjs"
 	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/GoAdminGroup/go-admin/template/types/action"
-	"github.com/GoAdminGroup/librarian"
 	"github.com/gin-gonic/gin"
 )
 

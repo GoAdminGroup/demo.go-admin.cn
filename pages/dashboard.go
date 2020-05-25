@@ -63,7 +63,7 @@ func GetDashBoardContent(ctx *gin.Context) (types.Panel, error) {
 	 * Box
 	/**************************/
 
-	table := components.Table().SetType("table").SetInfoList([]map[string]types.InfoItem{
+	table := components.Table().SetInfoList([]map[string]types.InfoItem{
 		{
 			"Order ID":   {Content: "OR9842"},
 			"Item":       {Content: "Call of Duty IV"},

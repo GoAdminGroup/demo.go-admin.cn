@@ -56,6 +56,28 @@ func GetPostsTable(ctx *context.Context) (postsTable table.Table) {
 	formList.AddField("内容", "content", db.Varchar, form.RichText).FieldEnableFileUpload()
 	formList.AddField("日期", "date", db.Varchar, form.Date)
 
+	formList.SetWrapper(func(content template2.HTML) template2.HTML {
+		tableContent := template.Default().Table().SetThead(types.Thead{
+			{Head: "总阅读量"},
+			{Head: "总订阅量"},
+			{Head: "今日总浏览人数"},
+			{Head: "新增用户数"},
+			{Head: "留存"},
+		}).SetInfoList([]map[string]types.InfoItem{
+			{
+				"总阅读量":    {Content: "1223"},
+				"总订阅量":    {Content: "1433"},
+				"今日总浏览人数": {Content: "230"},
+				"新增用户数":   {Content: "20"},
+				"留存":      {Content: "50%"},
+			},
+		}).GetContent()
+		return template.Default().Box().
+			SetBody(tableContent).
+			SetNoPadding().
+			WithHeadBorder().
+			GetContent() + content
+	})
 	formList.EnableAjax("成功", "失败")
 
 	formList.SetTable("posts").SetTitle("文章").SetDescription("文章")
