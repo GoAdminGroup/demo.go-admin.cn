@@ -1,13 +1,13 @@
 # ************************************************************
 # Sequel Pro SQL dump
-# Version 4468
+# Version 4541
 #
 # http://www.sequelpro.com/
 # https://github.com/sequelpro/sequelpro
 #
-# Host: 127.0.0.1 (MySQL 5.7.19)
+# Host: 127.0.0.1 (MySQL 5.7.11)
 # Database: go_admin_demo
-# Generation Time: 2019-09-19 14:01:36 +0000
+# Generation Time: 2020-08-01 08:20:52 +0000
 # ************************************************************
 
 
@@ -146,6 +146,69 @@ VALUES
 UNLOCK TABLES;
 
 
+# Dump of table employee
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `employee`;
+
+CREATE TABLE `employee` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gender` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `department` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `job` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+LOCK TABLES `employee` WRITE;
+/*!40000 ALTER TABLE `employee` DISABLE KEYS */;
+
+INSERT INTO `employee` (`id`, `name`, `gender`, `department`, `phone`, `job`, `created_at`, `updated_at`)
+VALUES
+	(1,'杰克',0,'前端','12345678901','前端工程师','2020-05-12 21:51:54','2020-05-12 21:51:54'),
+	(2,'虾米',0,'后端','12345678901','后端工程师','2020-05-12 22:06:23','2020-05-12 22:06:23'),
+	(3,'牛顿',0,'销售','12345678901','销售','2020-05-12 22:06:35','2020-05-12 22:06:35'),
+	(4,'阿基米德',0,'前台','12345678901','前台','2020-05-12 22:06:47','2020-05-12 22:06:47');
+
+/*!40000 ALTER TABLE `employee` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table filemanager_setting
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `filemanager_setting`;
+
+CREATE TABLE `filemanager_setting` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `key` varchar(100) DEFAULT NULL,
+  `value` text,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+LOCK TABLES `filemanager_setting` WRITE;
+/*!40000 ALTER TABLE `filemanager_setting` DISABLE KEYS */;
+
+INSERT INTO `filemanager_setting` (`id`, `key`, `value`, `created_at`, `updated_at`)
+VALUES
+	(1,'roots','{\"demo\":{\"Path\":\"/data/www/go-admin/fm_example\",\"Title\":\"Demo\"}}','2020-08-01 16:17:12','2020-08-01 16:17:12'),
+	(2,'conn','default','2020-08-01 16:17:12','2020-08-01 16:17:12'),
+	(3,'allowUpload','1','2020-08-01 16:17:12','2020-08-01 16:17:12'),
+	(4,'allowRename','1','2020-08-01 16:17:12','2020-08-01 16:17:12'),
+	(5,'allowCreateDir','1','2020-08-01 16:17:12','2020-08-01 16:17:12'),
+	(6,'allowDelete','0','2020-08-01 16:17:12','2020-08-01 16:17:12'),
+	(7,'allowMove','1','2020-08-01 16:17:12','2020-08-01 16:17:12'),
+	(8,'allowDownload','1','2020-08-01 16:17:12','2020-08-01 16:17:12');
+
+/*!40000 ALTER TABLE `filemanager_setting` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
 # Dump of table goadmin_menu
 # ------------------------------------------------------------
 
@@ -159,6 +222,8 @@ CREATE TABLE `goadmin_menu` (
   `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `header` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `icon` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `plugin_name` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `uuid` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `uri` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -168,93 +233,75 @@ CREATE TABLE `goadmin_menu` (
 LOCK TABLES `goadmin_menu` WRITE;
 /*!40000 ALTER TABLE `goadmin_menu` DISABLE KEYS */;
 
-INSERT INTO `goadmin_menu` (`id`, `parent_id`, `type`, `order`, `title`, `header`, `icon`, `uri`, `created_at`, `updated_at`)
+INSERT INTO `goadmin_menu` (`id`, `parent_id`, `type`, `order`, `title`, `header`, `icon`, `plugin_name`, `uuid`, `uri`, `created_at`, `updated_at`)
 VALUES
-	(1, 0, 1, 2, 'Admin', NULL, 'fa-tasks', '', '2019-09-10 00:00:00', '2019-09-10 00:00:00'),
-	(2, 1, 1, 2, 'Users', NULL, 'fa-users', '/info/manager', '2019-09-10 00:00:00', '2019-09-10 00:00:00'),
-	(3, 1, 1, 3, 'Roles', NULL, 'fa-user', '/info/roles', '2019-09-10 00:00:00', '2019-09-10 00:00:00'),
-	(4, 1, 1, 4, 'Permission', NULL, 'fa-ban', '/info/permission', '2019-09-10 00:00:00', '2019-09-10 00:00:00'),
-	(5, 1, 1, 5, 'Menu', NULL, 'fa-bars', '/menu', '2019-09-10 00:00:00', '2019-09-10 00:00:00'),
-	(6, 1, 1, 6, 'Operation log', NULL, 'fa-history', '/info/op', '2019-09-10 00:00:00', '2019-09-10 00:00:00'),
-	(7, 0, 1, 1, 'Dashboard', NULL, 'fa-bar-chart', '/', '2019-09-10 00:00:00', '2019-09-10 00:00:00'),
-	(8, 0, 0, 10, '表单', '组件', 'fa-wpforms', '/form1', '2019-09-12 07:14:18', '2019-09-12 07:14:18'),
-        (22, 17, 0, 7, '雇员', NULL, 'fa-sitemap', '/info/employee', '2019-09-12 07:15:07', '2019-09-12 07:15:07'),
-        (23, 17, 0, 7, '信息', NULL, 'fa-info', '/info/profile', '2019-09-12 07:15:07', '2019-09-12 07:15:07'),
-	(9, 17, 0, 7, '用户', NULL, 'fa-user', '/info/user', '2019-09-12 07:15:07', '2019-09-12 07:15:07'),
-	(10, 17, 0, 8, '作者', NULL, 'fa-users', '/info/authors', '2019-09-12 07:16:04', '2019-09-12 07:16:04'),
-	(11, 17, 0, 9, '文章', NULL, 'fa-file-powerpoint-o', '/info/posts', '2019-09-12 07:16:32', '2019-09-12 07:16:32'),
-	(12, 0, 0, 11, 'Echarts', NULL, 'fa-area-chart', '/echarts', '2019-09-12 07:16:32', '2019-09-12 07:16:32'),
-        (13, 0, 0, 12, '文件管理器', '插件', 'fa-file-o', '/fm/def/list', '2019-09-12 07:16:32', '2019-09-12 07:16:32'),
-        (21, 0, 0, 12, 'Markdown查看器', '', 'fa-book', '/librarian/README', '2019-09-12 07:16:32', '2019-09-12 07:16:32'),
-	(14, 0, 0, 13, '官网', 'GoAdmin', 'fa-home', 'https://www.go-admin.cn', '2019-09-12 07:16:32', '2019-09-12 07:16:32'),
-	(15, 0, 0, 14, '文档', '', 'fa-book', 'http://doc.go-admin.cn/zh', '2019-09-12 07:16:32', '2019-09-12 07:16:32'),
-	(16, 0, 0, 15, 'BUG反馈', '', 'fa-bug', 'https://git.io/Je9rT', '2019-09-12 07:16:32', '2019-09-12 07:16:32'),
-	(17, 0, 0, 7, '例子', '', 'fa-align-center', '', '2019-12-11 14:15:42', '2019-12-11 14:15:42'),
-        (18, 0, 0, 10, '表格', '', 'fa-table', '/table', '2019-12-11 14:15:42', '2019-12-11 14:15:42'),
-        (19, 0, 0, 16, 'Demo源码', '', 'fa-code', 'https://github.com/GoAdminGroup/demo', '2019-12-11 14:15:42', '2019-12-11 14:15:42'),
-        (20, 0, 0, 17, '论坛', '', 'fa-commenting-o', 'http://discuss.go-admin.com', '2019-12-11 14:15:42', '2019-12-11 14:15:42');
+	(1,0,1,2,'Admin',NULL,'fa-tasks','',NULL,'','2019-09-10 00:00:00','2019-09-10 00:00:00'),
+	(2,1,1,2,'Users',NULL,'fa-users','',NULL,'/info/manager','2019-09-10 00:00:00','2019-09-10 00:00:00'),
+	(3,1,1,3,'Roles',NULL,'fa-user','',NULL,'/info/roles','2019-09-10 00:00:00','2019-09-10 00:00:00'),
+	(4,1,1,4,'Permission',NULL,'fa-ban','',NULL,'/info/permission','2019-09-10 00:00:00','2019-09-10 00:00:00'),
+	(5,1,1,5,'Menu',NULL,'fa-bars','',NULL,'/menu','2019-09-10 00:00:00','2019-09-10 00:00:00'),
+	(6,1,1,6,'Operation log',NULL,'fa-history','',NULL,'/info/op','2019-09-10 00:00:00','2019-09-10 00:00:00'),
+	(7,0,1,1,'Dashboard',NULL,'fa-bar-chart','',NULL,'/','2019-09-10 00:00:00','2019-09-10 00:00:00'),
+	(8,0,0,10,'表单','组件','fa-wpforms','',NULL,'/form1','2019-09-12 07:14:18','2019-09-12 07:14:18'),
+	(9,17,0,7,'用户',NULL,'fa-user','',NULL,'/info/user','2019-09-12 07:15:07','2019-09-12 07:15:07'),
+	(10,17,0,8,'作者',NULL,'fa-users','',NULL,'/info/authors','2019-09-12 07:16:04','2019-09-12 07:16:04'),
+	(11,17,0,9,'文章',NULL,'fa-file-powerpoint-o','',NULL,'/info/posts','2019-09-12 07:16:32','2019-09-12 07:16:32'),
+	(12,0,0,11,'Echarts',NULL,'fa-area-chart','',NULL,'/echarts','2019-09-12 07:16:32','2019-09-12 07:16:32'),
+	(13,0,0,12,'文件管理器','插件','fa-file-o','',NULL,'/fm','2019-09-12 07:16:32','2019-09-12 07:16:32'),
+	(14,0,0,13,'官网','GoAdmin','fa-home','',NULL,'https://www.go-admin.cn','2019-09-12 07:16:32','2019-09-12 07:16:32'),
+	(15,0,0,14,'文档','','fa-book','',NULL,'http://doc.go-admin.cn/zh','2019-09-12 07:16:32','2019-09-12 07:16:32'),
+	(16,0,0,15,'BUG反馈','','fa-bug','',NULL,'https://git.io/Je9rT','2019-09-12 07:16:32','2019-09-12 07:16:32'),
+	(17,0,0,7,'例子','','fa-align-center','',NULL,'','2019-12-11 14:15:42','2019-12-11 14:15:42'),
+	(18,0,0,10,'表格','','fa-table','',NULL,'/table','2019-12-11 14:15:42','2019-12-11 14:15:42'),
+	(19,0,0,16,'Demo源码','','fa-code','',NULL,'https://github.com/GoAdminGroup/demo','2019-12-11 14:15:42','2019-12-11 14:15:42'),
+	(20,0,0,17,'论坛','','fa-commenting-o','',NULL,'http://discuss.go-admin.com','2019-12-11 14:15:42','2019-12-11 14:15:42'),
+	(21,0,0,12,'Markdown查看器','','fa-book','',NULL,'/librarian/README','2019-09-12 07:16:32','2019-09-12 07:16:32'),
+	(22,17,0,7,'雇员',NULL,'fa-sitemap','',NULL,'/info/employee','2019-09-12 07:15:07','2019-09-12 07:15:07'),
+	(23,17,0,7,'信息',NULL,'fa-info','',NULL,'/info/profile','2019-09-12 07:15:07','2019-09-12 07:15:07'),
+	(24,0,0,0,'Demo','','fa-folder-o','filemanager','fm_demo','/fm/demo/list','2020-08-01 16:17:12','2020-08-01 16:17:12'),
+	(25,0,0,17,'介绍','','fa-file-o','librarian','','/librarian/README?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(26,0,0,17,'准备工作','','fa-file-o','librarian','','/librarian/install?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(27,0,0,17,'快速开始','','fa-file-o','librarian','','/librarian/quick_start?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(28,0,0,17,'插件','','fa-file-o','librarian','','','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(29,28,0,17,'插件的使用','','fa-file-o','librarian','','/librarian/plugins/plugins?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(30,28,0,17,'Admin插件使用','','fa-file-o','librarian','','/librarian/plugins/admin?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(31,0,0,17,'Admin插件','','fa-file-o','librarian','','','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(32,31,0,17,'数据表格','','fa-file-o','librarian','','','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(33,32,0,17,'基本使用','','fa-file-o','librarian','','/librarian/admin/table/basic?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(34,32,0,17,'列的使用','','fa-file-o','librarian','','/librarian/admin/table/column_usage?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(35,31,0,17,'数据表单','','fa-file-o','librarian','','','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(36,35,0,17,'基本使用','','fa-file-o','librarian','','/librarian/admin/form/basic?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(37,35,0,17,'表单组件','','fa-file-o','librarian','','/librarian/admin/form/components?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(38,31,0,17,'设置菜单','','fa-file-o','librarian','','/librarian/admin/menus?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(39,31,0,17,'权限管理','','fa-file-o','librarian','','/librarian/admin/rbac?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(40,31,0,17,'模块','','fa-file-o','librarian','','/librarian/admin/module?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(41,31,0,17,'使用新主题','','fa-file-o','librarian','','/librarian/admin/theme?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(42,31,0,17,'文件上传','','fa-file-o','librarian','','/librarian/admin/file?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(43,31,0,17,'命令行工具','','fa-file-o','librarian','','/librarian/admin/cli?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(44,31,0,17,'自定义管理用户表','','fa-file-o','librarian','','/librarian/admin/auth?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(45,31,0,17,'设置cdn','','fa-file-o','librarian','','/librarian/admin/cdn?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(46,0,0,17,'Monitor插件','','fa-file-o','librarian','','/librarian/monitor/monitor?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(47,0,0,17,'ui组件介绍','','fa-file-o','librarian','','','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(48,47,0,17,'目录','','fa-file-o','librarian','','/librarian/components/components?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(49,47,0,17,'infobox','','fa-file-o','librarian','','/librarian/components/infobox?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(50,47,0,17,'chartjs','','fa-file-o','librarian','','/librarian/components/chartjs?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(51,47,0,17,'progressgroup','','fa-file-o','librarian','','/librarian/components/progressbar?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(52,0,0,17,'页面介绍','','fa-file-o','librarian','','','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(53,52,0,17,'页面模块化','','fa-file-o','librarian','','/librarian/pages/modules?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(54,52,0,17,'自定义页面','','fa-file-o','librarian','','/librarian/pages/pages?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(55,52,0,17,'修改登录界面','','fa-file-o','librarian','','/librarian/pages/login?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(56,0,0,17,'ci测试','','fa-file-o','librarian','','/librarian/tests/ci?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(57,0,0,17,'项目架构','','fa-file-o','librarian','','','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(58,57,0,17,'架构介绍','','fa-file-o','librarian','','/librarian/architecture/introduction?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(59,0,0,17,'项目开发','','fa-file-o','librarian','','','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(60,59,0,17,'代码规范','','fa-file-o','librarian','','/librarian/development/code_style?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(61,59,0,17,'适配器','','fa-file-o','librarian','','/librarian/development/adapter?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(62,59,0,17,'插件','','fa-file-o','librarian','','/librarian/development/plugins?__prefix=doc','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(63,0,0,17,'模板开发','','fa-file-o','librarian','','','2020-08-01 16:19:18','2020-08-01 16:19:18');
 
 /*!40000 ALTER TABLE `goadmin_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
-
-# Dump of table goadmin_site
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `goadmin_site`;
-
-CREATE TABLE `goadmin_site` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `key` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `value` longtext COLLATE utf8mb4_unicode_ci,
-  `description` varchar(3000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `state` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-LOCK TABLES `goadmin_site` WRITE;
-/*!40000 ALTER TABLE `goadmin_site` DISABLE KEYS */;
-
-INSERT INTO `goadmin_site` (`id`, `key`, `value`, `description`, `state`, `created_at`, `updated_at`)
-VALUES
-	(1, 'info_log_off', 'false', NULL, 1, '2020-04-08 02:35:56', '2020-04-08 02:35:56'),
-	(2, 'no_limit_login_ip', 'true', NULL, 1, '2020-04-08 02:35:56', '2020-04-08 02:35:56'),
-	(3, 'custom_head_html', '<link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-32x32.png\">\n        <link rel=\"icon\" type=\"image/png\" sizes=\"96x96\" href=\"//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-64x64.png\">\n        <link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-16x16.png\">', NULL, 1, '2020-04-08 02:35:56', '2020-04-08 02:35:56'),
-	(4, 'domain', '', NULL, 1, '2020-04-08 02:35:56', '2020-04-08 02:35:56'),
-	(5, 'debug', 'true', NULL, 1, '2020-04-08 02:35:56', '2020-04-08 02:35:56'),
-	(6, 'info_log_path', '', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(7, 'color_scheme', 'skin-black', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(8, 'file_upload_engine', '{\"name\":\"local\",\"config\":null}', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(9, 'error_log_path', '', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(10, 'footer_info', '', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(11, 'login_title', 'GoAdmin', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(12, 'databases', '{\"default\":{\"host\":\"127.0.0.1\",\"port\":\"3306\",\"user\":\"root\",\"pwd\":\"Enjoy2018==\",\"name\":\"go-admin\",\"max_idle_con\":50,\"max_open_con\":150,\"driver\":\"mysql\",\"file\":\"\",\"dsn\":\"\"}}', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(13, 'url_prefix', 'admin', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(14, 'title', 'GoAdmin', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(15, 'env', 'prod', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(16, 'custom_foot_Html', '<div style=\"display:none;\">\n    <script type=\"text/javascript\" src=\"https://s9.cnzz.com/z_stat.php?id=1278156902&web_id=1278156902\"></script>\n	<!-- Global site tag (gtag.js) - Google Analytics -->\n	<script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-103003647-2\"></script>\n	<script>\n	window.dataLayer = window.dataLayer || [];\n	function gtag(){dataLayer.push(arguments);}\n	gtag(\'js\', new Date());\n	gtag(\'config\', \'UA-103003647-2\');\n	</script>\n</div>', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(17, 'error_log_off', 'false', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(18, 'extra', '', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(19, 'animation', '{\"type\":\"fadeInUp\",\"duration\":0.9,\"delay\":0}', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(20, 'theme', 'sword', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(21, 'logo', '<b>Go</b>Admin', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(22, 'mini_logo', '<b>G</b>A', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(23, 'asset_url', '//quick.go-admin.cn/demo/sword', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(24, 'auth_user_table', 'goadmin_users', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(25, 'language', 'cn', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(26, 'index_url', '/', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(27, 'login_url', '/login', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(28, 'access_log_path', '', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(29, 'session_life_time', '7200', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(30, 'store', '{\"path\":\"/data/www/go-admin/uploads\",\"prefix\":\"uploads\"}', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(31, 'sql_log', 'false', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(32, 'access_log_off', 'false', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57'),
-	(33, 'login_logo', '', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57');
-
-/*!40000 ALTER TABLE `goadmin_site` ENABLE KEYS */;
-UNLOCK TABLES;
 
 # Dump of table goadmin_operation_log
 # ------------------------------------------------------------
@@ -325,7 +372,18 @@ VALUES
 	(44,1,'/admin/menu/new','POST','127.0.0.1','{\"_previous_\":[\"/admin/menu\"],\"_t\":[\"\"],\"header\":[\"\"],\"icon\":[\"fa-area-chart\"],\"parent_id\":[\"0\"],\"roles[]\":[\"1\",\"2\"],\"title\":[\"E-Commerce\"],\"uri\":[\"\"]}','2019-09-19 21:59:28','2019-09-19 21:59:28'),
 	(45,1,'/admin/menu/new','POST','127.0.0.1','{\"_previous_\":[\"/admin/menu\"],\"_t\":[\"\"],\"header\":[\"\"],\"icon\":[\"fa-area-chart\"],\"parent_id\":[\"0\"],\"roles[]\":[\"1\",\"2\"],\"title\":[\"E-Commerce\"],\"uri\":[\"\"]}','2019-09-19 22:00:13','2019-09-19 22:00:13'),
 	(46,1,'/admin/menu','GET','127.0.0.1','','2019-09-19 22:00:17','2019-09-19 22:00:17'),
-	(47,1,'/admin/menu','GET','127.0.0.1','','2019-09-19 22:00:27','2019-09-19 22:00:27');
+	(47,1,'/admin/menu','GET','127.0.0.1','','2019-09-19 22:00:27','2019-09-19 22:00:27'),
+	(48,1,'/admin/plugins','GET','::1','','2020-08-01 16:16:02','2020-08-01 16:16:02'),
+	(49,1,'/admin/info/plugin_filemanager/new','GET','::1','','2020-08-01 16:16:05','2020-08-01 16:16:05'),
+	(50,1,'/admin/new/plugin_filemanager','POST','::1','{\"__checkbox__allowCreateDir\":[\"on\"],\"__checkbox__allowDownload\":[\"on\"],\"__checkbox__allowMove\":[\"on\"],\"__checkbox__allowRename\":[\"on\"],\"__checkbox__allowUpload\":[\"on\"],\"allowCreateDir\":[\"1\"],\"allowDelete\":[\"0\"],\"allowDownload\":[\"1\"],\"allowMove\":[\"1\"],\"allowRename\":[\"1\"],\"allowUpload\":[\"1\"],\"conn\":[\"default\"],\"name\":[\"demo\"],\"path\":[\"/data/www/go-admin/fm_example\"],\"title\":[\"Demo\"]}','2020-08-01 16:17:12','2020-08-01 16:17:12'),
+	(51,1,'/admin/plugins','GET','::1','','2020-08-01 16:18:47','2020-08-01 16:18:47'),
+	(52,1,'/admin/plugins','GET','::1','','2020-08-01 16:18:48','2020-08-01 16:18:48'),
+	(53,1,'/admin/info/plugin_librarian/new','GET','::1','','2020-08-01 16:18:49','2020-08-01 16:18:49'),
+	(54,1,'/admin/plugins','GET','::1','','2020-08-01 16:18:51','2020-08-01 16:18:51'),
+	(55,1,'/admin/info/plugin_librarian/new','GET','::1','','2020-08-01 16:18:53','2020-08-01 16:18:53'),
+	(56,1,'/admin/new/plugin_librarian','POST','::1','{\"__checkbox__build_menu\":[\"on\"],\"__go_admin_previous_\":[\"http://localhost:9033/admin/plugins\"],\"__go_admin_t_\":[\"f00adaa4-a284-4fcf-93a0-370cabd71afa\"],\"build_menu\":[\"1\"],\"name\":[\"doc\"],\"path\":[\"/Users/chenhg5/go/src/github.com/GoAdminGroup/librarian/example/docs\"],\"theme\":[\"github\"],\"title\":[\"GoAdmin文档\"]}','2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(57,1,'/admin/info/plugin_librarian/new','GET','::1','','2020-08-01 16:19:19','2020-08-01 16:19:19'),
+	(58,1,'/admin/info/plugin_librarian/edit','GET','::1','','2020-08-01 16:19:19','2020-08-01 16:19:19');
 
 /*!40000 ALTER TABLE `goadmin_operation_log` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -355,7 +413,7 @@ INSERT INTO `goadmin_permissions` (`id`, `name`, `slug`, `http_method`, `http_pa
 VALUES
 	(1,'所有权限','*','','*','2019-09-10 00:00:00','2019-09-10 00:00:00'),
 	(2,'仪表盘','dashboard','GET','/','2019-09-10 00:00:00','2019-09-10 00:00:00'),
-        (3,'操作员编辑','operator_edit','GET,POST','/info/normal_manager/edit?id=2\r\n/edit/normal_manager?id=2','2019-09-10 00:00:00','2019-09-10 00:00:00');
+	(3,'操作员编辑','operator_edit','GET,POST','/info/normal_manager/edit?id=2\r\n/edit/normal_manager?id=2','2019-09-10 00:00:00','2019-09-10 00:00:00');
 
 /*!40000 ALTER TABLE `goadmin_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -394,68 +452,6 @@ VALUES
 UNLOCK TABLES;
 
 
-# Dump of table employee
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `employee`;
-
-CREATE TABLE `employee` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `gender` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `department` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `job` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-LOCK TABLES `employee` WRITE;
-/*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-
-INSERT INTO `employee` (`id`, `name`, `gender`, `department`, `phone`, `job`, `created_at`, `updated_at`)
-VALUES
-	(1, '杰克', 0, '前端', '12345678901', '前端工程师', '2020-05-12 21:51:54', '2020-05-12 21:51:54'),
-	(2, '虾米', 0, '后端', '12345678901', '后端工程师', '2020-05-12 22:06:23', '2020-05-12 22:06:23'),
-	(3, '牛顿', 0, '销售', '12345678901', '销售', '2020-05-12 22:06:35', '2020-05-12 22:06:35'),
-	(4, '阿基米德', 0, '前台', '12345678901', '前台', '2020-05-12 22:06:47', '2020-05-12 22:06:47');
-
-/*!40000 ALTER TABLE `employee` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-# Dump of table profile
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `profile`;
-
-CREATE TABLE `profile` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `photos` varchar(3000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `resume` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `resume_size` int(10) unsigned NOT NULL DEFAULT '0',
-  `finish_state` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `finish_progress` int(10) unsigned NOT NULL DEFAULT '0',
-  `pass` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-LOCK TABLES `profile` WRITE;
-/*!40000 ALTER TABLE `profile` DISABLE KEYS */;
-
-INSERT INTO `profile` (`id`, `uuid`, `photos`, `resume`, `resume_size`, `finish_state`, `finish_progress`, `pass`, `created_at`, `updated_at`)
-VALUES
-	(1, 'eeYtHtUtQg8U7zpCNiigVVhnToj', 'http://quick.go-admin.cn/demo/assets/dist/img/gopher_avatar.png,http://quick.go-admin.cn/demo/assets/dist/img/gopher_avatar.png,http://quick.go-admin.cn/demo/assets/dist/img/gopher_avatar.png', 'http://yinyanghu.github.io/files/clrs_prev.pdf', 13242389, 0, 30, 0, '2020-05-15 08:29:44', '2020-05-15 08:29:44'),
-	(2, 'AxKvrvCaZpT3zsTsmrueFuLZFg9', 'http://quick.go-admin.cn/demo/assets/dist/img/gopher_avatar.png,http://quick.go-admin.cn/demo/assets/dist/img/gopher_avatar.png,http://quick.go-admin.cn/demo/assets/dist/img/gopher_avatar.png', 'http://yinyanghu.github.io/files/clrs_prev.pdf', 232322233, 1, 60, 1, '2020-05-15 08:30:51', '2020-05-15 08:30:51'),
-	(3, 'QAwrQgEfqGs7qCUNpWGmoaEP3yF', 'http://quick.go-admin.cn/demo/assets/dist/img/gopher_avatar.png,http://quick.go-admin.cn/demo/assets/dist/img/gopher_avatar.png,http://quick.go-admin.cn/demo/assets/dist/img/gopher_avatar.png', 'http://yinyanghu.github.io/files/clrs_prev.pdf', 232323, 2, 80, 1, '2020-05-15 08:31:21', '2020-05-15 08:31:21');
-
-/*!40000 ALTER TABLE `profile` ENABLE KEYS */;
-UNLOCK TABLES;
-
 # Dump of table goadmin_role_permissions
 # ------------------------------------------------------------
 
@@ -477,7 +473,7 @@ VALUES
 	(1,1,'2019-09-10 00:00:00','2019-09-10 00:00:00'),
 	(1,2,'2019-09-10 00:00:00','2019-09-10 00:00:00'),
 	(2,2,'2019-09-10 00:00:00','2019-09-10 00:00:00'),
-        (2,3,'2019-09-10 00:00:00','2019-09-10 00:00:00');
+	(2,3,'2019-09-10 00:00:00','2019-09-10 00:00:00');
 
 /*!40000 ALTER TABLE `goadmin_role_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -554,18 +550,102 @@ LOCK TABLES `goadmin_session` WRITE;
 
 INSERT INTO `goadmin_session` (`id`, `sid`, `values`, `created_at`, `updated_at`)
 VALUES
-	(1,'0LLeWM0CzgaEbvl','{\"user_id\":1}','2019-09-12 06:46:33','2019-09-12 06:46:33'),
-	(2,'CUcbob7iqzF04bz','{\"user_id\":1}','2019-09-19 21:37:44','2019-09-19 21:37:44'),
-	(3,'r3AwV4AXc9ZvVKz','{\"user_id\":1}','2019-09-19 21:37:44','2019-09-19 21:37:44'),
-	(4,'6zPbU3p6pN3UY3H','{\"user_id\":1}','2019-09-19 21:37:44','2019-09-19 21:37:44'),
-	(5,'VuSHwx3I5idJgAa','{\"user_id\":1}','2019-09-19 21:37:45','2019-09-19 21:37:45'),
-	(6,'rUaaPgBBIgdHA6i','{\"user_id\":1}','2019-09-19 21:37:47','2019-09-19 21:37:47'),
-	(7,'gghv68kLhVZPa0H','{\"user_id\":1}','2019-09-19 21:37:48','2019-09-19 21:37:48'),
-	(8,'Aac6QHCkr4W9VmS','{\"user_id\":1}','2019-09-19 21:37:48','2019-09-19 21:37:48'),
-	(9,'xaVPOZaskBt2s2d','{\"user_id\":1}','2019-09-19 21:39:22','2019-09-19 21:39:22'),
-	(10,'1rrRFDK9UYRgC2x','{\"user_id\":1}','2019-09-19 21:48:40','2019-09-19 21:48:40');
+	(11,'2f2f578b-424d-41de-850d-8b9d04a900c7','{\"user_id\":1}','2020-08-01 16:15:59','2020-08-01 16:15:59');
 
 /*!40000 ALTER TABLE `goadmin_session` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table goadmin_site
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `goadmin_site`;
+
+CREATE TABLE `goadmin_site` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `key` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `value` longtext COLLATE utf8mb4_unicode_ci,
+  `description` varchar(3000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `state` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+LOCK TABLES `goadmin_site` WRITE;
+/*!40000 ALTER TABLE `goadmin_site` DISABLE KEYS */;
+
+INSERT INTO `goadmin_site` (`id`, `key`, `value`, `description`, `state`, `created_at`, `updated_at`)
+VALUES
+	(1,'info_log_off','false',NULL,1,'2020-04-08 02:35:56','2020-04-08 02:35:56'),
+	(2,'no_limit_login_ip','true',NULL,1,'2020-04-08 02:35:56','2020-04-08 02:35:56'),
+	(3,'custom_head_html','<link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-32x32.png\">\n        <link rel=\"icon\" type=\"image/png\" sizes=\"96x96\" href=\"//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-64x64.png\">\n        <link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-16x16.png\">',NULL,1,'2020-04-08 02:35:56','2020-04-08 02:35:56'),
+	(4,'domain','',NULL,1,'2020-04-08 02:35:56','2020-04-08 02:35:56'),
+	(5,'debug','false',NULL,1,'2020-04-08 02:35:56','2020-04-08 02:35:56'),
+	(6,'info_log_path','',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(7,'color_scheme','skin-black',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(8,'file_upload_engine','{\"name\":\"local\",\"config\":null}',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(9,'error_log_path','',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(10,'footer_info','',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(11,'login_title','GoAdmin',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(12,'databases','{\"default\":{\"host\":\"127.0.0.1\",\"port\":\"3306\",\"user\":\"root\",\"pwd\":\"Enjoy2018==\",\"name\":\"go-admin\",\"max_idle_con\":50,\"max_open_con\":150,\"driver\":\"mysql\",\"file\":\"\",\"dsn\":\"\"}}',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(13,'url_prefix','admin',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(14,'title','GoAdmin',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(15,'env','prod',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(16,'custom_foot_Html','<div style=\"display:none;\">\n    <script type=\"text/javascript\" src=\"https://s9.cnzz.com/z_stat.php?id=1278156902&web_id=1278156902\"></script>\n	<!-- Global site tag (gtag.js) - Google Analytics -->\n	<script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-103003647-2\"></script>\n	<script>\n	window.dataLayer = window.dataLayer || [];\n	function gtag(){dataLayer.push(arguments);}\n	gtag(\'js\', new Date());\n	gtag(\'config\', \'UA-103003647-2\');\n	</script>\n</div>',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(17,'error_log_off','false',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(18,'extra','',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(19,'animation','{\"type\":\"fadeInUp\",\"duration\":0.9,\"delay\":0}',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(20,'theme','sword',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(21,'logo','<b>Go</b>Admin',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(22,'mini_logo','<b>G</b>A',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(23,'asset_url','//quick.go-admin.cn/demo/sword',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(24,'auth_user_table','goadmin_users',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(25,'language','cn',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(26,'index_url','/',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(27,'login_url','/login',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(28,'access_log_path','',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(29,'session_life_time','7200',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(30,'store','{\"path\":\"/data/www/go-admin/uploads\",\"prefix\":\"uploads\"}',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(31,'sql_log','false',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(32,'access_log_off','false',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(33,'login_logo','',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
+	(34,'logger_encoder_duration','',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(35,'custom_403_html','',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(36,'bootstrap_file_path','./bootstrap.go',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(37,'logger_encoder_message_key','',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(38,'logger_encoder_time','',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(39,'animation_duration','0.90',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(40,'logger_rotate_max_size','0',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(41,'animation_type','fadeInUp',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(42,'logger_encoder_stacktrace_key','',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(43,'logger_rotate_max_backups','0',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(44,'hide_tool_entrance','false',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(45,'hide_config_center_entrance','false',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(46,'access_assets_log_off','false',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(47,'logger_encoder_caller_key','',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(48,'hide_app_info_entrance','false',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(49,'logger_encoder_level','',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(50,'custom_404_html','',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(51,'hide_plugin_entrance','false',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(52,'custom_500_html','',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(53,'logger_encoder_time_key','',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(54,'logger_encoder_name_key','',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(55,'logger_encoder_caller','',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(56,'custom_foot_html','<div style=\"display:none;\">\n    <script type=\"text/javascript\" src=\"https://s9.cnzz.com/z_stat.php?id=1278156902&web_id=1278156902\"></script>\n	<!-- Global site tag (gtag.js) - Google Analytics -->\n	<script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-103003647-2\"></script>\n	<script>\n	window.dataLayer = window.dataLayer || [];\n	function gtag(){dataLayer.push(arguments);}\n	gtag(\'js\', new Date());\n	gtag(\'config\', \'UA-103003647-2\');\n	</script>\n</div>',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(57,'animation_delay','0.00',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(58,'logger_rotate_max_age','0',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(59,'logger_encoder_level_key','',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(60,'go_mod_file_path','',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(61,'site_off','false',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(62,'logger_level','0',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(63,'logger_rotate_compress','false',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(64,'logger_encoder_encoding','',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
+	(65,'filemanager_connection','default',NULL,0,'2020-08-01 16:17:12','2020-08-01 16:17:12'),
+	(66,'librarian_roots','{\"doc\":{\"Path\":\"/data/www/go-admin/fm_example/markdown\",\"Title\":\"GoAdmin文档\"}}',NULL,0,'2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(67,'librarian_theme','github',NULL,0,'2020-08-01 16:19:18','2020-08-01 16:19:18');
+
+/*!40000 ALTER TABLE `goadmin_site` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -617,7 +697,7 @@ LOCK TABLES `goadmin_users` WRITE;
 
 INSERT INTO `goadmin_users` (`id`, `username`, `password`, `name`, `avatar`, `remember_token`, `created_at`, `updated_at`)
 VALUES
-	(1,'admin','$2a$10$dKE4SSt/STzCVxkOK7xQmeFNgWHtCA5HFDAwH853G96ysKHEpF9my','超级管理员','robot.gif','tlNcBVK9AvfYH7WEnwB1RKvocJu8FfRy4um3DJtwdHuJy0dwFsLOgAc0xUfh','2019-09-10 00:00:00','2019-09-10 00:00:00'),
+	(1,'admin','$2a$10$oIm/9A9fCwJ7G3u2rB4/FOngqIWN/pkGLIqpimUFQzg6HkLMrx/Ie','超级管理员','robot.gif','tlNcBVK9AvfYH7WEnwB1RKvocJu8FfRy4um3DJtwdHuJy0dwFsLOgAc0xUfh','2019-09-10 00:00:00','2019-09-10 00:00:00'),
 	(2,'operator','$2a$10$rVqkOzHjN2MdlEprRflb1eGP0oZXuSrbJLOmJagFsCd81YZm0bsh.','操作员','',NULL,'2019-09-10 00:00:00','2019-09-10 00:00:00');
 
 /*!40000 ALTER TABLE `goadmin_users` ENABLE KEYS */;
@@ -743,6 +823,38 @@ VALUES
 	(97,97,'Sunt suscipit voluptatem laborum in perspiciatis facilis quia.','Repudiandae aspernatur officiis consectetur ipsa quia corporis optio. Dolores consectetur sapiente architecto nisi possimus. Dolore aut neque qui eaque.','Sit sint voluptatum iusto eos. Temporibus sequi nobis beatae quas. Voluptas minus sequi autem dolor et. Illum debitis dolorum doloribus ipsa.','1978-10-21');
 
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table profile
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `profile`;
+
+CREATE TABLE `profile` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `photos` varchar(3000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `resume` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `resume_size` int(10) unsigned NOT NULL DEFAULT '0',
+  `finish_state` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `finish_progress` int(10) unsigned NOT NULL DEFAULT '0',
+  `pass` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+LOCK TABLES `profile` WRITE;
+/*!40000 ALTER TABLE `profile` DISABLE KEYS */;
+
+INSERT INTO `profile` (`id`, `uuid`, `photos`, `resume`, `resume_size`, `finish_state`, `finish_progress`, `pass`, `created_at`, `updated_at`)
+VALUES
+	(1,'eeYtHtUtQg8U7zpCNiigVVhnToj','http://quick.go-admin.cn/demo/assets/dist/img/gopher_avatar.png,http://quick.go-admin.cn/demo/assets/dist/img/gopher_avatar.png,http://quick.go-admin.cn/demo/assets/dist/img/gopher_avatar.png','http://yinyanghu.github.io/files/clrs_prev.pdf',13242389,0,30,0,'2020-05-15 08:29:44','2020-05-15 08:29:44'),
+	(2,'AxKvrvCaZpT3zsTsmrueFuLZFg9','http://quick.go-admin.cn/demo/assets/dist/img/gopher_avatar.png,http://quick.go-admin.cn/demo/assets/dist/img/gopher_avatar.png,http://quick.go-admin.cn/demo/assets/dist/img/gopher_avatar.png','http://yinyanghu.github.io/files/clrs_prev.pdf',232322233,1,60,1,'2020-05-15 08:30:51','2020-05-15 08:30:51'),
+	(3,'QAwrQgEfqGs7qCUNpWGmoaEP3yF','http://quick.go-admin.cn/demo/assets/dist/img/gopher_avatar.png,http://quick.go-admin.cn/demo/assets/dist/img/gopher_avatar.png,http://quick.go-admin.cn/demo/assets/dist/img/gopher_avatar.png','http://yinyanghu.github.io/files/clrs_prev.pdf',232323,2,80,1,'2020-05-15 08:31:21','2020-05-15 08:31:21');
+
+/*!40000 ALTER TABLE `profile` ENABLE KEYS */;
 UNLOCK TABLES;
 
 

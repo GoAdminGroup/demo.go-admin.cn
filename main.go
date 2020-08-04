@@ -5,8 +5,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/GoAdminGroup/filemanager"
-	"github.com/GoAdminGroup/librarian"
 	"log"
 	"net/http"
 	"os"
@@ -29,7 +27,6 @@ import (
 	"github.com/GoAdminGroup/go-admin/template"
 	"github.com/GoAdminGroup/go-admin/template/chartjs"
 	"github.com/GoAdminGroup/go-admin/template/types"
-	"github.com/GoAdminGroup/go-admin/template/types/action"
 	"github.com/gin-gonic/gin"
 )
 
@@ -108,23 +105,23 @@ func main() {
 	if err := eng.AddConfig(cfg).
 		AddGenerators(tables.Generators).
 		AddGenerator("user", tables.GetUserTable).
-		AddPlugins(filemanager.NewFileManagerWithConfig(filemanager.Config{
-			Path:          "/data/www/go-admin/fm_example",
-			AllowDelete:   false,
-			AllowUpload:   true,
-			AllowDownload: true,
-			AllowRename:   true,
-			AllowMove:     true,
-		}), librarian.NewLibrarianWithConfig(librarian.Config{
-			Path:      "/data/www/go-admin/fm_example/markdown",
-			BuildMenu: false,
-			Prefix:    "librarian",
-		})).
-		AddNavButtons("网站信息", "", action.PopUp("/website/info", "网站信息",
-			func(ctx *adminContext.Context) (success bool, msg string, data interface{}) {
-				return true, "ok", `<p>网站由 <a href="https://github.com/chenhg5">cg33<a/> 创造</p>`
-			})).
-		AddNavButtons("用户管理", "", action.Jump("/admin/info/manager")).
+		//AddPlugins(filemanager.NewFileManagerWithConfig(filemanager.Config{
+		//	Path:          "/data/www/go-admin/fm_example",
+		//	AllowDelete:   false,
+		//	AllowUpload:   true,
+		//	AllowDownload: true,
+		//	AllowRename:   true,
+		//	AllowMove:     true,
+		//}), librarian.NewLibrarianWithConfig(librarian.Config{
+		//	Path:      "/data/www/go-admin/fm_example/markdown",
+		//	BuildMenu: false,
+		//	Prefix:    "librarian",
+		//})).
+		//AddNavButtons("网站信息", "", action.PopUp("/website/info", "网站信息",
+		//	func(ctx *adminContext.Context) (success bool, msg string, data interface{}) {
+		//		return true, "ok", `<p>网站由 <a href="https://github.com/chenhg5">cg33<a/> 创造</p>`
+		//	})).
+		//AddNavButtons("用户管理", "", action.Jump("/admin/info/manager")).
 		Use(r); err != nil {
 		panic(err)
 	}

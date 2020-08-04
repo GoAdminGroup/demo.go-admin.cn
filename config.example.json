@@ -19,5 +19,7 @@
   "language": "cn",
   "index": "/",
   "debug": true,
+  "bootstrap_file_path": "./bootstrap.go",
+  "no_limit_login_ip": true,
   "theme": "sword"
 }

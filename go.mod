@@ -5,8 +5,8 @@ go 1.13
 require (
 	github.com/GoAdminGroup/components v0.0.1
 	github.com/GoAdminGroup/filemanager v0.0.1
-	github.com/GoAdminGroup/go-admin v1.2.14
-	github.com/GoAdminGroup/themes v0.0.37
+	github.com/GoAdminGroup/go-admin v1.2.15
+	github.com/GoAdminGroup/themes v0.0.38
 	github.com/ajg/form v1.5.1 // indirect
 	github.com/buaazp/fasthttprouter v0.1.1 // indirect
 	github.com/gavv/httpexpect v2.0.0+incompatible
