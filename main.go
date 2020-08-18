@@ -5,6 +5,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/GoAdminGroup/filemanager"
+	"github.com/GoAdminGroup/go-admin/plugins"
 	"log"
 	"net/http"
 	"os"
@@ -157,6 +159,14 @@ func main() {
 
 	r.GET("/", func(ctx *gin.Context) {
 		ctx.Redirect(http.StatusMovedPermanently, "/admin")
+	})
+
+	plug, _ := plugins.FindByName("filemanager")
+	plug.(*filemanager.FileManager).SetPathValidator(func(path string) error {
+		if path != "/data/www/go-admin/fm_example" {
+			return errors.New("没有权限")
+		}
+		return nil
 	})
 
 	srv := &http.Server{

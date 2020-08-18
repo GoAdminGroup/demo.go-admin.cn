@@ -36,7 +36,7 @@ func GetAuthorsTable(ctx *context.Context) (authorsTable table.Table) {
 	info.SetTable("authors").SetTitle("作者").SetDescription("作者")
 
 	formList := authorsTable.GetForm()
-	formList.AddField("ID", "id", db.Int, form.Default).FieldNotAllowEdit().FieldNotAllowAdd()
+	formList.AddField("ID", "id", db.Int, form.Default).FieldDisplayButCanNotEditWhenUpdate().FieldNotAllowAdd()
 	formList.AddField("名", "first_name", db.Varchar, form.Text)
 	formList.AddField("姓", "last_name", db.Varchar, form.Text)
 	formList.AddField("邮箱", "email", db.Varchar, form.Text)

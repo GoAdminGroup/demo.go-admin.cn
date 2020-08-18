@@ -3,11 +3,14 @@ package login
 import (
 	"bytes"
 	"github.com/GoAdminGroup/go-admin/modules/logger"
+	template2 "github.com/GoAdminGroup/go-admin/template"
 	"github.com/GoAdminGroup/go-admin/template/login"
 	"html/template"
 )
 
-type Login struct{}
+type Login struct {
+	*template2.BaseComponent
+}
 
 func Get() *Login { return new(Login) }
 

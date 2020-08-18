@@ -50,7 +50,7 @@ func GetPostsTable(ctx *context.Context) (postsTable table.Table) {
 	info.SetTable("posts").SetTitle("文章").SetDescription("文章")
 
 	formList := postsTable.GetForm()
-	formList.AddField("ID", "id", db.Int, form.Default).FieldNotAllowEdit().FieldNotAllowAdd()
+	formList.AddField("ID", "id", db.Int, form.Default).FieldDisplayButCanNotEditWhenUpdate().FieldNotAllowAdd()
 	formList.AddField("标题", "title", db.Varchar, form.Text)
 	formList.AddField("简介", "description", db.Varchar, form.Text)
 	formList.AddField("内容", "content", db.Varchar, form.RichText).FieldEnableFileUpload()
