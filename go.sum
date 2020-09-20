@@ -65,6 +65,8 @@ github.com/GoAdminGroup/go-admin v1.2.15 h1:cnsPNfvWPO6raADhueBGHxd196ycUroRRBSy
 github.com/GoAdminGroup/go-admin v1.2.15/go.mod h1:EX+fDr3yPIQ8jKoXzjh5A8MbhfCY2KOhcd0rctlxBH4=
 github.com/GoAdminGroup/go-admin v1.2.16 h1:RXHM/KWzS3vLTs6c2SCS5Q/NC976ONLVSyaSDgjU/bE=
 github.com/GoAdminGroup/go-admin v1.2.16/go.mod h1:EX+fDr3yPIQ8jKoXzjh5A8MbhfCY2KOhcd0rctlxBH4=
+github.com/GoAdminGroup/go-admin v1.2.17 h1:uZRL9ewe2ErIBdSnHyfcyOn/2vTLqLPHs0IgrShTrDM=
+github.com/GoAdminGroup/go-admin v1.2.17/go.mod h1:EX+fDr3yPIQ8jKoXzjh5A8MbhfCY2KOhcd0rctlxBH4=
 github.com/GoAdminGroup/html v0.0.1 h1:SdWNWl4OKPsvDk2GDp5ZKD6ceWoN8n4Pj6cUYxavUd0=
 github.com/GoAdminGroup/html v0.0.1/go.mod h1:A1laTJaOx8sQ64p2dE8IqtstDeCNBHEazrEp7hR5VvM=
 github.com/GoAdminGroup/themes v0.0.10 h1:vpLnU43bJ/5E16oErAtCr6Ixnc+nayb7zyKr9jD+PHo=
@@ -125,6 +127,8 @@ github.com/GoAdminGroup/themes v0.0.38 h1:McFCr2649Sy24ZjMf0vB23a5sc02m5C63dMeHh
 github.com/GoAdminGroup/themes v0.0.38/go.mod h1:ABCOeBeibfg9DxAsGVa1NzYK9/nIbHT/BuFrCRIKo8A=
 github.com/GoAdminGroup/themes v0.0.39 h1:lBK8po671DWeXDp2pNimsZh5kP+hI68HV2kRuPGiM+c=
 github.com/GoAdminGroup/themes v0.0.39/go.mod h1:ABCOeBeibfg9DxAsGVa1NzYK9/nIbHT/BuFrCRIKo8A=
+github.com/GoAdminGroup/themes v0.0.40 h1:E+x7YtatE1NJ3OXOg5x0mUk+NTpJ/cCgKYnHf7HQQ+c=
+github.com/GoAdminGroup/themes v0.0.40/go.mod h1:ABCOeBeibfg9DxAsGVa1NzYK9/nIbHT/BuFrCRIKo8A=
 github.com/NebulousLabs/fastrand v0.0.0-20181203155948-6fb6489aac4e h1:n+DcnTNkQnHlwpsrHoQtkrJIO7CBx029fw6oR4vIob4=
 github.com/NebulousLabs/fastrand v0.0.0-20181203155948-6fb6489aac4e/go.mod h1:Bdzq+51GR4/0DIhaICZEOm+OHvXGwwB2trKZ8B4Y6eQ=
 github.com/Shopify/sarama v1.19.0/go.mod h1:FVkBWblsNy7DGZRfXLU0O9RCGt5g3g3yEuWXgklEdEo=
@@ -200,6 +204,7 @@ github.com/golang/protobuf v1.2.0/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5y
 github.com/golang/protobuf v1.3.1/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
 github.com/golang/protobuf v1.3.2 h1:6nsPYzhq5kReh6QImI3k5qWzO4PEbvbIW2cwSfR/6xs=
 github.com/golang/protobuf v1.3.2/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
+github.com/golang/snappy v0.0.0-20180518054509-2e65f85255db h1:woRePGFeVFfLKN/pOkfl+p/TAqKOfFu+7KPlMVpok/w=
 github.com/golang/snappy v0.0.0-20180518054509-2e65f85255db/go.mod h1:/XxbfmMg8lxefKM7IXC3fBNl/7bRcc72aCRzEWrmP2Q=
 github.com/gomodule/redigo v2.0.0+incompatible/go.mod h1:B4C85qUVwatsJoIUNIfCRsp7qO0iAmpGFZ4EELWSbC4=
 github.com/google/btree v0.0.0-20180813153112-4030bb1f1f0c/go.mod h1:lNA+9X1NB3Zf8V7Ke586lFgjr2dZNuvo3lPJSGZ5JPQ=
@@ -333,6 +338,7 @@ github.com/stretchr/testify v1.4.0 h1:2E4SXV/wtOkTonXsotYi4li6zVWxYlZuYNCXe9XRJy
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
 github.com/stretchr/testify v1.5.1 h1:nOGnQDM7FYENwehXlg/kFVnos3rEvtKTjRvOWSzb6H4=
 github.com/stretchr/testify v1.5.1/go.mod h1:5W2xD1RspED5o8YsWQXVCued0rvSQ+mT+I5cxcmMvtA=
+github.com/syndtr/goleveldb v1.0.0 h1:fBdIW9lB4Iz0n9khmH8w27SJ3QEJ7+IgjPEwGSZiFdE=
 github.com/syndtr/goleveldb v1.0.0/go.mod h1:ZVVdQEZoIme9iO1Ch2Jdy24qqXrMMOU6lpPAyBWyWuQ=
 github.com/ugorji/go v1.1.7 h1:/68gy2h+1mWMrwZFeD1kQialdSzAb432dtpeJ42ovdo=
 github.com/ugorji/go v1.1.7/go.mod h1:kZn38zHttfInRq0xu/PH0az30d+z6vm202qpg1oXVMw=
@@ -473,5 +479,7 @@ honnef.co/go/tools v0.0.0-20180728063816-88497007e858/go.mod h1:rf3lG4BRIbNafJWh
 honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
 honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
 honnef.co/go/tools v0.0.1-2019.2.3/go.mod h1:a3bituU0lyd329TUQxRnasdCoJDkEUEAqEt0JzvZhAg=
+xorm.io/builder v0.3.7 h1:2pETdKRK+2QG4mLX4oODHEhn5Z8j1m8sXa7jfu+/SZI=
 xorm.io/builder v0.3.7/go.mod h1:aUW0S9eb9VCaPohFCH3j7czOx1PMW3i1HrSzbLYGBSE=
+xorm.io/xorm v1.0.2 h1:kZlCh9rqd1AzGwWitcrEEqHE1h1eaZE/ujU5/2tWEtg=
 xorm.io/xorm v1.0.2/go.mod h1:o4vnEsQ5V2F1/WK6w4XTwmiWJeGj82tqjAnHe44wVHY=
