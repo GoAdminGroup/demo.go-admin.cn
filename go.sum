@@ -7,8 +7,12 @@ github.com/360EntSecGroup-Skylar/excelize v1.4.1/go.mod h1:vnax29X2usfl7HHkBrX5E
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/GoAdminGroup/components v0.0.1 h1:hgp7TbyIBLA8vL8qv6jPJkF7HwEcbnZhQeVLmDsgeYc=
 github.com/GoAdminGroup/components v0.0.1/go.mod h1:lWLtprDb0slqdYvqDCGwuAvktJ8PsheC9H5h8pOkXCA=
+github.com/GoAdminGroup/components v0.0.2/go.mod h1:lWLtprDb0slqdYvqDCGwuAvktJ8PsheC9H5h8pOkXCA=
 github.com/GoAdminGroup/filemanager v0.0.1 h1:jKNApkERtcfU8AGQK35glVhilQoSBUVl0lZ96KSpI6E=
 github.com/GoAdminGroup/filemanager v0.0.1/go.mod h1:H3161Jm5n7HkUI7AAr9TJYpuxkLN5PrdQXe+4FMoOq4=
+github.com/GoAdminGroup/filemanager v0.0.6/go.mod h1:H3161Jm5n7HkUI7AAr9TJYpuxkLN5PrdQXe+4FMoOq4=
+github.com/GoAdminGroup/filemanager v0.0.7-0.20200920142100-04648eca30c9 h1:JJEdnB22lYZSvNK88CfVLFwv2UMwpBjFvP6YRay10Zk=
+github.com/GoAdminGroup/filemanager v0.0.7-0.20200920142100-04648eca30c9/go.mod h1:H3161Jm5n7HkUI7AAr9TJYpuxkLN5PrdQXe+4FMoOq4=
 github.com/GoAdminGroup/go-admin v1.1.0 h1:zUvqmRNgtujjfn4oVJNFPd1SBBFRZLKDSgiM9cGugeU=
 github.com/GoAdminGroup/go-admin v1.1.0/go.mod h1:0TAJYCGggMkIZuLIj11RJRd/Ub/J0ZIciZXvEqw+WfM=
 github.com/GoAdminGroup/go-admin v1.1.1 h1:1Sdo9+ePJT1KKLRPtepzY9r6IL3HBVvIcTzTNyhAsK0=
