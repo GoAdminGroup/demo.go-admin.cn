@@ -6,6 +6,7 @@ require (
 	github.com/GoAdminGroup/components v0.0.2
 	github.com/GoAdminGroup/filemanager v0.0.7-0.20200920142100-04648eca30c9
 	github.com/GoAdminGroup/go-admin v1.2.20
+	github.com/GoAdminGroup/librarian v0.0.5
 	github.com/GoAdminGroup/themes v0.0.42
 	github.com/ajg/form v1.5.1 // indirect
 	github.com/buaazp/fasthttprouter v0.1.1 // indirect
@@ -18,6 +19,7 @@ require (
 	github.com/h2non/filetype v1.0.12 // indirect
 	github.com/imkira/go-interpol v1.1.0 // indirect
 	github.com/moul/http2curl v1.0.0 // indirect
+	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/sclevine/agouti v3.0.0+incompatible // indirect
 	github.com/sergi/go-diff v1.1.0 // indirect
 	github.com/shirou/gopsutil v2.20.3+incompatible // indirect
