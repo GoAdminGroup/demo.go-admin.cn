@@ -5,7 +5,7 @@ go 1.13
 require (
 	github.com/GoAdminGroup/components v0.0.2
 	github.com/GoAdminGroup/filemanager v0.0.7-0.20200920142100-04648eca30c9
-	github.com/GoAdminGroup/go-admin v1.2.21
+	github.com/GoAdminGroup/go-admin v1.2.22
 	github.com/GoAdminGroup/librarian v0.0.5
 	github.com/GoAdminGroup/themes v0.0.42
 	github.com/ajg/form v1.5.1 // indirect
