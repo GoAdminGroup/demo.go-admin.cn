@@ -2,6 +2,8 @@ package pages
 
 import (
 	"fmt"
+	"html/template"
+
 	"github.com/GoAdminGroup/go-admin/modules/config"
 	"github.com/GoAdminGroup/go-admin/modules/db"
 	"github.com/GoAdminGroup/go-admin/modules/language"
@@ -11,7 +13,6 @@ import (
 	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/GoAdminGroup/go-admin/template/types/form"
 	"github.com/gin-gonic/gin"
-	"html/template"
 )
 
 func GetForm1Content(ctx *gin.Context) (types.Panel, error) {
@@ -249,13 +250,58 @@ func main() {
 		panel.AddField("Key", "key", db.Varchar, form.Text).FieldHideLabel()
 		panel.AddField("Value", "value", db.Varchar, form.Text).FieldHideLabel()
 	})`))
+
+	panel.AddField("形状", "shape", db.Tinyint, form.SelectSingle).
+		FieldOptions(types.FieldOptions{
+			{Text: "圆形", Value: "0"},
+			{Text: "正方形", Value: "1"},
+			{Text: "长方形", Value: "2"},
+		}).
+		FieldOnChooseHide("0", "side", "length", "width").
+		FieldOnChooseShow("0", "radius").
+		FieldOnChooseShow("1", "side").
+		FieldOnChooseShow("2", "length", "width").
+		FieldDefault("0").
+		FieldFoot(seeCodeHTML(`formList.AddField("形状", "shape", db.Tinyint, form.SelectSingle).
+	FieldOptions(types.FieldOptions{
+			{Text: "圆形", Value: "0"},
+			{Text: "正方形", Value: "1"},
+			{Text: "长方形", Value: "2"},
+	}).
+	FieldOnChooseHide("0", "side", "length", "width").
+	FieldOnChooseShow("0", "radius").
+	FieldOnChooseShow("1", "side").
+	FieldOnChooseShow("2", "length", "width").
+	FieldDefault("0")`))
+
+	panel.AddField("半径", "radius", db.Int, form.Number).
+		FieldDefault("3").
+		FieldFoot(seeCodeHTML(`formList.AddField("半径", "radius", db.Int, form.Number).
+		FieldDefault("3")`))
+
+	panel.AddField("边长", "side", db.Int, form.Number).
+		FieldDefault("5").
+		FieldFoot(seeCodeHTML(`formList.AddField("边长", "side", db.Int, form.Number).
+		FieldDefault("5")`))
+
+	panel.AddField("长", "length", db.Int, form.Number).
+		FieldDefault("5").
+		FieldFoot(seeCodeHTML(`formList.AddField("长", "length", db.Int, form.Number).
+		FieldDefault("5")`))
+
+	panel.AddField("宽", "width", db.Int, form.Number).
+		FieldDefault("5").
+		FieldFoot(seeCodeHTML(`formList.AddField("宽", "width", db.Int, form.Number).
+		FieldDefault("5")`))
+
 	panel.SetTabGroups(types.TabGroups{
 		{"name", "age", "homepage", "email", "birthday", "time", "time_range", "date_range", "password", "ip",
 			"certificate", "currency", "rate", "reward", "content", "code"},
 		{"website", "snacks", "fruit", "gender", "cat", "drink", "province", "city", "district", "experience"},
 		{"employee", "setting"},
+		{"shape", "radius", "side", "length", "width"},
 	})
-	panel.SetTabHeaders("输入", "选择", "多项")
+	panel.SetTabHeaders("输入", "选择", "多项", "联动")
 
 	fields, headers := panel.GroupField()
 
@@ -281,7 +327,7 @@ func main() {
 		Content: components.Box().
 			SetHeader(aform.GetDefaultBoxHeader(true)).
 			WithHeadBorder().
-			SetBody(aform.GetContent()).
+			SetBody(aform.GetContent()+panel.FooterHtml).
 			GetContent() + popup,
 		Title:       "表单",
 		Description: "表单例子",

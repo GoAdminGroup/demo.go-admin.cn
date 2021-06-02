@@ -104,7 +104,7 @@ func main() {
 	})
 	//cfg.HideConfigCenterEntrance = true
 
-	if err := eng.AddConfig(cfg).
+	if err := eng.AddConfig(&cfg).
 		AddGenerators(tables.Generators).
 		AddGenerator("user", tables.GetUserTable).
 		//AddPlugins(filemanager.NewFileManagerWithConfig(filemanager.Config{
