@@ -154,6 +154,10 @@ github.com/GoAdminGroup/themes v0.0.41 h1:zKdn1tTUrhTIXJn+sSqgnAV8K6puCDQEHGkQG9
 github.com/GoAdminGroup/themes v0.0.41/go.mod h1:ABCOeBeibfg9DxAsGVa1NzYK9/nIbHT/BuFrCRIKo8A=
 github.com/GoAdminGroup/themes v0.0.42 h1:Qvd/mHipDV8Y7woC4If1rFg0w4JQZ/4QRYvpXvRKtnY=
 github.com/GoAdminGroup/themes v0.0.42/go.mod h1:ABCOeBeibfg9DxAsGVa1NzYK9/nIbHT/BuFrCRIKo8A=
+github.com/GoAdminGroup/themes v0.0.43 h1:XQ4940TEiHS/s5qHqhrKGrsZtQdAt+IPrPNnbOBjK9I=
+github.com/GoAdminGroup/themes v0.0.43/go.mod h1:ABCOeBeibfg9DxAsGVa1NzYK9/nIbHT/BuFrCRIKo8A=
+github.com/GoAdminGroup/themes v0.0.44 h1:556PW6ecMKF4GeHo5OKRC/7TjgWbI+QUgdc4YmAVqJw=
+github.com/GoAdminGroup/themes v0.0.44/go.mod h1:ABCOeBeibfg9DxAsGVa1NzYK9/nIbHT/BuFrCRIKo8A=
 github.com/NebulousLabs/fastrand v0.0.0-20181203155948-6fb6489aac4e h1:n+DcnTNkQnHlwpsrHoQtkrJIO7CBx029fw6oR4vIob4=
 github.com/NebulousLabs/fastrand v0.0.0-20181203155948-6fb6489aac4e/go.mod h1:Bdzq+51GR4/0DIhaICZEOm+OHvXGwwB2trKZ8B4Y6eQ=
 github.com/Shopify/sarama v1.19.0/go.mod h1:FVkBWblsNy7DGZRfXLU0O9RCGt5g3g3yEuWXgklEdEo=
