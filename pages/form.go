@@ -324,17 +324,23 @@ func main() {
 		GetContent()
 
 	return types.Panel{
-		Content: components.Box().
-			SetHeader(aform.GetDefaultBoxHeader(true)).
-			WithHeadBorder().
-			SetBody(aform.GetContent()+panel.FooterHtml).
-			GetContent() + popup,
+		Content: `<script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.32.9/mode-golang.min.js" integrity="sha512-mIobi3b3I41C0/RBjxbfyY0IurALSs+BEJS+sUImhu8bc9Cs6UZS76eIWrACdj1Xu7CSsk7++wEO7FR12xNzPA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>` +
+			components.Box().
+				SetHeader(aform.GetDefaultBoxHeader(true)).
+				WithHeadBorder().
+				SetBody(aform.GetContent()+panel.FooterHtml).
+				GetContent() + popup,
 		Title:       "表单",
 		Description: "表单例子",
 		CSS:         `.modal.fade.in{z-index:10002}`,
 		JS: `
 $(".see-code").on("click", function(){
-	$('#code_modal .modal-body').html('<textarea style="width: 100%;height: 100%;font-size: 17px;">' + $(this).parent().next().html() + "</textarea>");
+	$('#code_modal .modal-body').html('<div id="pop_code_editor" style="width: 100%;height: 100%;" class="ace_editor"></div>');
+	editor = ace.edit("pop_code_editor");
+	editor.setTheme("ace/theme/monokai");
+	editor.session.setMode("ace/mode/golang");
+	editor.setFontSize(14);
+	editor.setValue($(this).parent().next().text());
 	$("#code_modal").modal();
 })
 `,
