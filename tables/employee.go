@@ -1,18 +1,19 @@
 package tables
 
 import (
+	template2 "html/template"
+
 	"github.com/GoAdminGroup/go-admin/context"
 	"github.com/GoAdminGroup/go-admin/modules/db"
 	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/table"
 	"github.com/GoAdminGroup/go-admin/template"
 	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/GoAdminGroup/go-admin/template/types/form"
-	template2 "html/template"
 )
 
 func GetEmployeeTable(ctx *context.Context) table.Table {
 
-	employeeTable := table.NewDefaultTable(table.DefaultConfigWithDriver("mysql"))
+	employeeTable := table.NewDefaultTable(ctx, table.DefaultConfigWithDriver("mysql"))
 
 	info := employeeTable.GetInfo().HideFilterArea()
 

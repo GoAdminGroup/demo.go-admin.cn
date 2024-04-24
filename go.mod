@@ -1,14 +1,12 @@
 module github.com/GoAdminGroup/demo
 
-go 1.21.5
-
-toolchain go1.22.2
+go 1.22.2
 
 require (
 	github.com/GoAdminGroup/components v0.0.2
-	github.com/GoAdminGroup/filemanager v0.0.7-0.20200920142100-04648eca30c9
+	github.com/GoAdminGroup/filemanager v0.0.7-0.20240424233725-d2fe45f36f24
 	github.com/GoAdminGroup/go-admin v1.2.25
-	github.com/GoAdminGroup/librarian v0.0.5
+	github.com/GoAdminGroup/librarian v0.0.6-0.20240424155317-45a628f56cc0
 	github.com/GoAdminGroup/themes v0.0.46
 	github.com/gavv/httpexpect v2.0.0+incompatible
 	github.com/gin-gonic/gin v1.5.0
@@ -41,7 +39,7 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/gopherjs/gopherjs v1.17.2 // indirect
 	github.com/gorilla/websocket v1.5.1 // indirect
-	github.com/h2non/filetype v1.0.12 // indirect
+	github.com/h2non/filetype v1.1.3 // indirect
 	github.com/imkira/go-interpol v1.1.0 // indirect
 	github.com/joho/godotenv v1.4.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
@@ -67,7 +65,6 @@ require (
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/sclevine/agouti v3.0.0+incompatible // indirect
 	github.com/sergi/go-diff v1.2.0 // indirect
-	github.com/smarty/assertions v1.15.0 // indirect
 	github.com/stretchr/testify v1.9.0 // indirect
 	github.com/syndtr/goleveldb v1.0.0 // indirect
 	github.com/ugorji/go/codec v1.2.12 // indirect
@@ -82,11 +79,11 @@ require (
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.7.0 // indirect
 	go.uber.org/zap v1.19.1 // indirect
-	golang.org/x/crypto v0.20.0 // indirect
-	golang.org/x/net v0.21.0 // indirect
-	golang.org/x/sys v0.17.0 // indirect
+	golang.org/x/crypto v0.22.0 // indirect
+	golang.org/x/net v0.24.0 // indirect
+	golang.org/x/sys v0.19.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
-	golang.org/x/tools v0.17.0 // indirect
+	golang.org/x/tools v0.20.0 // indirect
 	google.golang.org/protobuf v1.32.0 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 	gopkg.in/go-playground/validator.v9 v9.29.1 // indirect

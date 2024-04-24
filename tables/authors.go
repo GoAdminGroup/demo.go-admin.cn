@@ -13,10 +13,10 @@ import (
 // GetAuthorsTable return the model of table author.
 func GetAuthorsTable(ctx *context.Context) (authorsTable table.Table) {
 
-	authorsTable = table.NewDefaultTable(table.DefaultConfig())
+	authorsTable = table.NewDefaultTable(ctx, table.DefaultConfig())
 
 	// connect your custom connection
-	// authorsTable = table.NewDefaultTable(table.DefaultConfigWithDriverAndConnection("mysql", "admin"))
+	// authorsTable = table.NewDefaultTable(ctx, table.DefaultConfigWithDriverAndConnection("mysql", "admin"))
 
 	info := authorsTable.GetInfo()
 	info.AddField("ID", "id", db.Int).FieldSortable()
@@ -31,7 +31,7 @@ func GetAuthorsTable(ctx *context.Context) (authorsTable table.Table) {
 	info.AddField("生日", "birthdate", db.Date)
 	info.AddField("加入时间", "added", db.Timestamp)
 
-	info.AddButton("文章列表", icon.Tv, action.PopUpWithIframe("/authors/list", "文章",
+	info.AddButton(ctx, "文章列表", icon.Tv, action.PopUpWithIframe("/authors/list", "文章",
 		action.IframeData{Src: "/admin/info/posts"}, "900px", "560px"))
 	info.SetTable("authors").SetTitle("作者").SetDescription("作者")
 

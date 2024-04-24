@@ -1,20 +1,22 @@
 package pages
 
 import (
+	"math"
+	"math/rand"
+	"time"
+
 	"github.com/GoAdminGroup/components/echarts"
+	"github.com/GoAdminGroup/go-admin/context"
 	"github.com/GoAdminGroup/go-admin/modules/config"
 	template2 "github.com/GoAdminGroup/go-admin/template"
 	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/gin-gonic/gin"
 	"github.com/go-echarts/go-echarts/charts"
-	"math"
-	"math/rand"
-	"time"
 )
 
 func GetDashBoard3Content(ctx *gin.Context) (types.Panel, error) {
 
-	components := template2.Get(config.GetTheme())
+	components := template2.Get(&context.Context{}, config.GetTheme())
 	colComp := components.Col()
 
 	echart := echarts.NewChart()

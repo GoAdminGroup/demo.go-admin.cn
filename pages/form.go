@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"html/template"
 
+	"github.com/GoAdminGroup/go-admin/context"
 	"github.com/GoAdminGroup/go-admin/modules/config"
 	"github.com/GoAdminGroup/go-admin/modules/db"
 	"github.com/GoAdminGroup/go-admin/modules/language"
@@ -17,7 +18,7 @@ import (
 
 func GetForm1Content(ctx *gin.Context) (types.Panel, error) {
 
-	components := template2.Get(config.GetTheme())
+	components := template2.Get(&context.Context{}, config.GetTheme())
 
 	col1 := components.Col().GetContent()
 	btn1 := components.Button().SetType("submit").

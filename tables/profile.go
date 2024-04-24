@@ -1,6 +1,9 @@
 package tables
 
 import (
+	"path/filepath"
+	"strings"
+
 	"github.com/GoAdminGroup/go-admin/context"
 	"github.com/GoAdminGroup/go-admin/modules/db"
 	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/table"
@@ -8,13 +11,11 @@ import (
 	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/GoAdminGroup/go-admin/template/types/action"
 	"github.com/GoAdminGroup/go-admin/template/types/form"
-	"path/filepath"
-	"strings"
 )
 
 func GetProfileTable(ctx *context.Context) table.Table {
 
-	profile := table.NewDefaultTable(table.DefaultConfigWithDriver("mysql"))
+	profile := table.NewDefaultTable(ctx, table.DefaultConfigWithDriver("mysql"))
 
 	info := profile.GetInfo().HideFilterArea()
 	info.AddField("ID", "id", db.Int).FieldFilterable()
@@ -49,7 +50,7 @@ func GetProfileTable(ctx *context.Context) table.Table {
 		FieldDownLoadable("http://yinyanghu.github.io/files/")
 	info.AddField("简历大小", "resume_size", db.Int).FieldFileSize()
 
-	info.AddButton("更多", icon.FolderO, action.PopUpWithForm(action.PopUpData{
+	info.AddButton(ctx, "更多", icon.FolderO, action.PopUpWithForm(action.PopUpData{
 		Id:     "/admin/popup/form",
 		Title:  "Popup Form Example",
 		Width:  "900px",

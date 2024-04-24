@@ -1,6 +1,9 @@
 package pages
 
 import (
+	"html/template"
+
+	"github.com/GoAdminGroup/go-admin/context"
 	"github.com/GoAdminGroup/go-admin/modules/config"
 	template2 "github.com/GoAdminGroup/go-admin/template"
 	"github.com/GoAdminGroup/go-admin/template/chartjs"
@@ -10,12 +13,11 @@ import (
 	"github.com/GoAdminGroup/themes/sword/components/description"
 	"github.com/GoAdminGroup/themes/sword/components/progress_group"
 	"github.com/gin-gonic/gin"
-	"html/template"
 )
 
 func GetDashBoard2Content(ctx *gin.Context) (types.Panel, error) {
 
-	components := template2.Get(config.GetTheme())
+	components := template2.Get(&context.Context{}, config.GetTheme())
 	colComp := components.Col()
 
 	/**************************
