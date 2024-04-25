@@ -12,6 +12,8 @@ github.com/GoAdminGroup/components v0.0.2 h1:bU+kVqQyY9+gwl/bU3ri/SMueGHbIWK3cOH
 github.com/GoAdminGroup/components v0.0.2/go.mod h1:lWLtprDb0slqdYvqDCGwuAvktJ8PsheC9H5h8pOkXCA=
 github.com/GoAdminGroup/filemanager v0.0.7-0.20240424233725-d2fe45f36f24 h1:Euc1VSH/9c/u5br51T2M/nvuihTx/bt0qhQIe7KolqU=
 github.com/GoAdminGroup/filemanager v0.0.7-0.20240424233725-d2fe45f36f24/go.mod h1:5KKi1j5azl6uejmD+fZwVfG/NUm+8L1Z+FlQ2/IZGf4=
+github.com/GoAdminGroup/filemanager v0.0.7-0.20240425012350-55d31351ebac h1:D1eLyJzdyxGzt563mbXkaqpt/mUNf/N9AkVMbfI2QFA=
+github.com/GoAdminGroup/filemanager v0.0.7-0.20240425012350-55d31351ebac/go.mod h1:YPGbRC+wxsUn9hQSufye6xJRCcBKpNF4xOBC5lwH6rc=
 github.com/GoAdminGroup/go-admin v1.2.25 h1:pqcGu2fK2ZbcOX9IYNoxLs8xOQ16bl0g/45shSYQMOY=
 github.com/GoAdminGroup/go-admin v1.2.25/go.mod h1:QXj94ZrDclKzqwZnAGUWaK3qY1Wfr6/Qy5GnRGeXR+k=
 github.com/GoAdminGroup/go-admin v1.2.26 h1:kk18rVrteLcrzH7iMM5p/13jghDC5n3DJG/7zAnbnEU=
@@ -20,6 +22,8 @@ github.com/GoAdminGroup/html v0.0.1 h1:SdWNWl4OKPsvDk2GDp5ZKD6ceWoN8n4Pj6cUYxavU
 github.com/GoAdminGroup/html v0.0.1/go.mod h1:A1laTJaOx8sQ64p2dE8IqtstDeCNBHEazrEp7hR5VvM=
 github.com/GoAdminGroup/librarian v0.0.6-0.20240424155317-45a628f56cc0 h1:/VOlx5VeWVbe999WM0GOjPcdObjnrnmLaWY7ey5LjXM=
 github.com/GoAdminGroup/librarian v0.0.6-0.20240424155317-45a628f56cc0/go.mod h1:uEnvqGgnuz5nWJ2sfhnCx6X40RHyEBmFJ0SCTqFQxzw=
+github.com/GoAdminGroup/librarian v0.0.6-0.20240425012428-318567669654 h1:1qVAIEXGq9T+xfKYAmfCj+zHzEbMK4PZaM8xVpcE5OA=
+github.com/GoAdminGroup/librarian v0.0.6-0.20240425012428-318567669654/go.mod h1:QLlLJDJzj13o3TqaIdftxWKA1EY+fmuTapo9EW/WaMo=
 github.com/GoAdminGroup/themes v0.0.46 h1:j6sS6EtQ1Fdb3ONVucvTz+K4OijSIFjMWkupqMc0ego=
 github.com/GoAdminGroup/themes v0.0.46/go.mod h1:LV2wH+Jdj6VlpUlUfycVBxswocV+8ytIn2afHwsCVRE=
 github.com/GoAdminGroup/themes v0.0.47 h1:e9xQXbDdjJhypvWvj5tUVFT8r56XHWoZQhIkV72EZXo=
