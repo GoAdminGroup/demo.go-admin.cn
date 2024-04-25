@@ -18,7 +18,7 @@ import (
 
 func GetForm1Content(ctx *gin.Context) (types.Panel, error) {
 
-	components := template2.Get(&context.Context{}, config.GetTheme())
+	components := template2.Get(context.NewContext(ctx.Request), config.GetTheme())
 
 	col1 := components.Col().GetContent()
 	btn1 := components.Button().SetType("submit").

@@ -17,7 +17,7 @@ import (
 
 func GetDashBoard2Content(ctx *gin.Context) (types.Panel, error) {
 
-	components := template2.Get(&context.Context{}, config.GetTheme())
+	components := template2.Get(context.NewContext(ctx.Request), config.GetTheme())
 	colComp := components.Col()
 
 	/**************************

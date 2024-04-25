@@ -5,9 +5,9 @@ go 1.22.2
 require (
 	github.com/GoAdminGroup/components v0.0.2
 	github.com/GoAdminGroup/filemanager v0.0.7-0.20240424233725-d2fe45f36f24
-	github.com/GoAdminGroup/go-admin v1.2.25
+	github.com/GoAdminGroup/go-admin v1.2.26
 	github.com/GoAdminGroup/librarian v0.0.6-0.20240424155317-45a628f56cc0
-	github.com/GoAdminGroup/themes v0.0.46
+	github.com/GoAdminGroup/themes v0.0.47
 	github.com/gavv/httpexpect v2.0.0+incompatible
 	github.com/gin-gonic/gin v1.5.0
 	github.com/go-echarts/go-echarts v0.0.0-20190915064101-cbb3b43ade5d

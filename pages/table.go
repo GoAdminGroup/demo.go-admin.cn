@@ -12,7 +12,7 @@ import (
 
 func GetTableContent(ctx *gin.Context) (types.Panel, error) {
 
-	comp := template2.Get(&context.Context{}, config.GetTheme())
+	comp := template2.Get(context.NewContext(ctx.Request), config.GetTheme())
 
 	table := comp.DataTable().
 		SetInfoList([]map[string]types.InfoItem{
