@@ -28,6 +28,8 @@ github.com/GoAdminGroup/themes v0.0.46 h1:j6sS6EtQ1Fdb3ONVucvTz+K4OijSIFjMWkupqM
 github.com/GoAdminGroup/themes v0.0.46/go.mod h1:LV2wH+Jdj6VlpUlUfycVBxswocV+8ytIn2afHwsCVRE=
 github.com/GoAdminGroup/themes v0.0.47 h1:e9xQXbDdjJhypvWvj5tUVFT8r56XHWoZQhIkV72EZXo=
 github.com/GoAdminGroup/themes v0.0.47/go.mod h1:w/5P0WCmM8iv7DYE5scIT8AODYMoo6zj/bVlzAbgOaU=
+github.com/GoAdminGroup/themes v0.0.48 h1:OveEEoFBCBTU5kNicqnvs0e/pL6uZKNQU1RAP9kmNFA=
+github.com/GoAdminGroup/themes v0.0.48/go.mod h1:w/5P0WCmM8iv7DYE5scIT8AODYMoo6zj/bVlzAbgOaU=
 github.com/NebulousLabs/fastrand v0.0.0-20181203155948-6fb6489aac4e h1:n+DcnTNkQnHlwpsrHoQtkrJIO7CBx029fw6oR4vIob4=
 github.com/NebulousLabs/fastrand v0.0.0-20181203155948-6fb6489aac4e/go.mod h1:Bdzq+51GR4/0DIhaICZEOm+OHvXGwwB2trKZ8B4Y6eQ=
 github.com/Shopify/sarama v1.19.0/go.mod h1:FVkBWblsNy7DGZRfXLU0O9RCGt5g3g3yEuWXgklEdEo=
